@@ -1,0 +1,15 @@
+# P7 register-only duplicate-property checks
+
+2026-11-01. Added bounded same-node property-name rescans to the test-only tree prototype. [Assembly](../tools/entry-harness/handoff.S), [runner](../tools/test_entry_handoff.py), [retained evidence](evidence/p7-entry-duplicate-tests.json).
+
+After validating a property name locally, the walker scans prior properties/NOPs from the current node's property-region start to the current token. It compares actual NUL-terminated bytes, so two offsets naming the same string are duplicates. Prefixes remain distinct, and identical names in sibling nodes are allowed. Previously traversed property extents are already bounded; each rescan advances through their checked value lengths and padding. The parent needs no saved property-region pointer after children because further parent properties are forbidden by the ordering check.
+
+x29 holds the current node's property-region start, x30 the current property token, x12 the current name, x15 the prior-property cursor and x16 the prior value length. x4–x7 and x9 are comparison scratch. No BL/return convention is used, so x30 is an explicitly owned register in this prototype, not a nested-call return address. These live ranges must be reconciled with future semantic passes; they are not a complete production allocation.
+
+A global scan-work counter starts at 1,048,576 and decrements for each prior-token inspection or name-byte comparison. Exhaustion rejects before further work; token and name limits still apply independently. This is a deliberate conservative subset: a large otherwise valid tree may be rejected for exceeding this work budget. No quadratic scan can run indefinitely. The limit is a bound on these counted operations, not on total machine instructions or wall-clock time.
+
+All 45 emulator scenarios pass. New coverage rejects same-offset and different-offset duplicates, accepts prefix names and sibling-local reuse, accepts 256 unique properties and rejects 257, and demonstrates budget exhaustion with unique long-prefix names. The previous count-limit fixture was replaced by unique names so it now isolates that limit instead of failing early as a duplicate. All marker, park-PC, vector and compiled no-store/call/SP checks pass.
+
+The first suite run passed behavior checks but failed the instruction audit because the allowlist lacked the newly introduced `subs` counter instruction. Disassembly confirmed it; the allowlist was updated explicitly and the complete suite rerun passed. That failed run was not reported as verified evidence.
+
+This closes duplicate-name coverage for the token prototype, not board or memory safety. Root compatible, address/size cells, active RAM, reserved-memory tree nodes and D20 shape still require register-only semantic passes. No result authorizes a stack write. Physical boot, data-abort coverage, production CPU masks and runtime write tracing remain pending. Next: define the semantic-pass register allocation and bounded work plan, then compare it against the existing Rust checks.

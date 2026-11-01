@@ -1,0 +1,13 @@
+# P7 register-only token envelope
+
+2026-11-01. Added a bounded token walker to the isolated emulator prototype. [Assembly](../tools/entry-harness/handoff.S), [runner](../tools/test_entry_handoff.py), [retained evidence](evidence/p7-entry-token-tests.json). Production startup remains unwired.
+
+The walker consumes validated structure/string extents and handles BEGIN_NODE, END_NODE, PROP, NOP and the exact final END token. It requires one empty-name root, nonempty child names, matched nesting and no property after a child. It bounds depth to 16, tokens to 16,384, properties per node to 256 and node/property names to 128 bytes. It checks NUL termination, string offsets, property value extents and zero alignment padding before advancing. All traversal state is in registers.
+
+For this pass x21/x22 hold absolute structure bounds, x23/x24 string bounds, x28 cursor, x25 token count, x26 depth, x27 root state, x8 a depth-indexed child-seen mask and x17 the current node's property count. x1–x7/x9 are scratch. Property count resets at a new node; after returning from children the parent's child-seen bit rejects further properties, so no parent counter stack is needed. END_NODE clears the exiting node's mask bit while retaining its parent's state. No recursion, RAM scratch or stack is introduced.
+
+All 39 scenarios pass. Fourteen new fixtures cover minimal/nested trees, a property, unknown/missing/extra terminators, invalid string offsets, oversized property values, nonzero padding, property-after-child ordering, excessive depth/properties and the exact 16,384-token success/rejection boundary. The previous 25 entry/header/reservation scenarios continue to pass. All compiled code extents pass the no-store/call/SP-operand checks and all vector branch/padding checks.
+
+Important limit: this is a token-envelope pass, not the complete Rust structure validator. It does not yet reject duplicate property names or interpret board identity, root cells, RAM, reserved-memory nodes or D20 request shape. Some structurally bounded fixtures are intentionally not semantically valid DTBs; notably the property-count fixture reuses a property name to isolate the count limit. No success marker authorizes stack writes or establishes safe kernel RAM. Data-abort coverage and runtime write tracing remain open.
+
+Next: bounded duplicate/relevant-property passes and board/RAM/reserved-memory semantics, with comparison against the existing Rust validator. Exact production CPU masks and final register liveness remain design gates. No Pi kernel or physical-media operation occurred; M1 is unchanged and M2/P7 remain in progress.

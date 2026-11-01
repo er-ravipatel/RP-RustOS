@@ -1,0 +1,11 @@
+# P7 D20 CMA reservation implementation
+
+2026-11-01. Resumed and verified the interrupted CMA change. Implemented the user-approved [D20 policy](m2-cma-entry-review.md) in the isolated Pi BSP.
+
+`select_cma_pool` validates the supplied map, then considers bank ends and exclusion starts rather than scanning addresses. It selects the highest 4 KiB aligned fitting range in a single RAM bank, excluding low memory, the complete kernel budget, the full DTB and all existing reservations. It rejects zero/oversized requests, insufficient capacity and no-space cases. This selects a declaration; it does not write physical memory or activate DMA.
+
+The DTB integration accepts only the exact `/reserved-memory/linux,cma` node shape approved by D20: shared-dma-pool, reusable, linux,cma-default, positive correctly encoded size, optional valid phandle and supported status. Unknown properties, constrained allocation, no-map, static reg, another node name or a second active dynamic request are rejected. It collects all RAM/static/header declarations before selection, adds the pool to the reserved set and reruns the complete conflict/containment checks. `inspect_boot_memory` returns the selected range for future startup reporting; the existing validation-only interface remains available.
+
+Verification: all 35 BSP host tests pass, AArch64 no_std compilation passes, formatting and Clippy with warnings denied pass. Tests include order-independent selection, aligned placement, DTB/kernel/static-reservation avoidance, bounded capacity, no-space and malformed/unsupported requests, and complete synthetic firmware-updated tree integration. The unchanged pinned real DTB still passes board/structure checks and now fails with `Ranges(Empty)` because its static RAM size is zero; it is not presented as a valid runtime memory map. The synthetic 128 MiB map selects a 64 MiB pool at 0x4000000.
+
+No source asset or approved lock hash changed. No Pi startup, console reporting, physical boot or card write was performed. This remains stack-using Rust code, not the required register-only preflight. Next: specify register ownership, bounded parsing and CPU transition masks, then build emulator/disassembly evidence before kernel wiring. M1 remains accepted; M2/P7 remain in progress.

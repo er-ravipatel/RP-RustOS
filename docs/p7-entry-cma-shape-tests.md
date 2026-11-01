@@ -1,0 +1,15 @@
+# P7 register-only D20 request shape
+
+2026-11-01. Added an optional D20 shape extension to the isolated static-tree prototype. [Assembly](../tools/entry-harness/handoff.S), [comparison runner](../tools/test_entry_cma_shape.py), [retained evidence](evidence/p7-entry-cma-shape-tests.json). This does not allocate a pool or authorize the first stack write.
+
+The pass requires the exact active child name `linux,cma` beneath the already-validated root reserved-memory parent, exact `shared-dma-pool` compatibility, empty reusable/default flags and a positive size encoded using the checked parent size cells. It accepts only a correctly encoded optional nonzero/non-0xffffffff phandle in addition to supported status. Unknown properties, no-map, alignment/alloc-ranges constraints and reg mixed with size are rejected. The existing one-active-reservation-child limit remains conservative; additional active children/requests fail.
+
+The current child name and required-property bits occupy x14; x16/x17 hold the size property's pointer/length. Bits are separate from parent mapping/count flags in x22. The size decoder uses four-byte loads even for two-cell values, preserving the alignment correction from the prior slice. The request is bounded to the board ceiling. It has no physical range until the later Rust selection step; no pool bytes are touched and no DMA service is enabled. The full Rust checker must repeat validation, prove available pool space/capacity and retain its selected reservation before later boot services.
+
+All 19 new emulator/reference comparisons pass: valid request, valid optional phandle, two-cell size, wrong/missing compatibility, missing/bad reusable/default flags, zero/oversized/wrong-width size, allocation constraints, no-map, static reg, invalid phandle, unknown properties and wrong node identity. Identical synthetic DTB bytes are supplied to both paths. Compiled instruction/no-store/call/SP, vector, CPU-state and exact park-PC checks remain required. Test fixtures use enough valid RAM for successful full Rust pool placement; the assembly comparison is not evidence of a pool-selection algorithm.
+
+The pre-stack sequence still needs malformed-node/variant coverage, a complete ownership/register review and a decision about its conservative one-bank/one-child limits. Full CPU masks/affinity, runtime write tracing, production wiring and physical acceptance remain pending. A shape-valid but impossible-to-place request must still fail in the later Rust validator; the prototype emits no production boot success.
+
+Regressions also pass after this extension: [18 static cases](evidence/p7-entry-cma-static-regression.json), [24 RAM cases](evidence/p7-entry-cma-ram-regression.json) and [58 earlier entry cases](evidence/p7-entry-cma-regression.json).
+
+Next: exercise the full pinned firmware-updated tree model and reconcile unsupported nodes/properties, then perform the reviewed first-write-boundary checks. Do not replace the current test adapter with production startup based on these shape tests alone. M1 and the immutable firmware lock remain unchanged.

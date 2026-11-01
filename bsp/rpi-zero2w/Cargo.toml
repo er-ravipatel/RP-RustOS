@@ -1,0 +1,12 @@
+[package]
+name = "rustos-bsp-rpi-zero2w"
+version = "0.1.0"
+edition = "2021"
+publish = false
+
+[dependencies]
+rustos-console = { path = "../../drivers/console" }
+
+# Isolated development workspace until the Pi kernel build is wired explicitly.
+[workspace]
+resolver = "2"

@@ -1,0 +1,13 @@
+# P7 semantic reference fixtures
+
+2026-11-01. Added a host-only [memory reference runner](../tools/test_entry_memory_reference.py) and an isolated BSP [example](../bsp/rpi-zero2w/examples/inspect_memory.rs) to prepare differential testing of the future register-only RAM pass. This checkpoint does not add that assembly pass.
+
+The runner generates complete synthetic DTBs, builds the existing Rust validator offline and records the exact expected/actual classification, fixture bytes' hashes, executable hash, source hashes and build command. It preserves fixtures and build logs under a fresh target directory; the generator allows regeneration after build-directory cleanup. The [retained report](evidence/p7-memory-reference-fixtures.json) records 14 passing cases.
+
+Coverage includes one/two address and size cells, zero-sized repository-style RAM placeholder, partial kernel/DTB containment, disabled/unknown memory status, overlapping RAM declarations, a kernel budget split across adjacent banks, a static reserved kernel byte, a reserved DTB, successful 64 MiB CMA reservation, no-space failure and out-of-board RAM. The successful CMA fixture explicitly checks the selected range [0x4000000,0x8000000). A DTB may itself be reserved because validation preserves it rather than overwriting it.
+
+The oracle is the already-tested Rust implementation, not an independent proof. The expected classifications are explicit so changes cannot silently redefine acceptance. The next assembly implementation must run the same bytes at the same synthetic placement and compare outcomes; a documented conservative rejection subset can be considered, but false acceptance of unsafe kernel RAM is unacceptable. Structural fixtures from the existing emulator suite remain separate because many deliberately lack semantic memory declarations.
+
+Before code is written, the memory pass needs a register plan for node identity/status, root cell counts, reg extent, current tuple, containment flags and bank overlap rescans. It must account for the existing phase ownership of x29/x30 and avoid nested calls/scratch RAM. It must not declare success before all relevant nodes and reservations have been checked. Full tree-reservation and D20-request validation are still separate safety obligations. The checked root properties alone do not establish writable RAM.
+
+Verification here is host execution only: no new emulator RAM cases, data-abort coverage, stack writes, production kernel, firmware or physical Pi test. The prior emulator root suite remains at 58 passing cases. M1 is unchanged and M2/P7 remain in progress.

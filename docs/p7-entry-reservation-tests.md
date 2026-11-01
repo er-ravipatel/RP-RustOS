@@ -1,0 +1,13 @@
+# P7 stackless header-reservation prototype
+
+2026-11-01. Extended the separate emulator harness with bounded FDT header-reservation scans. This remains test-only assembly; no production entry or writable stack was introduced. [Source](../tools/entry-harness/handoff.S), [runner](../tools/test_entry_handoff.py), [retained report](evidence/p7-entry-reservation-tests.json).
+
+The scanner reads big-endian 64-bit address/size records only when a complete 16-byte record fits before the validated structure block. It accepts the zero/zero terminator, caps nonterminating records at 128, rejects checked-add overflow, nonempty ranges beyond the conservative address ceiling, any reserved byte in [0x200000,0x400000), and pairwise overlap. Zero-length nonterminating records count toward the limit but do not reserve bytes. Exact-touching boundaries are accepted.
+
+Register ownership for this slice: x19 DTB base; x21 absolute structure start; x26 reservation-map start; x28 current record; x25 record count; x1/x2/x3 current start/size/end; x4/x5/x6 prior start/size/end; x7 prior cursor; x9 scratch. x0 remains the original handoff pointer; x11/x13 retain observed EL/control state. The previous-record scan advances 16 bytes and cannot exceed the current cursor; at most 8,128 pair comparisons occur for 128 nonempty records. No recursion, stack, global state or temporary RAM is used.
+
+All 25 emulator scenarios pass with expected markers, CPU level/PSTATE and exact park PCs. Ten new cases cover valid low reservation, one reserved kernel byte, exact touching, overlapping records, arithmetic wrap, out-of-ceiling range, missing terminator, 128 records, 129 records and zero-sized records. The preceding header, pointer and synchronous-BRK scenarios continue to pass. Every generated executable passes compiled instruction-count/allowlist checks and verification of all 16 stackless vector entries. The full test harness still has no store, call or SP/WSP operand in the inspected code extent.
+
+This checks only the header reservation map. Reserved-memory tree nodes, board compatibility, address/size cells, complete RAM containment, duplicate relevant properties and dynamic request shape still need register-only tree passes. In particular, a header/map success marker is not authorization to establish the kernel stack. Data-abort routing and runtime write tracing also remain unverified. CPU masks are test-adapter values, not a production handoff approval. No pinned firmware, Pi kernel, UART or physical media was used.
+
+Next: design bounded read-only tree passes, specify their register liveness/total work bound, and compare safety results against the existing Rust validator before integrating startup. M1 is unchanged and M2/P7 remain in progress.

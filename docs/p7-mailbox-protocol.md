@@ -1,0 +1,13 @@
+# P7 D22 mailbox protocol and bounded transport
+
+2026-11-01. D22 approved by the user. First implementation slice complete; hardware console integration remains pending.
+
+The [mailbox module](../bsp/rpi-zero2w/src/mailbox.rs) constructs the three approved clock messages, strictly validates correlated response snapshots, and checks the whole 64-byte aligned buffer extent against the proven BSS/kernel region before producing a GPU bus/channel word. Enable state must be exactly one; rate responses must be positive; measured-rate requests cannot silently become ordinary requested-rate queries.
+
+The bounded transport drains stale receive traffic, prepares the selected buffer, waits for transmit capacity, places a barrier before submission, correlates both response address and channel, places a completion barrier, and only then snapshots response words. One budget spans every polling phase: a one-second wrapping timer deadline plus 1,000,000 iterations. Unrelated traffic never resets it. Any error poisons the one-shot slot state; the transport has no reset/retry API. The future hardware owner must retain its dedicated allocations for the full boot. Constructing a new state object is not a substitute for that ownership obligation.
+
+[Host verification](evidence/p7-mailbox-protocol.json): 45 BSP tests pass, including nine new mailbox methods covering wire layouts, malformed/unsupported replies, alignment/range/overflow rejection, timer wrap/freeze, consumed/poisoned slots, wrong-channel/address responses, full FIFO/infinite stale traffic, late firmware completion after timeout without reuse, and malformed correlated replies without retry. Mock assertions check all request writes precede the submission barrier and response loads follow matching completion and a second barrier. Clippy all targets with warnings denied and the release bare-metal AArch64 build pass.
+
+[Actual Pi entry regressions](evidence/p7-mailbox-entry-regression.json) still pass all five multicore/BSS-order cases after the BSP change. The [linked pre-BSS validator stack audit](evidence/p7-mailbox-entry-stack.json) remains 21,440 bytes. Mailbox routines are not yet called by the kernel, so this does not establish their runtime hardware behavior or their future console stack bound.
+
+Next: implement the unsafe volatile MMIO backend and lifetime-long static buffers, connect the ordered three-clock transaction sequence, validate measured-rate divisors/error, implement GPIO and PL011 preparation, then add startup/panic diagnostics and hardware/emulator failure evidence. No firmware interaction, peripheral initialization or serial output is claimed by the mock tests. M1 and the approved asset lock remain unchanged.

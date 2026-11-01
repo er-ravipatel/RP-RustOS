@@ -1,0 +1,31 @@
+[package]
+name = "rustos-pi-kernel"
+version = "0.1.0"
+edition = "2021"
+publish = false
+build = "build.rs"
+
+[workspace]
+resolver = "2"
+
+[dependencies]
+rustos-bsp-rpi-zero2w = { path = ".." }
+rustos-console = { path = "../../../drivers/console" }
+rustos-hal = { path = "../../../hal" }
+
+[features]
+# Explicit test artifact: halt at the pre-peripheral debugger checkpoint.
+entry-only = []
+panic-test = []
+
+[[bin]]
+name = "rustos-pi-kernel"
+path = "src/main.rs"
+test = false
+bench = false
+
+[profile.release]
+panic = "abort"
+
+[profile.dev]
+panic = "abort"
