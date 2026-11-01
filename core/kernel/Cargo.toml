@@ -1,0 +1,22 @@
+[package]
+name = "rustos-kernel"
+version = "0.1.0"
+edition = "2021"
+publish = false
+build = "build.rs"
+
+[features]
+panic-test = []
+fault-test = []
+unexpected-panic-test = []
+
+[[bin]]
+name = "rustos-kernel"
+path = "src/main.rs"
+test = false
+bench = false
+
+[dependencies]
+rustos-hal = { path = "../../hal" }
+rustos-bsp-qemu-virt = { path = "../../bsp/qemu-virt" }
+rustos-console = { path = "../../drivers/console" }
