@@ -1,0 +1,35 @@
+{
+  "kind": "source-inspection-not-pi-execution",
+  "command": [
+    "tools/assembler/target/debug/rustos.exe",
+    "validate",
+    "--repo",
+    "E:\\Work\\RustOS",
+    "--config",
+    "E:\\Work\\RustOS\\rustos-zero2w.toml",
+    "--format",
+    "json"
+  ],
+  "exit_code": 2,
+  "cli": {
+    "build_ready": null,
+    "diagnostics": [
+      {
+        "code": "TARGET_BACKEND_PENDING",
+        "dependency_chain": [],
+        "field": "target",
+        "input": "\\\\?\\E:\\Work\\RustOS\\profiles\\rpi-zero2w-a53.toml",
+        "message": "Pi metadata/module selection: hal, bsp-rpi-zero2w, console-pl011, kernel. Missing source prerequisites: bsp-rpi-zero2w needs Cargo.toml and a default src/lib.rs or src/main.rs. Kernel board wiring, Pi execution/build/verification are not implemented. Asset bytes were not checked.",
+        "severity": "error",
+        "stage": "inspection"
+      }
+    ],
+    "evidence": [],
+    "operation": "validate",
+    "result": null,
+    "schema_version": 1,
+    "status": "failed",
+    "target": null
+  },
+  "output_directory_created": false
+}

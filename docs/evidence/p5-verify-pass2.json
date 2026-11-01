@@ -1,0 +1,410 @@
+{
+  "schema_version": 1,
+  "kind": "assembler-production-verifier-acceptance",
+  "passed": true,
+  "profile_change": "icount shift=auto confirmation pending",
+  "checks": [
+    {
+      "name": "artifact tamper rejected before QEMU",
+      "status": "passed"
+    },
+    {
+      "name": "duplicate artifact variant rejected",
+      "status": "passed"
+    },
+    {
+      "name": "fault marker overrides boot success; owned cleanup settled",
+      "status": "passed",
+      "report": {
+        "build_ready": null,
+        "diagnostics": [],
+        "evidence": [
+          ".rustos-reports/m1-aba4-18e3b75d1a8a746c/v-ad1c-18e3b75d76f07954/report.json"
+        ],
+        "operation": "verify",
+        "result": {
+          "cleanup": {
+            "diagnostics": [],
+            "kill_budget_ms": 5000,
+            "processes_settled": true,
+            "status": "passed",
+            "stop_budget_ms": 5000
+          },
+          "complete": true,
+          "diagnostics": [
+            {
+              "code": "CONTROL_TIMER_PROPOSAL",
+              "dependency_chain": [],
+              "field": "verify",
+              "input": null,
+              "message": "QEMU Windows named-pipe polling uses -icount shift=auto; profile confirmation is pending",
+              "severity": "info",
+              "stage": "verification"
+            }
+          ],
+          "evidence": [
+            "input-manifest.json",
+            "qemu-version/stdout.log"
+          ],
+          "finished_at": "2026-10-31T20:31:28.982Z",
+          "manifest_sha256": "8a7b8a9fdd9cc9455e8e6378e53c033851cd6cda8d41b5e9ca857dda2f275705",
+          "operation": "verify",
+          "run_id": "v-ad1c-18e3b75d76f07954",
+          "schema_version": 1,
+          "started_at": "2026-10-31T20:31:28.679Z",
+          "status": "failed",
+          "steps": [
+            {
+              "artifact_id": "kernel",
+              "artifact_sha256": "bfa51da1d05f99bde656a4c742d9d1b69d0cf5dd4f0703031bbfc6e4d957271d",
+              "deadline_ms": 10000,
+              "diagnostics": [
+                {
+                  "code": "SERIAL_INVALID",
+                  "dependency_chain": [],
+                  "field": "verify",
+                  "input": null,
+                  "message": "Contradictory/fault marker: RUSTOS_UNEXPECTED_PANIC",
+                  "severity": "error",
+                  "stage": "verification"
+                },
+                {
+                  "code": "SERIAL_INVALID",
+                  "dependency_chain": [],
+                  "field": "verify",
+                  "input": null,
+                  "message": "Contradictory/fault marker: RUSTOS_UNEXPECTED_PANIC",
+                  "severity": "error",
+                  "stage": "verification"
+                }
+              ],
+              "id": "startup",
+              "logs": [
+                {
+                  "path": "startup/stdout.log",
+                  "sha256": "6292e58a7eb7cdc61c0ee0a240cb8c97ebb5f88430b30ab584f64e47d1ab8d17",
+                  "stream": "stdout"
+                },
+                {
+                  "path": "startup/stderr.log",
+                  "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+                  "stream": "stderr"
+                }
+              ],
+              "observed_marker": null,
+              "status": "failed",
+              "stop_requested": true
+            },
+            {
+              "artifact_id": "kernel-panic-test",
+              "artifact_sha256": "9da30e152717d30e9f0567a33e47af76755d14b7383bc526c4c97058494eae2a",
+              "deadline_ms": 10000,
+              "diagnostics": [],
+              "id": "panic",
+              "logs": [],
+              "observed_marker": null,
+              "status": "skipped",
+              "stop_requested": false
+            }
+          ],
+          "target": "qemu-virt-a53",
+          "verification_scope": "emulator"
+        },
+        "schema_version": 1,
+        "status": "failed",
+        "target": "qemu-virt-a53"
+      }
+    },
+    {
+      "name": "real snapshot bundle passed both scenarios without bundle mutation",
+      "status": "passed",
+      "report": {
+        "build_ready": null,
+        "diagnostics": [],
+        "evidence": [
+          ".rustos-reports/m1-aba4-18e3b75d1a8a746c/v-2d68-18e3b75d8b86710c/report.json"
+        ],
+        "operation": "verify",
+        "result": {
+          "cleanup": {
+            "diagnostics": [],
+            "kill_budget_ms": 5000,
+            "processes_settled": true,
+            "status": "passed",
+            "stop_budget_ms": 5000
+          },
+          "complete": true,
+          "diagnostics": [
+            {
+              "code": "CONTROL_TIMER_PROPOSAL",
+              "dependency_chain": [],
+              "field": "verify",
+              "input": null,
+              "message": "QEMU Windows named-pipe polling uses -icount shift=auto; profile confirmation is pending",
+              "severity": "info",
+              "stage": "verification"
+            }
+          ],
+          "evidence": [
+            "input-manifest.json",
+            "qemu-version/stdout.log"
+          ],
+          "finished_at": "2026-10-31T20:31:29.646Z",
+          "manifest_sha256": "703219c7038f5fb6a028f3f7b9dd24aac1b9a50b2472a785487ed1f8ddcdf328",
+          "operation": "verify",
+          "run_id": "v-2d68-18e3b75d8b86710c",
+          "schema_version": 1,
+          "started_at": "2026-10-31T20:31:29.024Z",
+          "status": "passed",
+          "steps": [
+            {
+              "artifact_id": "kernel",
+              "artifact_sha256": "e66ebc4c189fbbd5ef2dded49ed702f58109127f9f1d8c15ffcc7aa05572f482",
+              "deadline_ms": 10000,
+              "diagnostics": [],
+              "id": "startup",
+              "logs": [
+                {
+                  "path": "startup/stdout.log",
+                  "sha256": "8153b443b6f9cdff16cc80778669def6b5f91fe0a3fdf1baf4986fc2b8a59033",
+                  "stream": "stdout"
+                },
+                {
+                  "path": "startup/stderr.log",
+                  "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+                  "stream": "stderr"
+                }
+              ],
+              "observed_marker": "RUSTOS_BOOT_OK",
+              "status": "passed",
+              "stop_requested": true
+            },
+            {
+              "artifact_id": "kernel-panic-test",
+              "artifact_sha256": "9da30e152717d30e9f0567a33e47af76755d14b7383bc526c4c97058494eae2a",
+              "deadline_ms": 10000,
+              "diagnostics": [],
+              "id": "panic",
+              "logs": [
+                {
+                  "path": "panic/stdout.log",
+                  "sha256": "30b6cf8182d8c87847fdf3d5a7a069c9efe4c6fc87022565e227a3006466fd0c",
+                  "stream": "stdout"
+                },
+                {
+                  "path": "panic/stderr.log",
+                  "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+                  "stream": "stderr"
+                }
+              ],
+              "observed_marker": "RUSTOS_EXPECTED_PANIC",
+              "status": "passed",
+              "stop_requested": true
+            }
+          ],
+          "target": "qemu-virt-a53",
+          "verification_scope": "emulator"
+        },
+        "schema_version": 1,
+        "status": "passed",
+        "target": "qemu-virt-a53"
+      }
+    },
+    {
+      "name": "missing marker times out with skipped dependent scenario and settled cleanup",
+      "status": "passed",
+      "report": {
+        "build_ready": null,
+        "diagnostics": [],
+        "evidence": [
+          ".rustos-reports/m1-aba4-18e3b75d1a8a746c/v-5580-18e3b75db50009bc/report.json"
+        ],
+        "operation": "verify",
+        "result": {
+          "cleanup": {
+            "diagnostics": [],
+            "kill_budget_ms": 5000,
+            "processes_settled": true,
+            "status": "passed",
+            "stop_budget_ms": 5000
+          },
+          "complete": true,
+          "diagnostics": [
+            {
+              "code": "CONTROL_TIMER_PROPOSAL",
+              "dependency_chain": [],
+              "field": "verify",
+              "input": null,
+              "message": "QEMU Windows named-pipe polling uses -icount shift=auto; profile confirmation is pending",
+              "severity": "info",
+              "stage": "verification"
+            }
+          ],
+          "evidence": [
+            "input-manifest.json",
+            "qemu-version/stdout.log"
+          ],
+          "finished_at": "2026-10-31T20:31:39.913Z",
+          "manifest_sha256": "ebc7e6436fc05d4b2e66349c0c1f59d1ce3a9bb87a8b97b3e03d66affab2d093",
+          "operation": "verify",
+          "run_id": "v-5580-18e3b75db50009bc",
+          "schema_version": 1,
+          "started_at": "2026-10-31T20:31:29.720Z",
+          "status": "timed_out",
+          "steps": [
+            {
+              "artifact_id": "kernel",
+              "artifact_sha256": "d70d2a1e6d9219ba50cbdbd8a3b966e0a6fefb0ffcc30253f6429540b37c6701",
+              "deadline_ms": 10000,
+              "diagnostics": [
+                {
+                  "code": "MARKER_TIMEOUT",
+                  "dependency_chain": [],
+                  "field": "verify",
+                  "input": null,
+                  "message": "Expected marker was not established before deadline",
+                  "severity": "error",
+                  "stage": "verification"
+                }
+              ],
+              "id": "startup",
+              "logs": [
+                {
+                  "path": "startup/stdout.log",
+                  "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+                  "stream": "stdout"
+                },
+                {
+                  "path": "startup/stderr.log",
+                  "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+                  "stream": "stderr"
+                }
+              ],
+              "observed_marker": null,
+              "status": "timed_out",
+              "stop_requested": true
+            },
+            {
+              "artifact_id": "kernel-panic-test",
+              "artifact_sha256": "9da30e152717d30e9f0567a33e47af76755d14b7383bc526c4c97058494eae2a",
+              "deadline_ms": 10000,
+              "diagnostics": [],
+              "id": "panic",
+              "logs": [],
+              "observed_marker": null,
+              "status": "skipped",
+              "stop_requested": false
+            }
+          ],
+          "target": "qemu-virt-a53",
+          "verification_scope": "emulator"
+        },
+        "schema_version": 1,
+        "status": "timed_out",
+        "target": "qemu-virt-a53"
+      }
+    },
+    {
+      "name": "unknown manifest field rejected",
+      "status": "passed"
+    },
+    {
+      "name": "unterminated marker cannot pass",
+      "status": "passed",
+      "report": {
+        "build_ready": null,
+        "diagnostics": [],
+        "evidence": [
+          ".rustos-reports/m1-aba4-18e3b75d1a8a746c/v-7f74-18e3b7601993c998/report.json"
+        ],
+        "operation": "verify",
+        "result": {
+          "cleanup": {
+            "diagnostics": [],
+            "kill_budget_ms": 5000,
+            "processes_settled": true,
+            "status": "passed",
+            "stop_budget_ms": 5000
+          },
+          "complete": true,
+          "diagnostics": [
+            {
+              "code": "CONTROL_TIMER_PROPOSAL",
+              "dependency_chain": [],
+              "field": "verify",
+              "input": null,
+              "message": "QEMU Windows named-pipe polling uses -icount shift=auto; profile confirmation is pending",
+              "severity": "info",
+              "stage": "verification"
+            }
+          ],
+          "evidence": [
+            "input-manifest.json",
+            "qemu-version/stdout.log"
+          ],
+          "finished_at": "2026-10-31T20:31:50.209Z",
+          "manifest_sha256": "01288dbb48e2ea3ab29180f2cba869418ee40042c0f9f5bb1340ebd19ddca4ef",
+          "operation": "verify",
+          "run_id": "v-7f74-18e3b7601993c998",
+          "schema_version": 1,
+          "started_at": "2026-10-31T20:31:39.997Z",
+          "status": "timed_out",
+          "steps": [
+            {
+              "artifact_id": "kernel",
+              "artifact_sha256": "fc8392b258a3e711177c7ebb92bd58aab23ec6d2c87389ee4a67035fcb5813c4",
+              "deadline_ms": 10000,
+              "diagnostics": [
+                {
+                  "code": "MARKER_TIMEOUT",
+                  "dependency_chain": [],
+                  "field": "verify",
+                  "input": null,
+                  "message": "Expected marker was not established before deadline",
+                  "severity": "error",
+                  "stage": "verification"
+                }
+              ],
+              "id": "startup",
+              "logs": [
+                {
+                  "path": "startup/stdout.log",
+                  "sha256": "31d3f32ea2c067fff7b69b9f20093e1716f659f33338014b8307ecfd8b98b5fe",
+                  "stream": "stdout"
+                },
+                {
+                  "path": "startup/stderr.log",
+                  "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+                  "stream": "stderr"
+                }
+              ],
+              "observed_marker": null,
+              "status": "timed_out",
+              "stop_requested": true
+            },
+            {
+              "artifact_id": "kernel-panic-test",
+              "artifact_sha256": "9da30e152717d30e9f0567a33e47af76755d14b7383bc526c4c97058494eae2a",
+              "deadline_ms": 10000,
+              "diagnostics": [],
+              "id": "panic",
+              "logs": [],
+              "observed_marker": null,
+              "status": "skipped",
+              "stop_requested": false
+            }
+          ],
+          "target": "qemu-virt-a53",
+          "verification_scope": "emulator"
+        },
+        "schema_version": 1,
+        "status": "timed_out",
+        "target": "qemu-virt-a53"
+      }
+    },
+    {
+      "name": "untrusted recipe identity rejected",
+      "status": "passed"
+    }
+  ]
+}

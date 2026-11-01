@@ -1,0 +1,33 @@
+{
+  "kind": "real-local-asset-review-not-os-build",
+  "lock_path": "assets/locks/rpi-zero2w-boot-assets.lock.json",
+  "lock_sha256": "537d7d3b991369db5ec4bb3475ddf37b41dd2217b56b53e44d69c163b356e850",
+  "passes": [
+    {
+      "status": "passed",
+      "boot_assets": 6,
+      "source_packages": 1
+    },
+    {
+      "status": "passed",
+      "boot_assets": 6,
+      "source_packages": 1
+    }
+  ],
+  "checker_inputs": [
+    {
+      "path": "tools/m2_input_contracts.py",
+      "sha256": "f2d30c6679c34218b6bb27620420fff6320f983ba525bb9f4d8be69785e34fc9"
+    },
+    {
+      "path": "tools/check_m2_asset_lock.py",
+      "sha256": "25fa669d599d9c83b90fbf79bd1da4b65bb1d082bee85909eb8fbd4d40ebbd9b"
+    },
+    {
+      "path": "docs/schemas/m2-inputs.schema.json",
+      "sha256": "ad0cc4fd4af852a9d9cb60e6bf9ad2c59bf7759b7021277bb73f5b3b9399e94e"
+    }
+  ],
+  "m2_test_methods": 62,
+  "hardware_verified": false
+}

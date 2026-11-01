@@ -1,0 +1,17 @@
+{
+  "recorded_at": "2026-11-01T11:28:41.289227+00:00",
+  "passed": true,
+  "bsp_tests": 51,
+  "default_aarch64_clippy": "passed",
+  "new_gpio_tests": 3,
+  "serial_success_verified": false,
+  "source_sha256": {
+    "bsp/rpi-zero2w/src/uart_prepare.rs": "24650e3b690c6bdb90d097c628edda0e4ce6d3a682c08d5f055215043eb49da1",
+    "bsp/rpi-zero2w/src/uart_clock.rs": "429fd6411e38a9b851da2d949a67443bfda3b576d71d751d57b5ba1c4a6bb84e",
+    "bsp/rpi-zero2w/kernel/src/main.rs": "2c75eed82825a0bd27cf798502131c675c09db0fa021f6b0f273a86dc07f92d3",
+    "bsp/rpi-zero2w/kernel/src/entry/finish.S": "e0d5e56a698e05790683637221598a3df29487f8407cff95c787fe3279d06e61",
+    "tools/test_pi_console_path.py": "1f719b91e8e33f1b8c2845db456acb56d99689151c93b57c9dbc4c7115186053",
+    "tools/test_pi_kernel_entry.py": "b1460c6d1fa3c9d73e70536bc11e7288e2bdcfa022f84b3e39f6fc04a3d8cece",
+    "tools/probe_entry_machines.py": "f62c7b5fe13c5c483398c1e2757d681906a2afc2107dc05bd1c46df05e14a719"
+  }
+}

@@ -1,0 +1,41 @@
+{
+  "build_ready": true,
+  "diagnostics": [
+    {
+      "code": "COMPILATION_PASSED",
+      "dependency_chain": [],
+      "field": "compilation",
+      "input": null,
+      "message": "Normal and deliberate-panic kernels compiled",
+      "severity": "info",
+      "stage": "compilation"
+    },
+    {
+      "code": "PACKAGING_PASSED",
+      "dependency_chain": [],
+      "field": "packaging",
+      "input": null,
+      "message": "Checked artifacts and manifest published without replacement",
+      "severity": "info",
+      "stage": "packaging"
+    },
+    {
+      "code": "VERIFICATION_NOT_RUN",
+      "dependency_chain": [],
+      "field": "verification",
+      "input": null,
+      "message": "Emulator verification was not requested by build; run verify separately",
+      "severity": "info",
+      "stage": "verification"
+    }
+  ],
+  "evidence": [],
+  "operation": "build",
+  "result": {
+    "manifest_path": "E:\\Work\\RustOS\\out\\m1\\manifest.json",
+    "manifest_sha256": "11aa1d74b1edcb082d8772239b14885890a66bbc0a2ed401ddd0b94b0b706c97"
+  },
+  "schema_version": 1,
+  "status": "passed",
+  "target": "qemu-virt-a53"
+}

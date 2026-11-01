@@ -1,0 +1,273 @@
+{
+  "passed": true,
+  "cases": [
+    {
+      "name": "normal",
+      "checks": {
+        "marker": true,
+        "expected_level": true,
+        "park_pc": true,
+        "pstate": true,
+        "dtb_register": true,
+        "mmu_caches_off": true,
+        "all_instructions_decoded": true,
+        "no_stores_calls_or_stack_operands": true
+      },
+      "passed": true,
+      "qemu": {
+        "command": [
+          "C:/Program Files/qemu/qemu-system-aarch64.exe",
+          "-machine",
+          "raspi3b",
+          "-device",
+          "loader,file=E:\\Work\\RustOS\\target\\entry-handoff-1793511715281435500\\normal.elf,cpu-num=0",
+          "-S",
+          "-display",
+          "none",
+          "-serial",
+          "none",
+          "-monitor",
+          "none",
+          "-qmp",
+          "stdio"
+        ],
+        "greeting": {
+          "QMP": {
+            "version": {
+              "qemu": {
+                "micro": 0,
+                "minor": 1,
+                "major": 11
+              },
+              "package": "v11.1.0-12130-ge470268ff4"
+            },
+            "capabilities": []
+          }
+        },
+        "stderr": "",
+        "disassembly": "0x00200000:  d5034fdf  msr      daifset, #0xf\r\n0x00200004:  d53800a9  mrs      x9, mpidr_el1\r\n0x00200008:  92401d29  and      x9, x9, #0xff\r\n0x0020000c:  b5000449  cbnz     x9, #0x200094\r\n0x00200010:  d280000a  mov      x10, #0\r\n0x00200014:  d5384249  mrs      x9, currentel\r\n0x00200018:  f100313f  cmp      x9, #0xc\r\n0x0020001c:  54000361  b.ne     #0x200088\r\n0x00200020:  d280a629  mov      x9, #0x531\r\n0x00200024:  d51e1109  msr      scr_el3, x9\r\n0x00200028:  d2b00009  mov      x9, #0x80000000\r\n0x0020002c:  d51c1109  msr      hcr_el2, x9\r\n0x00200030:  58000389  ldr      x9, #0x2000a0\r\n0x00200034:  d5181009  msr      sctlr_el1, x9\r\n0x00200038:  58000389  ldr      x9, #0x2000a8\r\n0x0020003c:  d51c1009  msr      sctlr_el2, x9\r\n0x00200040:  d2807929  mov      x9, #0x3c9\r\n0x00200044:  d51e4009  msr      spsr_el3, x9\r\n0x00200048:  10000089  adr      x9, #0x200058\r\n0x0020004c:  d51e4029  msr      elr_el3, x9\r\n0x00200050:  d2a02000  mov      x0, #0x1000000\r\n0x00200054:  d69f03e0  eret     \r\n0x00200058:  d538424b  mrs      x11, currentel\r\n0x0020005c:  f100217f  cmp      x11, #8\r\n0x00200060:  54000141  b.ne     #0x200088\r\n0x00200064:  d53c100d  mrs      x13, sctlr_el2\r\n0x00200068:  d28200a9  mov      x9, #0x1005\r\n0x0020006c:  ea0901bf  tst      x13, x9\r\n0x00200070:  540000c1  b.ne     #0x200088\r\n0x00200074:  aa0003ec  mov      x12, x0\r\n0x00200078:  d28a6a6a  mov      x10, #0x5353\r\n0x0020007c:  f2aa082a  movk     x10, #0x5041, lsl #16\r\n0x00200080:  d503205f  wfe      \r\n0x00200084:  17ffffff  b        #0x200080\r\n0x00200088:  d29fffea  mov      x10, #0xffff\r\n0x0020008c:  d503205f  wfe      \r\n0x00200090:  17ffffff  b        #0x20008c\r\n0x00200094:  d503205f  wfe      \r\n0x00200098:  17ffffff  b        #0x200094\r\n",
+        "memory_tree": "address-space: bcm2835-mbox-memory\r\n  0000000000000000-000000000000008f (prio 0, container): bcm2835-mbox\r\n    0000000000000010-000000000000001f (prio 0, i/o): bcm2835-fb\r\n    0000000000000080-000000000000008f (prio 0, i/o): bcm2835-property\r\n\r\naddress-space: I/O\r\n  0000000000000000-000000000000ffff (prio 0, container): io\r\n\r\naddress-space: cpu-memory-0\r\naddress-space: cpu-memory-1\r\naddress-space: cpu-memory-2\r\naddress-space: cpu-memory-3\r\naddress-space: cpu-secure-memory-0\r\naddress-space: cpu-secure-memory-1\r\naddress-space: cpu-secure-memory-2\r\naddress-space: cpu-secure-memory-3\r\naddress-space: memory\r\n  0000000000000000-ffffffffffffffff (prio 0, container): system\r\n    0000000000000000-000000003fffffff (prio 0, ram): ram\r\n    000000003f000000-000000003fffffff (prio 1, i/o): bcm2835-peripherals\r\n      000000003f003000-000000003f00301f (prio 0, i/o): bcm2835-sys-timer\r\n      000000003f004000-000000003f004fff (prio -1000, i/o): bcm2835-txp\r\n      000000003f006000-000000003f006fff (prio 0, i/o): mphi\r\n      000000003f007000-000000003f007fff (prio 0, i/o): bcm2835-dma\r\n      000000003f00b200-000000003f00b3ff (prio 0, i/o): bcm2835-ic\r\n      000000003f00b400-000000003f00b43f (prio -1000, i/o): bcm2835-sp804\r\n      000000003f00b800-000000003f00bbff (prio 0, i/o): bcm2835-mbox\r\n      000000003f100000-000000003f1001ff (prio 0, i/o): bcm2835-powermgt\r\n      000000003f101000-000000003f102fff (prio 0, i/o): bcm2835-cprman\r\n      000000003f104000-000000003f10400f (prio 0, i/o): bcm2835-rng\r\n      000000003f200000-000000003f200fff (prio 0, i/o): bcm2835_gpio\r\n      000000003f201000-000000003f201fff (prio 0, i/o): pl011\r\n      000000003f202000-000000003f202fff (prio 0, i/o): bcm2835-sdhost\r\n      000000003f203000-000000003f2030ff (prio -1000, i/o): bcm2835-i2s\r\n      000000003f204000-000000003f204017 (prio 0, i/o): bcm2835-spi\r\n      000000003f205000-000000003f205023 (prio 0, i/o): bcm2835-i2c\r\n      000000003f20f000-000000003f20f07f (prio 0, i/o): bcm2835-otp\r\n      000000003f212000-000000003f212007 (prio 0, i/o): bcm2835-thermal\r\n      000000003f214000-000000003f2140ff (prio -1000, i/o): bcm2835-spis\r\n      000000003f215000-000000003f2150ff (prio 0, i/o): bcm2835-aux\r\n      000000003f300000-000000003f3000ff (prio 0, i/o): sdhci\r\n      000000003f600000-000000003f6000ff (prio -1000, i/o): bcm2835-smi\r\n      000000003f804000-000000003f804023 (prio 0, i/o): bcm2835-i2c\r\n      000000003f805000-000000003f805023 (prio 0, i/o): bcm2835-i2c\r\n      000000003f900000-000000003f907fff (prio -1000, i/o): bcm2835-dbus\r\n      000000003f910000-000000003f917fff (prio -1000, i/o): bcm2835-ave0\r\n      000000003f980000-000000003f990fff (prio 0, i/o): dwc2\r\n        000000003f980000-000000003f980fff (prio 0, i/o): dwc2-io\r\n        000000003f981000-000000003f990fff (prio 0, i/o): dwc2-fifo\r\n      000000003fc00000-000000003fc00fff (prio -1000, i/o): bcm2835-v3d\r\n      000000003fe00000-000000003fe000ff (prio -1000, i/o): bcm2835-sdramc\r\n      000000003fe05000-000000003fe050ff (prio 0, i/o): bcm2835-dma-chan15\r\n    0000000040000000-00000000400000ff (prio 0, i/o): bcm2836-control\r\n\r\naddress-space: bcm2835-dma-memory\r\naddress-space: bcm2835-fb-memory\r\naddress-space: bcm2835-property-memory\r\naddress-space: dwc2\r\n  0000000000000000-00000000ffffffff (prio 0, container): bcm2835-gpu\r\n    0000000000000000-000000003fffffff (prio 0, ram): alias bcm2835-gpu-ram-alias[*] @ram 0000000000000000-000000003fffffff\r\n    0000000040000000-000000007fffffff (prio 0, ram): alias bcm2835-gpu-ram-alias[*] @ram 0000000000000000-000000003fffffff\r\n    000000007e000000-000000007effffff (prio 1, i/o): alias bcm2835-peripherals @bcm2835-peripherals 0000000000000000-0000000000ffffff\r\n    0000000080000000-00000000bfffffff (prio 0, ram): alias bcm2835-gpu-ram-alias[*] @ram 0000000000000000-000000003fffffff\r\n    00000000c0000000-00000000ffffffff (prio 0, ram): alias bcm2835-gpu-ram-alias[*] @ram 0000000000000000-000000003fffffff\r\n\r\nmemory-region: ram\r\n  0000000000000000-000000003fffffff (prio 0, ram): ram\r\n\r\nmemory-region: bcm2835-peripherals\r\n  000000003f000000-000000003fffffff (prio 1, i/o): bcm2835-peripherals\r\n    000000003f003000-000000003f00301f (prio 0, i/o): bcm2835-sys-timer\r\n    000000003f004000-000000003f004fff (prio -1000, i/o): bcm2835-txp\r\n    000000003f006000-000000003f006fff (prio 0, i/o): mphi\r\n    000000003f007000-000000003f007fff (prio 0, i/o): bcm2835-dma\r\n    000000003f00b200-000000003f00b3ff (prio 0, i/o): bcm2835-ic\r\n    000000003f00b400-000000003f00b43f (prio -1000, i/o): bcm2835-sp804\r\n    000000003f00b800-000000003f00bbff (prio 0, i/o): bcm2835-mbox\r\n    000000003f100000-000000003f1001ff (prio 0, i/o): bcm2835-powermgt\r\n    000000003f101000-000000003f102fff (prio 0, i/o): bcm2835-cprman\r\n    000000003f104000-000000003f10400f (prio 0, i/o): bcm2835-rng\r\n    000000003f200000-000000003f200fff (prio 0, i/o): bcm2835_gpio\r\n    000000003f201000-000000003f201fff (prio 0, i/o): pl011\r\n    000000003f202000-000000003f202fff (prio 0, i/o): bcm2835-sdhost\r\n    000000003f203000-000000003f2030ff (prio -1000, i/o): bcm2835-i2s\r\n    000000003f204000-000000003f204017 (prio 0, i/o): bcm2835-spi\r\n    000000003f205000-000000003f205023 (prio 0, i/o): bcm2835-i2c\r\n    000000003f20f000-000000003f20f07f (prio 0, i/o): bcm2835-otp\r\n    000000003f212000-000000003f212007 (prio 0, i/o): bcm2835-thermal\r\n    000000003f214000-000000003f2140ff (prio -1000, i/o): bcm2835-spis\r\n    000000003f215000-000000003f2150ff (prio 0, i/o): bcm2835-aux\r\n    000000003f300000-000000003f3000ff (prio 0, i/o): sdhci\r\n    000000003f600000-000000003f6000ff (prio -1000, i/o): bcm2835-smi\r\n    000000003f804000-000000003f804023 (prio 0, i/o): bcm2835-i2c\r\n    000000003f805000-000000003f805023 (prio 0, i/o): bcm2835-i2c\r\n    000000003f900000-000000003f907fff (prio -1000, i/o): bcm2835-dbus\r\n    000000003f910000-000000003f917fff (prio -1000, i/o): bcm2835-ave0\r\n    000000003f980000-000000003f990fff (prio 0, i/o): dwc2\r\n      000000003f980000-000000003f980fff (prio 0, i/o): dwc2-io\r\n      000000003f981000-000000003f990fff (prio 0, i/o): dwc2-fifo\r\n    000000003fc00000-000000003fc00fff (prio -1000, i/o): bcm2835-v3d\r\n    000000003fe00000-000000003fe000ff (prio -1000, i/o): bcm2835-sdramc\r\n    000000003fe05000-000000003fe050ff (prio 0, i/o): bcm2835-dma-chan15\r\n\r\n",
+        "observed_registers": "\r\nCPU#0\r\n PC=0000000000200084 X00=0000000001000000 X01=0000000000000000\r\nX02=0000000000000000 X03=0000000000000000 X04=0000000000000000\r\nX05=0000000000000000 X06=0000000000000000 X07=0000000000000000\r\nX08=0000000000000000 X09=0000000000001005 X10=0000000050415353\r\nX11=0000000000000008 X12=0000000001000000 X13=0000000030c50830\r\nX14=0000000000000000 X15=0000000000000000 X16=0000000000000000\r\nX17=0000000000000000 X18=0000000000000000 X19=0000000000000000\r\nX20=0000000000000000 X21=0000000000000000 X22=0000000000000000\r\nX23=0000000000000000 X24=0000000000000000 X25=0000000000000000\r\nX26=0000000000000000 X27=0000000000000000 X28=0000000000000000\r\nX29=0000000000000000 X30=0000000000000000  SP=0000000000000000\r\nPSTATE=00000000400003c9 -Z-- NS EL2h     FPCR=00000000 FPSR=00000000\r\nQ00=0000000000000000:0000000000000000 Q01=0000000000000000:0000000000000000\r\nQ02=0000000000000000:0000000000000000 Q03=0000000000000000:0000000000000000\r\nQ04=0000000000000000:0000000000000000 Q05=0000000000000000:0000000000000000\r\nQ06=0000000000000000:0000000000000000 Q07=0000000000000000:0000000000000000\r\nQ08=0000000000000000:0000000000000000 Q09=0000000000000000:0000000000000000\r\nQ10=0000000000000000:0000000000000000 Q11=0000000000000000:0000000000000000\r\nQ12=0000000000000000:0000000000000000 Q13=0000000000000000:0000000000000000\r\nQ14=0000000000000000:0000000000000000 Q15=0000000000000000:0000000000000000\r\nQ16=0000000000000000:0000000000000000 Q17=0000000000000000:0000000000000000\r\nQ18=0000000000000000:0000000000000000 Q19=0000000000000000:0000000000000000\r\nQ20=0000000000000000:0000000000000000 Q21=0000000000000000:0000000000000000\r\nQ22=0000000000000000:0000000000000000 Q23=0000000000000000:0000000000000000\r\nQ24=0000000000000000:0000000000000000 Q25=0000000000000000:0000000000000000\r\nQ26=0000000000000000:0000000000000000 Q27=0000000000000000:0000000000000000\r\nQ28=0000000000000000:0000000000000000 Q29=0000000000000000:0000000000000000\r\nQ30=0000000000000000:0000000000000000 Q31=0000000000000000:0000000000000000\r\n",
+        "scope": "Test adapter executed; not production entry"
+      },
+      "commands": [
+        [
+          "rustc",
+          "E:\\Work\\RustOS\\target\\entry-handoff-1793511715281435500\\normal.rs",
+          "--crate-type",
+          "lib",
+          "--target",
+          "aarch64-unknown-none-softfloat",
+          "--emit=obj",
+          "-o",
+          "E:\\Work\\RustOS\\target\\entry-handoff-1793511715281435500\\normal.o"
+        ],
+        [
+          "C:\\Users\\Ravi\\.rustup\\toolchains\\stable-x86_64-pc-windows-msvc\\lib\\rustlib\\x86_64-pc-windows-msvc\\bin\\rust-lld.exe",
+          "-flavor",
+          "gnu",
+          "-T",
+          "E:\\Work\\RustOS\\tools\\entry-harness\\link.ld",
+          "E:\\Work\\RustOS\\target\\entry-handoff-1793511715281435500\\normal.o",
+          "-o",
+          "E:\\Work\\RustOS\\target\\entry-handoff-1793511715281435500\\normal.elf"
+        ]
+      ],
+      "elf_sha256": "52d2d342afae5988b22f795daef1b52323c057ccf513798b6aeab0d8c3640145",
+      "symbols": {
+        "": 0,
+        "normal.a5210cc6a510f97d-cgu.0": 0,
+        "TEST_SPSR": 969,
+        "TEST_SCTLR": 818219056,
+        "$x": 2097152,
+        "secondary_park": 2097300,
+        "failed": 2097288,
+        "entered_el2": 2097240,
+        "failure_park": 2097292,
+        "$d": 2097312,
+        "_start": 2097152,
+        "success_park": 2097280,
+        "harness_code_end": 2097308
+      },
+      "instruction_count": 39
+    },
+    {
+      "name": "unexpected_el1",
+      "checks": {
+        "marker": true,
+        "expected_level": true,
+        "park_pc": true,
+        "pstate": true,
+        "all_instructions_decoded": true,
+        "no_stores_calls_or_stack_operands": true
+      },
+      "passed": true,
+      "qemu": {
+        "command": [
+          "C:/Program Files/qemu/qemu-system-aarch64.exe",
+          "-machine",
+          "raspi3b",
+          "-device",
+          "loader,file=E:\\Work\\RustOS\\target\\entry-handoff-1793511715281435500\\unexpected_el1.elf,cpu-num=0",
+          "-S",
+          "-display",
+          "none",
+          "-serial",
+          "none",
+          "-monitor",
+          "none",
+          "-qmp",
+          "stdio"
+        ],
+        "greeting": {
+          "QMP": {
+            "version": {
+              "qemu": {
+                "micro": 0,
+                "minor": 1,
+                "major": 11
+              },
+              "package": "v11.1.0-12130-ge470268ff4"
+            },
+            "capabilities": []
+          }
+        },
+        "stderr": "",
+        "disassembly": "0x00200000:  d5034fdf  msr      daifset, #0xf\r\n0x00200004:  d53800a9  mrs      x9, mpidr_el1\r\n0x00200008:  92401d29  and      x9, x9, #0xff\r\n0x0020000c:  b5000449  cbnz     x9, #0x200094\r\n0x00200010:  d280000a  mov      x10, #0\r\n0x00200014:  d5384249  mrs      x9, currentel\r\n0x00200018:  f100313f  cmp      x9, #0xc\r\n0x0020001c:  54000361  b.ne     #0x200088\r\n0x00200020:  d280a629  mov      x9, #0x531\r\n0x00200024:  d51e1109  msr      scr_el3, x9\r\n0x00200028:  d2b00009  mov      x9, #0x80000000\r\n0x0020002c:  d51c1109  msr      hcr_el2, x9\r\n0x00200030:  58000389  ldr      x9, #0x2000a0\r\n0x00200034:  d5181009  msr      sctlr_el1, x9\r\n0x00200038:  58000389  ldr      x9, #0x2000a8\r\n0x0020003c:  d51c1009  msr      sctlr_el2, x9\r\n0x00200040:  d28078a9  mov      x9, #0x3c5\r\n0x00200044:  d51e4009  msr      spsr_el3, x9\r\n0x00200048:  10000089  adr      x9, #0x200058\r\n0x0020004c:  d51e4029  msr      elr_el3, x9\r\n0x00200050:  d2a02000  mov      x0, #0x1000000\r\n0x00200054:  d69f03e0  eret     \r\n0x00200058:  d538424b  mrs      x11, currentel\r\n0x0020005c:  f100217f  cmp      x11, #8\r\n0x00200060:  54000141  b.ne     #0x200088\r\n0x00200064:  d53c100d  mrs      x13, sctlr_el2\r\n0x00200068:  d28200a9  mov      x9, #0x1005\r\n0x0020006c:  ea0901bf  tst      x13, x9\r\n0x00200070:  540000c1  b.ne     #0x200088\r\n0x00200074:  aa0003ec  mov      x12, x0\r\n0x00200078:  d28a6a6a  mov      x10, #0x5353\r\n0x0020007c:  f2aa082a  movk     x10, #0x5041, lsl #16\r\n0x00200080:  d503205f  wfe      \r\n0x00200084:  17ffffff  b        #0x200080\r\n0x00200088:  d29fffea  mov      x10, #0xffff\r\n0x0020008c:  d503205f  wfe      \r\n0x00200090:  17ffffff  b        #0x20008c\r\n0x00200094:  d503205f  wfe      \r\n0x00200098:  17ffffff  b        #0x200094\r\n",
+        "memory_tree": "address-space: I/O\r\n  0000000000000000-000000000000ffff (prio 0, container): io\r\n\r\naddress-space: bcm2835-mbox-memory\r\n  0000000000000000-000000000000008f (prio 0, container): bcm2835-mbox\r\n    0000000000000010-000000000000001f (prio 0, i/o): bcm2835-fb\r\n    0000000000000080-000000000000008f (prio 0, i/o): bcm2835-property\r\n\r\naddress-space: cpu-memory-0\r\naddress-space: cpu-memory-1\r\naddress-space: cpu-memory-2\r\naddress-space: cpu-memory-3\r\naddress-space: cpu-secure-memory-0\r\naddress-space: cpu-secure-memory-1\r\naddress-space: cpu-secure-memory-2\r\naddress-space: cpu-secure-memory-3\r\naddress-space: memory\r\n  0000000000000000-ffffffffffffffff (prio 0, container): system\r\n    0000000000000000-000000003fffffff (prio 0, ram): ram\r\n    000000003f000000-000000003fffffff (prio 1, i/o): bcm2835-peripherals\r\n      000000003f003000-000000003f00301f (prio 0, i/o): bcm2835-sys-timer\r\n      000000003f004000-000000003f004fff (prio -1000, i/o): bcm2835-txp\r\n      000000003f006000-000000003f006fff (prio 0, i/o): mphi\r\n      000000003f007000-000000003f007fff (prio 0, i/o): bcm2835-dma\r\n      000000003f00b200-000000003f00b3ff (prio 0, i/o): bcm2835-ic\r\n      000000003f00b400-000000003f00b43f (prio -1000, i/o): bcm2835-sp804\r\n      000000003f00b800-000000003f00bbff (prio 0, i/o): bcm2835-mbox\r\n      000000003f100000-000000003f1001ff (prio 0, i/o): bcm2835-powermgt\r\n      000000003f101000-000000003f102fff (prio 0, i/o): bcm2835-cprman\r\n      000000003f104000-000000003f10400f (prio 0, i/o): bcm2835-rng\r\n      000000003f200000-000000003f200fff (prio 0, i/o): bcm2835_gpio\r\n      000000003f201000-000000003f201fff (prio 0, i/o): pl011\r\n      000000003f202000-000000003f202fff (prio 0, i/o): bcm2835-sdhost\r\n      000000003f203000-000000003f2030ff (prio -1000, i/o): bcm2835-i2s\r\n      000000003f204000-000000003f204017 (prio 0, i/o): bcm2835-spi\r\n      000000003f205000-000000003f205023 (prio 0, i/o): bcm2835-i2c\r\n      000000003f20f000-000000003f20f07f (prio 0, i/o): bcm2835-otp\r\n      000000003f212000-000000003f212007 (prio 0, i/o): bcm2835-thermal\r\n      000000003f214000-000000003f2140ff (prio -1000, i/o): bcm2835-spis\r\n      000000003f215000-000000003f2150ff (prio 0, i/o): bcm2835-aux\r\n      000000003f300000-000000003f3000ff (prio 0, i/o): sdhci\r\n      000000003f600000-000000003f6000ff (prio -1000, i/o): bcm2835-smi\r\n      000000003f804000-000000003f804023 (prio 0, i/o): bcm2835-i2c\r\n      000000003f805000-000000003f805023 (prio 0, i/o): bcm2835-i2c\r\n      000000003f900000-000000003f907fff (prio -1000, i/o): bcm2835-dbus\r\n      000000003f910000-000000003f917fff (prio -1000, i/o): bcm2835-ave0\r\n      000000003f980000-000000003f990fff (prio 0, i/o): dwc2\r\n        000000003f980000-000000003f980fff (prio 0, i/o): dwc2-io\r\n        000000003f981000-000000003f990fff (prio 0, i/o): dwc2-fifo\r\n      000000003fc00000-000000003fc00fff (prio -1000, i/o): bcm2835-v3d\r\n      000000003fe00000-000000003fe000ff (prio -1000, i/o): bcm2835-sdramc\r\n      000000003fe05000-000000003fe050ff (prio 0, i/o): bcm2835-dma-chan15\r\n    0000000040000000-00000000400000ff (prio 0, i/o): bcm2836-control\r\n\r\naddress-space: bcm2835-dma-memory\r\naddress-space: bcm2835-fb-memory\r\naddress-space: bcm2835-property-memory\r\naddress-space: dwc2\r\n  0000000000000000-00000000ffffffff (prio 0, container): bcm2835-gpu\r\n    0000000000000000-000000003fffffff (prio 0, ram): alias bcm2835-gpu-ram-alias[*] @ram 0000000000000000-000000003fffffff\r\n    0000000040000000-000000007fffffff (prio 0, ram): alias bcm2835-gpu-ram-alias[*] @ram 0000000000000000-000000003fffffff\r\n    000000007e000000-000000007effffff (prio 1, i/o): alias bcm2835-peripherals @bcm2835-peripherals 0000000000000000-0000000000ffffff\r\n    0000000080000000-00000000bfffffff (prio 0, ram): alias bcm2835-gpu-ram-alias[*] @ram 0000000000000000-000000003fffffff\r\n    00000000c0000000-00000000ffffffff (prio 0, ram): alias bcm2835-gpu-ram-alias[*] @ram 0000000000000000-000000003fffffff\r\n\r\nmemory-region: ram\r\n  0000000000000000-000000003fffffff (prio 0, ram): ram\r\n\r\nmemory-region: bcm2835-peripherals\r\n  000000003f000000-000000003fffffff (prio 1, i/o): bcm2835-peripherals\r\n    000000003f003000-000000003f00301f (prio 0, i/o): bcm2835-sys-timer\r\n    000000003f004000-000000003f004fff (prio -1000, i/o): bcm2835-txp\r\n    000000003f006000-000000003f006fff (prio 0, i/o): mphi\r\n    000000003f007000-000000003f007fff (prio 0, i/o): bcm2835-dma\r\n    000000003f00b200-000000003f00b3ff (prio 0, i/o): bcm2835-ic\r\n    000000003f00b400-000000003f00b43f (prio -1000, i/o): bcm2835-sp804\r\n    000000003f00b800-000000003f00bbff (prio 0, i/o): bcm2835-mbox\r\n    000000003f100000-000000003f1001ff (prio 0, i/o): bcm2835-powermgt\r\n    000000003f101000-000000003f102fff (prio 0, i/o): bcm2835-cprman\r\n    000000003f104000-000000003f10400f (prio 0, i/o): bcm2835-rng\r\n    000000003f200000-000000003f200fff (prio 0, i/o): bcm2835_gpio\r\n    000000003f201000-000000003f201fff (prio 0, i/o): pl011\r\n    000000003f202000-000000003f202fff (prio 0, i/o): bcm2835-sdhost\r\n    000000003f203000-000000003f2030ff (prio -1000, i/o): bcm2835-i2s\r\n    000000003f204000-000000003f204017 (prio 0, i/o): bcm2835-spi\r\n    000000003f205000-000000003f205023 (prio 0, i/o): bcm2835-i2c\r\n    000000003f20f000-000000003f20f07f (prio 0, i/o): bcm2835-otp\r\n    000000003f212000-000000003f212007 (prio 0, i/o): bcm2835-thermal\r\n    000000003f214000-000000003f2140ff (prio -1000, i/o): bcm2835-spis\r\n    000000003f215000-000000003f2150ff (prio 0, i/o): bcm2835-aux\r\n    000000003f300000-000000003f3000ff (prio 0, i/o): sdhci\r\n    000000003f600000-000000003f6000ff (prio -1000, i/o): bcm2835-smi\r\n    000000003f804000-000000003f804023 (prio 0, i/o): bcm2835-i2c\r\n    000000003f805000-000000003f805023 (prio 0, i/o): bcm2835-i2c\r\n    000000003f900000-000000003f907fff (prio -1000, i/o): bcm2835-dbus\r\n    000000003f910000-000000003f917fff (prio -1000, i/o): bcm2835-ave0\r\n    000000003f980000-000000003f990fff (prio 0, i/o): dwc2\r\n      000000003f980000-000000003f980fff (prio 0, i/o): dwc2-io\r\n      000000003f981000-000000003f990fff (prio 0, i/o): dwc2-fifo\r\n    000000003fc00000-000000003fc00fff (prio -1000, i/o): bcm2835-v3d\r\n    000000003fe00000-000000003fe000ff (prio -1000, i/o): bcm2835-sdramc\r\n    000000003fe05000-000000003fe050ff (prio 0, i/o): bcm2835-dma-chan15\r\n\r\n",
+        "observed_registers": "\r\nCPU#0\r\n PC=0000000000200090 X00=0000000001000000 X01=0000000000000000\r\nX02=0000000000000000 X03=0000000000000000 X04=0000000000000000\r\nX05=0000000000000000 X06=0000000000000000 X07=0000000000000000\r\nX08=0000000000000000 X09=0000000000200058 X10=000000000000ffff\r\nX11=0000000000000004 X12=0000000000000000 X13=0000000000000000\r\nX14=0000000000000000 X15=0000000000000000 X16=0000000000000000\r\nX17=0000000000000000 X18=0000000000000000 X19=0000000000000000\r\nX20=0000000000000000 X21=0000000000000000 X22=0000000000000000\r\nX23=0000000000000000 X24=0000000000000000 X25=0000000000000000\r\nX26=0000000000000000 X27=0000000000000000 X28=0000000000000000\r\nX29=0000000000000000 X30=0000000000000000  SP=0000000000000000\r\nPSTATE=00000000800003c5 N--- NS EL1h    FPU disabled\r\n",
+        "scope": "Test adapter executed; not production entry"
+      },
+      "commands": [
+        [
+          "rustc",
+          "E:\\Work\\RustOS\\target\\entry-handoff-1793511715281435500\\unexpected_el1.rs",
+          "--crate-type",
+          "lib",
+          "--target",
+          "aarch64-unknown-none-softfloat",
+          "--emit=obj",
+          "-o",
+          "E:\\Work\\RustOS\\target\\entry-handoff-1793511715281435500\\unexpected_el1.o"
+        ],
+        [
+          "C:\\Users\\Ravi\\.rustup\\toolchains\\stable-x86_64-pc-windows-msvc\\lib\\rustlib\\x86_64-pc-windows-msvc\\bin\\rust-lld.exe",
+          "-flavor",
+          "gnu",
+          "-T",
+          "E:\\Work\\RustOS\\tools\\entry-harness\\link.ld",
+          "E:\\Work\\RustOS\\target\\entry-handoff-1793511715281435500\\unexpected_el1.o",
+          "-o",
+          "E:\\Work\\RustOS\\target\\entry-handoff-1793511715281435500\\unexpected_el1.elf"
+        ]
+      ],
+      "elf_sha256": "3fc329a6ef0576fb77d6fd89fdf452ce2e4034cd5707f1932df5ff3058708da0",
+      "symbols": {
+        "": 0,
+        "unexpected_el1.d8aade16701ed66e-cgu.0": 0,
+        "TEST_SPSR": 965,
+        "TEST_SCTLR": 818219056,
+        "$x": 2097152,
+        "secondary_park": 2097300,
+        "failed": 2097288,
+        "entered_el2": 2097240,
+        "failure_park": 2097292,
+        "$d": 2097312,
+        "_start": 2097152,
+        "success_park": 2097280,
+        "harness_code_end": 2097308
+      },
+      "instruction_count": 39
+    },
+    {
+      "name": "instruction_cache_on",
+      "checks": {
+        "marker": true,
+        "expected_level": true,
+        "park_pc": true,
+        "pstate": true,
+        "all_instructions_decoded": true,
+        "no_stores_calls_or_stack_operands": true
+      },
+      "passed": true,
+      "qemu": {
+        "command": [
+          "C:/Program Files/qemu/qemu-system-aarch64.exe",
+          "-machine",
+          "raspi3b",
+          "-device",
+          "loader,file=E:\\Work\\RustOS\\target\\entry-handoff-1793511715281435500\\instruction_cache_on.elf,cpu-num=0",
+          "-S",
+          "-display",
+          "none",
+          "-serial",
+          "none",
+          "-monitor",
+          "none",
+          "-qmp",
+          "stdio"
+        ],
+        "greeting": {
+          "QMP": {
+            "version": {
+              "qemu": {
+                "micro": 0,
+                "minor": 1,
+                "major": 11
+              },
+              "package": "v11.1.0-12130-ge470268ff4"
+            },
+            "capabilities": []
+          }
+        },
+        "stderr": "",
+        "disassembly": "0x00200000:  d5034fdf  msr      daifset, #0xf\r\n0x00200004:  d53800a9  mrs      x9, mpidr_el1\r\n0x00200008:  92401d29  and      x9, x9, #0xff\r\n0x0020000c:  b5000449  cbnz     x9, #0x200094\r\n0x00200010:  d280000a  mov      x10, #0\r\n0x00200014:  d5384249  mrs      x9, currentel\r\n0x00200018:  f100313f  cmp      x9, #0xc\r\n0x0020001c:  54000361  b.ne     #0x200088\r\n0x00200020:  d280a629  mov      x9, #0x531\r\n0x00200024:  d51e1109  msr      scr_el3, x9\r\n0x00200028:  d2b00009  mov      x9, #0x80000000\r\n0x0020002c:  d51c1109  msr      hcr_el2, x9\r\n0x00200030:  58000389  ldr      x9, #0x2000a0\r\n0x00200034:  d5181009  msr      sctlr_el1, x9\r\n0x00200038:  58000389  ldr      x9, #0x2000a8\r\n0x0020003c:  d51c1009  msr      sctlr_el2, x9\r\n0x00200040:  d2807929  mov      x9, #0x3c9\r\n0x00200044:  d51e4009  msr      spsr_el3, x9\r\n0x00200048:  10000089  adr      x9, #0x200058\r\n0x0020004c:  d51e4029  msr      elr_el3, x9\r\n0x00200050:  d2a02000  mov      x0, #0x1000000\r\n0x00200054:  d69f03e0  eret     \r\n0x00200058:  d538424b  mrs      x11, currentel\r\n0x0020005c:  f100217f  cmp      x11, #8\r\n0x00200060:  54000141  b.ne     #0x200088\r\n0x00200064:  d53c100d  mrs      x13, sctlr_el2\r\n0x00200068:  d28200a9  mov      x9, #0x1005\r\n0x0020006c:  ea0901bf  tst      x13, x9\r\n0x00200070:  540000c1  b.ne     #0x200088\r\n0x00200074:  aa0003ec  mov      x12, x0\r\n0x00200078:  d28a6a6a  mov      x10, #0x5353\r\n0x0020007c:  f2aa082a  movk     x10, #0x5041, lsl #16\r\n0x00200080:  d503205f  wfe      \r\n0x00200084:  17ffffff  b        #0x200080\r\n0x00200088:  d29fffea  mov      x10, #0xffff\r\n0x0020008c:  d503205f  wfe      \r\n0x00200090:  17ffffff  b        #0x20008c\r\n0x00200094:  d503205f  wfe      \r\n0x00200098:  17ffffff  b        #0x200094\r\n",
+        "memory_tree": "address-space: bcm2835-mbox-memory\r\n  0000000000000000-000000000000008f (prio 0, container): bcm2835-mbox\r\n    0000000000000010-000000000000001f (prio 0, i/o): bcm2835-fb\r\n    0000000000000080-000000000000008f (prio 0, i/o): bcm2835-property\r\n\r\naddress-space: I/O\r\n  0000000000000000-000000000000ffff (prio 0, container): io\r\n\r\naddress-space: cpu-memory-0\r\naddress-space: cpu-memory-1\r\naddress-space: cpu-memory-2\r\naddress-space: cpu-memory-3\r\naddress-space: cpu-secure-memory-0\r\naddress-space: cpu-secure-memory-1\r\naddress-space: cpu-secure-memory-2\r\naddress-space: cpu-secure-memory-3\r\naddress-space: memory\r\n  0000000000000000-ffffffffffffffff (prio 0, container): system\r\n    0000000000000000-000000003fffffff (prio 0, ram): ram\r\n    000000003f000000-000000003fffffff (prio 1, i/o): bcm2835-peripherals\r\n      000000003f003000-000000003f00301f (prio 0, i/o): bcm2835-sys-timer\r\n      000000003f004000-000000003f004fff (prio -1000, i/o): bcm2835-txp\r\n      000000003f006000-000000003f006fff (prio 0, i/o): mphi\r\n      000000003f007000-000000003f007fff (prio 0, i/o): bcm2835-dma\r\n      000000003f00b200-000000003f00b3ff (prio 0, i/o): bcm2835-ic\r\n      000000003f00b400-000000003f00b43f (prio -1000, i/o): bcm2835-sp804\r\n      000000003f00b800-000000003f00bbff (prio 0, i/o): bcm2835-mbox\r\n      000000003f100000-000000003f1001ff (prio 0, i/o): bcm2835-powermgt\r\n      000000003f101000-000000003f102fff (prio 0, i/o): bcm2835-cprman\r\n      000000003f104000-000000003f10400f (prio 0, i/o): bcm2835-rng\r\n      000000003f200000-000000003f200fff (prio 0, i/o): bcm2835_gpio\r\n      000000003f201000-000000003f201fff (prio 0, i/o): pl011\r\n      000000003f202000-000000003f202fff (prio 0, i/o): bcm2835-sdhost\r\n      000000003f203000-000000003f2030ff (prio -1000, i/o): bcm2835-i2s\r\n      000000003f204000-000000003f204017 (prio 0, i/o): bcm2835-spi\r\n      000000003f205000-000000003f205023 (prio 0, i/o): bcm2835-i2c\r\n      000000003f20f000-000000003f20f07f (prio 0, i/o): bcm2835-otp\r\n      000000003f212000-000000003f212007 (prio 0, i/o): bcm2835-thermal\r\n      000000003f214000-000000003f2140ff (prio -1000, i/o): bcm2835-spis\r\n      000000003f215000-000000003f2150ff (prio 0, i/o): bcm2835-aux\r\n      000000003f300000-000000003f3000ff (prio 0, i/o): sdhci\r\n      000000003f600000-000000003f6000ff (prio -1000, i/o): bcm2835-smi\r\n      000000003f804000-000000003f804023 (prio 0, i/o): bcm2835-i2c\r\n      000000003f805000-000000003f805023 (prio 0, i/o): bcm2835-i2c\r\n      000000003f900000-000000003f907fff (prio -1000, i/o): bcm2835-dbus\r\n      000000003f910000-000000003f917fff (prio -1000, i/o): bcm2835-ave0\r\n      000000003f980000-000000003f990fff (prio 0, i/o): dwc2\r\n        000000003f980000-000000003f980fff (prio 0, i/o): dwc2-io\r\n        000000003f981000-000000003f990fff (prio 0, i/o): dwc2-fifo\r\n      000000003fc00000-000000003fc00fff (prio -1000, i/o): bcm2835-v3d\r\n      000000003fe00000-000000003fe000ff (prio -1000, i/o): bcm2835-sdramc\r\n      000000003fe05000-000000003fe050ff (prio 0, i/o): bcm2835-dma-chan15\r\n    0000000040000000-00000000400000ff (prio 0, i/o): bcm2836-control\r\n\r\naddress-space: bcm2835-dma-memory\r\naddress-space: bcm2835-fb-memory\r\naddress-space: bcm2835-property-memory\r\naddress-space: dwc2\r\n  0000000000000000-00000000ffffffff (prio 0, container): bcm2835-gpu\r\n    0000000000000000-000000003fffffff (prio 0, ram): alias bcm2835-gpu-ram-alias[*] @ram 0000000000000000-000000003fffffff\r\n    0000000040000000-000000007fffffff (prio 0, ram): alias bcm2835-gpu-ram-alias[*] @ram 0000000000000000-000000003fffffff\r\n    000000007e000000-000000007effffff (prio 1, i/o): alias bcm2835-peripherals @bcm2835-peripherals 0000000000000000-0000000000ffffff\r\n    0000000080000000-00000000bfffffff (prio 0, ram): alias bcm2835-gpu-ram-alias[*] @ram 0000000000000000-000000003fffffff\r\n    00000000c0000000-00000000ffffffff (prio 0, ram): alias bcm2835-gpu-ram-alias[*] @ram 0000000000000000-000000003fffffff\r\n\r\nmemory-region: ram\r\n  0000000000000000-000000003fffffff (prio 0, ram): ram\r\n\r\nmemory-region: bcm2835-peripherals\r\n  000000003f000000-000000003fffffff (prio 1, i/o): bcm2835-peripherals\r\n    000000003f003000-000000003f00301f (prio 0, i/o): bcm2835-sys-timer\r\n    000000003f004000-000000003f004fff (prio -1000, i/o): bcm2835-txp\r\n    000000003f006000-000000003f006fff (prio 0, i/o): mphi\r\n    000000003f007000-000000003f007fff (prio 0, i/o): bcm2835-dma\r\n    000000003f00b200-000000003f00b3ff (prio 0, i/o): bcm2835-ic\r\n    000000003f00b400-000000003f00b43f (prio -1000, i/o): bcm2835-sp804\r\n    000000003f00b800-000000003f00bbff (prio 0, i/o): bcm2835-mbox\r\n    000000003f100000-000000003f1001ff (prio 0, i/o): bcm2835-powermgt\r\n    000000003f101000-000000003f102fff (prio 0, i/o): bcm2835-cprman\r\n    000000003f104000-000000003f10400f (prio 0, i/o): bcm2835-rng\r\n    000000003f200000-000000003f200fff (prio 0, i/o): bcm2835_gpio\r\n    000000003f201000-000000003f201fff (prio 0, i/o): pl011\r\n    000000003f202000-000000003f202fff (prio 0, i/o): bcm2835-sdhost\r\n    000000003f203000-000000003f2030ff (prio -1000, i/o): bcm2835-i2s\r\n    000000003f204000-000000003f204017 (prio 0, i/o): bcm2835-spi\r\n    000000003f205000-000000003f205023 (prio 0, i/o): bcm2835-i2c\r\n    000000003f20f000-000000003f20f07f (prio 0, i/o): bcm2835-otp\r\n    000000003f212000-000000003f212007 (prio 0, i/o): bcm2835-thermal\r\n    000000003f214000-000000003f2140ff (prio -1000, i/o): bcm2835-spis\r\n    000000003f215000-000000003f2150ff (prio 0, i/o): bcm2835-aux\r\n    000000003f300000-000000003f3000ff (prio 0, i/o): sdhci\r\n    000000003f600000-000000003f6000ff (prio -1000, i/o): bcm2835-smi\r\n    000000003f804000-000000003f804023 (prio 0, i/o): bcm2835-i2c\r\n    000000003f805000-000000003f805023 (prio 0, i/o): bcm2835-i2c\r\n    000000003f900000-000000003f907fff (prio -1000, i/o): bcm2835-dbus\r\n    000000003f910000-000000003f917fff (prio -1000, i/o): bcm2835-ave0\r\n    000000003f980000-000000003f990fff (prio 0, i/o): dwc2\r\n      000000003f980000-000000003f980fff (prio 0, i/o): dwc2-io\r\n      000000003f981000-000000003f990fff (prio 0, i/o): dwc2-fifo\r\n    000000003fc00000-000000003fc00fff (prio -1000, i/o): bcm2835-v3d\r\n    000000003fe00000-000000003fe000ff (prio -1000, i/o): bcm2835-sdramc\r\n    000000003fe05000-000000003fe050ff (prio 0, i/o): bcm2835-dma-chan15\r\n\r\n",
+        "observed_registers": "\r\nCPU#0\r\n PC=0000000000200090 X00=0000000001000000 X01=0000000000000000\r\nX02=0000000000000000 X03=0000000000000000 X04=0000000000000000\r\nX05=0000000000000000 X06=0000000000000000 X07=0000000000000000\r\nX08=0000000000000000 X09=0000000000001005 X10=000000000000ffff\r\nX11=0000000000000008 X12=0000000000000000 X13=0000000030c51830\r\nX14=0000000000000000 X15=0000000000000000 X16=0000000000000000\r\nX17=0000000000000000 X18=0000000000000000 X19=0000000000000000\r\nX20=0000000000000000 X21=0000000000000000 X22=0000000000000000\r\nX23=0000000000000000 X24=0000000000000000 X25=0000000000000000\r\nX26=0000000000000000 X27=0000000000000000 X28=0000000000000000\r\nX29=0000000000000000 X30=0000000000000000  SP=0000000000000000\r\nPSTATE=00000000000003c9 ---- NS EL2h     FPCR=00000000 FPSR=00000000\r\nQ00=0000000000000000:0000000000000000 Q01=0000000000000000:0000000000000000\r\nQ02=0000000000000000:0000000000000000 Q03=0000000000000000:0000000000000000\r\nQ04=0000000000000000:0000000000000000 Q05=0000000000000000:0000000000000000\r\nQ06=0000000000000000:0000000000000000 Q07=0000000000000000:0000000000000000\r\nQ08=0000000000000000:0000000000000000 Q09=0000000000000000:0000000000000000\r\nQ10=0000000000000000:0000000000000000 Q11=0000000000000000:0000000000000000\r\nQ12=0000000000000000:0000000000000000 Q13=0000000000000000:0000000000000000\r\nQ14=0000000000000000:0000000000000000 Q15=0000000000000000:0000000000000000\r\nQ16=0000000000000000:0000000000000000 Q17=0000000000000000:0000000000000000\r\nQ18=0000000000000000:0000000000000000 Q19=0000000000000000:0000000000000000\r\nQ20=0000000000000000:0000000000000000 Q21=0000000000000000:0000000000000000\r\nQ22=0000000000000000:0000000000000000 Q23=0000000000000000:0000000000000000\r\nQ24=0000000000000000:0000000000000000 Q25=0000000000000000:0000000000000000\r\nQ26=0000000000000000:0000000000000000 Q27=0000000000000000:0000000000000000\r\nQ28=0000000000000000:0000000000000000 Q29=0000000000000000:0000000000000000\r\nQ30=0000000000000000:0000000000000000 Q31=0000000000000000:0000000000000000\r\n",
+        "scope": "Test adapter executed; not production entry"
+      },
+      "commands": [
+        [
+          "rustc",
+          "E:\\Work\\RustOS\\target\\entry-handoff-1793511715281435500\\instruction_cache_on.rs",
+          "--crate-type",
+          "lib",
+          "--target",
+          "aarch64-unknown-none-softfloat",
+          "--emit=obj",
+          "-o",
+          "E:\\Work\\RustOS\\target\\entry-handoff-1793511715281435500\\instruction_cache_on.o"
+        ],
+        [
+          "C:\\Users\\Ravi\\.rustup\\toolchains\\stable-x86_64-pc-windows-msvc\\lib\\rustlib\\x86_64-pc-windows-msvc\\bin\\rust-lld.exe",
+          "-flavor",
+          "gnu",
+          "-T",
+          "E:\\Work\\RustOS\\tools\\entry-harness\\link.ld",
+          "E:\\Work\\RustOS\\target\\entry-handoff-1793511715281435500\\instruction_cache_on.o",
+          "-o",
+          "E:\\Work\\RustOS\\target\\entry-handoff-1793511715281435500\\instruction_cache_on.elf"
+        ]
+      ],
+      "elf_sha256": "3b115acfb3d46388e961aa7141d4bf9bff2e600ebd3d118c75eb84a51b37feb5",
+      "symbols": {
+        "": 0,
+        "instruction_cache_on.b5102e116b382386-cgu.0": 0,
+        "TEST_SPSR": 969,
+        "TEST_SCTLR": 818223152,
+        "$x": 2097152,
+        "secondary_park": 2097300,
+        "failed": 2097288,
+        "entered_el2": 2097240,
+        "failure_park": 2097292,
+        "$d": 2097312,
+        "_start": 2097152,
+        "success_park": 2097280,
+        "harness_code_end": 2097308
+      },
+      "instruction_count": 39
+    }
+  ],
+  "source_sha256": "187a3bf663cddcbe40c8b8fa454335db8e2319bc425551b886f418bdcd8f09e9",
+  "scope": "Harness only; no DTB parsing, safe stack or production kernel"
+}

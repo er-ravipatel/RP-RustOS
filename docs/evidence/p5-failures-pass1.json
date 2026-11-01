@@ -1,0 +1,658 @@
+{
+  "schema_version": 1,
+  "kind": "assembler-failure-acceptance",
+  "passed": true,
+  "checks": [
+    {
+      "name": "real Ctrl+C during active build settles Cargo and delayed build-script descendants without publication",
+      "status": "passed",
+      "evidence": {
+        "operation": "build",
+        "event": "ctrl-c",
+        "console_clients": [
+          18908,
+          44512
+        ],
+        "verifier_exit": 7,
+        "owned_pids": [
+          36188,
+          11844
+        ],
+        "owned_processes_settled": true,
+        "qemu_pid": null,
+        "qemu_settled": null,
+        "cli": {
+          "build_ready": false,
+          "diagnostics": [
+            {
+              "code": "CANCELLED",
+              "dependency_chain": [],
+              "field": "build",
+              "input": null,
+              "message": "Build cancelled; owned processes settled",
+              "severity": "error",
+              "stage": "compilation"
+            },
+            {
+              "code": "PACKAGING_SKIPPED",
+              "dependency_chain": [],
+              "field": "packaging",
+              "input": null,
+              "message": "Compilation did not complete; publication skipped",
+              "severity": "info",
+              "stage": "packaging"
+            },
+            {
+              "code": "VERIFICATION_NOT_RUN",
+              "dependency_chain": [],
+              "field": "verification",
+              "input": null,
+              "message": "No emulator verification was run by this build operation",
+              "severity": "info",
+              "stage": "verification"
+            }
+          ],
+          "evidence": [
+            ".rustos-staging-m1-ade0-18e3b866a3d8cbc4/failure.json"
+          ],
+          "operation": "build",
+          "result": null,
+          "schema_version": 1,
+          "status": "cancelled",
+          "target": null
+        }
+      }
+    },
+    {
+      "name": "test-only unavailable cleanup confirmation returns failure after real process settlement",
+      "status": "passed",
+      "cli": {
+        "build_ready": null,
+        "diagnostics": [],
+        "evidence": [
+          ".rustos-reports/m1-c50-18e3b8664bd7eb94/v-515c-18e3b866e5f8fa9c/report.json"
+        ],
+        "operation": "verify",
+        "result": {
+          "cleanup": {
+            "diagnostics": [],
+            "kill_budget_ms": 5000,
+            "processes_settled": false,
+            "status": "failed",
+            "stop_budget_ms": 5000
+          },
+          "complete": true,
+          "diagnostics": [
+            {
+              "code": "TEST_FAULT_INJECTION",
+              "dependency_chain": [],
+              "field": "verify",
+              "input": null,
+              "message": "Test-only build simulates unavailable cleanup confirmation after real owned cleanup",
+              "severity": "info",
+              "stage": "verification"
+            }
+          ],
+          "evidence": [
+            "input-manifest.json",
+            "qemu-version/stdout.log"
+          ],
+          "finished_at": "2026-10-31T20:50:29.079Z",
+          "manifest_sha256": "d5a26d2a149cae17dba1158ad7d40f70ea3c0648a1110d6ff9f300ae0ec7729b",
+          "operation": "verify",
+          "run_id": "v-515c-18e3b866e5f8fa9c",
+          "schema_version": 1,
+          "started_at": "2026-10-31T20:50:28.708Z",
+          "status": "failed",
+          "steps": [
+            {
+              "artifact_id": "kernel",
+              "artifact_sha256": "e66ebc4c189fbbd5ef2dded49ed702f58109127f9f1d8c15ffcc7aa05572f482",
+              "deadline_ms": 10000,
+              "diagnostics": [
+                {
+                  "code": "CLEANUP_FAILED",
+                  "dependency_chain": [],
+                  "field": "verify",
+                  "input": null,
+                  "message": "Owned QEMU tree settlement could not be confirmed",
+                  "severity": "error",
+                  "stage": "verification"
+                }
+              ],
+              "id": "startup",
+              "logs": [
+                {
+                  "path": "startup/stdout.log",
+                  "sha256": "8153b443b6f9cdff16cc80778669def6b5f91fe0a3fdf1baf4986fc2b8a59033",
+                  "stream": "stdout"
+                },
+                {
+                  "path": "startup/stderr.log",
+                  "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+                  "stream": "stderr"
+                }
+              ],
+              "observed_marker": "RUSTOS_BOOT_OK",
+              "status": "failed",
+              "stop_requested": true
+            },
+            {
+              "artifact_id": "kernel-panic-test",
+              "artifact_sha256": "9da30e152717d30e9f0567a33e47af76755d14b7383bc526c4c97058494eae2a",
+              "deadline_ms": 10000,
+              "diagnostics": [],
+              "id": "panic",
+              "logs": [],
+              "observed_marker": null,
+              "status": "skipped",
+              "stop_requested": false
+            }
+          ],
+          "target": "qemu-virt-a53",
+          "verification_scope": "emulator"
+        },
+        "schema_version": 1,
+        "status": "failed",
+        "target": "qemu-virt-a53"
+      }
+    },
+    {
+      "name": "real isolated console ctrl-break cancellation",
+      "status": "passed",
+      "evidence": {
+        "operation": "verify",
+        "event": "ctrl-break",
+        "console_clients": [
+          8704,
+          28448
+        ],
+        "verifier_exit": 7,
+        "owned_pids": [
+          29980
+        ],
+        "owned_processes_settled": true,
+        "qemu_pid": 29980,
+        "qemu_settled": true,
+        "cli": {
+          "build_ready": null,
+          "diagnostics": [],
+          "evidence": [
+            ".rustos-reports/m1-c50-18e3b8664bd7eb94/v-6f20-18e3b86704aeb878/report.json"
+          ],
+          "operation": "verify",
+          "result": {
+            "cleanup": {
+              "diagnostics": [],
+              "kill_budget_ms": 5000,
+              "processes_settled": true,
+              "status": "passed",
+              "stop_budget_ms": 5000
+            },
+            "complete": true,
+            "diagnostics": [],
+            "evidence": [
+              "input-manifest.json",
+              "qemu-version/stdout.log"
+            ],
+            "finished_at": "2026-10-31T20:50:29.859Z",
+            "manifest_sha256": "976a187f3ad5825f014ccc1eff9cd051642587e67ed3466bd61677789d8b535f",
+            "operation": "verify",
+            "run_id": "v-6f20-18e3b86704aeb878",
+            "schema_version": 1,
+            "started_at": "2026-10-31T20:50:29.223Z",
+            "status": "cancelled",
+            "steps": [
+              {
+                "artifact_id": "kernel",
+                "artifact_sha256": "d70d2a1e6d9219ba50cbdbd8a3b966e0a6fefb0ffcc30253f6429540b37c6701",
+                "deadline_ms": 10000,
+                "diagnostics": [
+                  {
+                    "code": "CANCELLED",
+                    "dependency_chain": [],
+                    "field": "verify",
+                    "input": null,
+                    "message": "Verification cancelled",
+                    "severity": "error",
+                    "stage": "verification"
+                  }
+                ],
+                "id": "startup",
+                "logs": [
+                  {
+                    "path": "startup/stdout.log",
+                    "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+                    "stream": "stdout"
+                  },
+                  {
+                    "path": "startup/stderr.log",
+                    "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+                    "stream": "stderr"
+                  }
+                ],
+                "observed_marker": null,
+                "status": "cancelled",
+                "stop_requested": true
+              },
+              {
+                "artifact_id": "kernel-panic-test",
+                "artifact_sha256": "9da30e152717d30e9f0567a33e47af76755d14b7383bc526c4c97058494eae2a",
+                "deadline_ms": 10000,
+                "diagnostics": [],
+                "id": "panic",
+                "logs": [],
+                "observed_marker": null,
+                "status": "skipped",
+                "stop_requested": false
+              }
+            ],
+            "target": "qemu-virt-a53",
+            "verification_scope": "emulator"
+          },
+          "schema_version": 1,
+          "status": "cancelled",
+          "target": "qemu-virt-a53"
+        }
+      }
+    },
+    {
+      "name": "real isolated console ctrl-c cancellation",
+      "status": "passed",
+      "evidence": {
+        "operation": "verify",
+        "event": "ctrl-c",
+        "console_clients": [
+          35232,
+          46676
+        ],
+        "verifier_exit": 7,
+        "owned_pids": [
+          18836
+        ],
+        "owned_processes_settled": true,
+        "qemu_pid": 18836,
+        "qemu_settled": true,
+        "cli": {
+          "build_ready": null,
+          "diagnostics": [],
+          "evidence": [
+            ".rustos-reports/m1-c50-18e3b8664bd7eb94/v-89a0-18e3b8673378b550/report.json"
+          ],
+          "operation": "verify",
+          "result": {
+            "cleanup": {
+              "diagnostics": [],
+              "kill_budget_ms": 5000,
+              "processes_settled": true,
+              "status": "passed",
+              "stop_budget_ms": 5000
+            },
+            "complete": true,
+            "diagnostics": [],
+            "evidence": [
+              "input-manifest.json",
+              "qemu-version/stdout.log"
+            ],
+            "finished_at": "2026-10-31T20:50:30.515Z",
+            "manifest_sha256": "976a187f3ad5825f014ccc1eff9cd051642587e67ed3466bd61677789d8b535f",
+            "operation": "verify",
+            "run_id": "v-89a0-18e3b8673378b550",
+            "schema_version": 1,
+            "started_at": "2026-10-31T20:50:30.008Z",
+            "status": "cancelled",
+            "steps": [
+              {
+                "artifact_id": "kernel",
+                "artifact_sha256": "d70d2a1e6d9219ba50cbdbd8a3b966e0a6fefb0ffcc30253f6429540b37c6701",
+                "deadline_ms": 10000,
+                "diagnostics": [
+                  {
+                    "code": "CANCELLED",
+                    "dependency_chain": [],
+                    "field": "verify",
+                    "input": null,
+                    "message": "Verification cancelled",
+                    "severity": "error",
+                    "stage": "verification"
+                  }
+                ],
+                "id": "startup",
+                "logs": [
+                  {
+                    "path": "startup/stdout.log",
+                    "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+                    "stream": "stdout"
+                  },
+                  {
+                    "path": "startup/stderr.log",
+                    "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+                    "stream": "stderr"
+                  }
+                ],
+                "observed_marker": null,
+                "status": "cancelled",
+                "stop_requested": true
+              },
+              {
+                "artifact_id": "kernel-panic-test",
+                "artifact_sha256": "9da30e152717d30e9f0567a33e47af76755d14b7383bc526c4c97058494eae2a",
+                "deadline_ms": 10000,
+                "diagnostics": [],
+                "id": "panic",
+                "logs": [],
+                "observed_marker": null,
+                "status": "skipped",
+                "stop_requested": false
+              }
+            ],
+            "target": "qemu-virt-a53",
+            "verification_scope": "emulator"
+          },
+          "schema_version": 1,
+          "status": "cancelled",
+          "target": "qemu-virt-a53"
+        }
+      }
+    },
+    {
+      "name": "unwritable execution-index path prevents final CLI success despite passing guest checks",
+      "status": "passed",
+      "cli": {
+        "build_ready": null,
+        "diagnostics": [
+          {
+            "code": "EXECUTION_INDEX",
+            "dependency_chain": [],
+            "field": "report",
+            "input": null,
+            "message": "Cannot create a file when that file already exists. (os error 183)",
+            "severity": "error",
+            "stage": "inspection"
+          }
+        ],
+        "evidence": [
+          ".rustos-reports/m1-c50-18e3b8664bd7eb94/v-83e0-18e3b86756843858/report.json"
+        ],
+        "operation": "verify",
+        "result": {
+          "cleanup": {
+            "diagnostics": [],
+            "kill_budget_ms": 5000,
+            "processes_settled": true,
+            "status": "passed",
+            "stop_budget_ms": 5000
+          },
+          "complete": true,
+          "diagnostics": [],
+          "evidence": [
+            "input-manifest.json",
+            "qemu-version/stdout.log"
+          ],
+          "finished_at": "2026-10-31T20:50:31.238Z",
+          "manifest_sha256": "d5a26d2a149cae17dba1158ad7d40f70ea3c0648a1110d6ff9f300ae0ec7729b",
+          "operation": "verify",
+          "run_id": "v-83e0-18e3b86756843858",
+          "schema_version": 1,
+          "started_at": "2026-10-31T20:50:30.596Z",
+          "status": "passed",
+          "steps": [
+            {
+              "artifact_id": "kernel",
+              "artifact_sha256": "e66ebc4c189fbbd5ef2dded49ed702f58109127f9f1d8c15ffcc7aa05572f482",
+              "deadline_ms": 10000,
+              "diagnostics": [],
+              "id": "startup",
+              "logs": [
+                {
+                  "path": "startup/stdout.log",
+                  "sha256": "8153b443b6f9cdff16cc80778669def6b5f91fe0a3fdf1baf4986fc2b8a59033",
+                  "stream": "stdout"
+                },
+                {
+                  "path": "startup/stderr.log",
+                  "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+                  "stream": "stderr"
+                }
+              ],
+              "observed_marker": "RUSTOS_BOOT_OK",
+              "status": "passed",
+              "stop_requested": true
+            },
+            {
+              "artifact_id": "kernel-panic-test",
+              "artifact_sha256": "9da30e152717d30e9f0567a33e47af76755d14b7383bc526c4c97058494eae2a",
+              "deadline_ms": 10000,
+              "diagnostics": [],
+              "id": "panic",
+              "logs": [
+                {
+                  "path": "panic/stdout.log",
+                  "sha256": "30b6cf8182d8c87847fdf3d5a7a069c9efe4c6fc87022565e227a3006466fd0c",
+                  "stream": "stdout"
+                },
+                {
+                  "path": "panic/stderr.log",
+                  "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+                  "stream": "stderr"
+                }
+              ],
+              "observed_marker": "RUSTOS_EXPECTED_PANIC",
+              "status": "passed",
+              "stop_requested": true
+            }
+          ],
+          "target": "qemu-virt-a53",
+          "verification_scope": "emulator"
+        },
+        "schema_version": 1,
+        "status": "failed",
+        "target": "qemu-virt-a53"
+      }
+    },
+    {
+      "name": "production binary ignores fault-injection environment variable",
+      "status": "passed",
+      "cli": {
+        "build_ready": null,
+        "diagnostics": [],
+        "evidence": [
+          ".rustos-reports/m1-c50-18e3b8664bd7eb94/v-b5c-18e3b8677fc73ad0/report.json"
+        ],
+        "operation": "verify",
+        "result": {
+          "cleanup": {
+            "diagnostics": [],
+            "kill_budget_ms": 5000,
+            "processes_settled": true,
+            "status": "passed",
+            "stop_budget_ms": 5000
+          },
+          "complete": true,
+          "diagnostics": [],
+          "evidence": [
+            "input-manifest.json",
+            "qemu-version/stdout.log"
+          ],
+          "finished_at": "2026-10-31T20:50:31.911Z",
+          "manifest_sha256": "d5a26d2a149cae17dba1158ad7d40f70ea3c0648a1110d6ff9f300ae0ec7729b",
+          "operation": "verify",
+          "run_id": "v-b5c-18e3b8677fc73ad0",
+          "schema_version": 1,
+          "started_at": "2026-10-31T20:50:31.288Z",
+          "status": "passed",
+          "steps": [
+            {
+              "artifact_id": "kernel",
+              "artifact_sha256": "e66ebc4c189fbbd5ef2dded49ed702f58109127f9f1d8c15ffcc7aa05572f482",
+              "deadline_ms": 10000,
+              "diagnostics": [],
+              "id": "startup",
+              "logs": [
+                {
+                  "path": "startup/stdout.log",
+                  "sha256": "8153b443b6f9cdff16cc80778669def6b5f91fe0a3fdf1baf4986fc2b8a59033",
+                  "stream": "stdout"
+                },
+                {
+                  "path": "startup/stderr.log",
+                  "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+                  "stream": "stderr"
+                }
+              ],
+              "observed_marker": "RUSTOS_BOOT_OK",
+              "status": "passed",
+              "stop_requested": true
+            },
+            {
+              "artifact_id": "kernel-panic-test",
+              "artifact_sha256": "9da30e152717d30e9f0567a33e47af76755d14b7383bc526c4c97058494eae2a",
+              "deadline_ms": 10000,
+              "diagnostics": [],
+              "id": "panic",
+              "logs": [
+                {
+                  "path": "panic/stdout.log",
+                  "sha256": "30b6cf8182d8c87847fdf3d5a7a069c9efe4c6fc87022565e227a3006466fd0c",
+                  "stream": "stdout"
+                },
+                {
+                  "path": "panic/stderr.log",
+                  "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+                  "stream": "stderr"
+                }
+              ],
+              "observed_marker": "RUSTOS_EXPECTED_PANIC",
+              "status": "passed",
+              "stop_requested": true
+            }
+          ],
+          "target": "qemu-virt-a53",
+          "verification_scope": "emulator"
+        },
+        "schema_version": 1,
+        "status": "passed",
+        "target": "qemu-virt-a53"
+      }
+    },
+    {
+      "name": "real report-path collision overrides timeout while retaining original report and settled cleanup",
+      "status": "passed",
+      "cli": {
+        "build_ready": null,
+        "diagnostics": [
+          {
+            "code": "REPORT_FAILED",
+            "dependency_chain": [],
+            "field": "verify",
+            "input": null,
+            "message": "Could not publish terminal timed_out verification report: Access is denied. (os error 5); recovery retained=true",
+            "severity": "error",
+            "stage": "verification"
+          }
+        ],
+        "evidence": [
+          ".rustos-reports/m1-c50-18e3b8664bd7eb94/v-5f1c-18e3b867a7966450/failure.json"
+        ],
+        "operation": "verify",
+        "result": null,
+        "schema_version": 1,
+        "status": "failed",
+        "target": null
+      }
+    },
+    {
+      "name": "unexpected exit of the exact owned QEMU process cannot pass",
+      "status": "passed",
+      "cli": {
+        "build_ready": null,
+        "diagnostics": [],
+        "evidence": [
+          ".rustos-reports/m1-c50-18e3b8664bd7eb94/v-4588-18e3b86a0f3f4750/report.json"
+        ],
+        "operation": "verify",
+        "result": {
+          "cleanup": {
+            "diagnostics": [],
+            "kill_budget_ms": 5000,
+            "processes_settled": true,
+            "status": "passed",
+            "stop_budget_ms": 5000
+          },
+          "complete": true,
+          "diagnostics": [],
+          "evidence": [
+            "input-manifest.json",
+            "qemu-version/stdout.log"
+          ],
+          "finished_at": "2026-10-31T20:50:42.428Z",
+          "manifest_sha256": "976a187f3ad5825f014ccc1eff9cd051642587e67ed3466bd61677789d8b535f",
+          "operation": "verify",
+          "run_id": "v-4588-18e3b86a0f3f4750",
+          "schema_version": 1,
+          "started_at": "2026-10-31T20:50:42.285Z",
+          "status": "failed",
+          "steps": [
+            {
+              "artifact_id": "kernel",
+              "artifact_sha256": "d70d2a1e6d9219ba50cbdbd8a3b966e0a6fefb0ffcc30253f6429540b37c6701",
+              "deadline_ms": 10000,
+              "diagnostics": [
+                {
+                  "code": "EARLY_EXIT",
+                  "dependency_chain": [],
+                  "field": "verify",
+                  "input": null,
+                  "message": "QEMU exited before owned stop",
+                  "severity": "error",
+                  "stage": "verification"
+                },
+                {
+                  "code": "FORCED_STOP",
+                  "dependency_chain": [],
+                  "field": "verify",
+                  "input": null,
+                  "message": "QMP stop did not settle the process tree; owned job was terminated",
+                  "severity": "error",
+                  "stage": "verification"
+                }
+              ],
+              "id": "startup",
+              "logs": [
+                {
+                  "path": "startup/stdout.log",
+                  "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+                  "stream": "stdout"
+                },
+                {
+                  "path": "startup/stderr.log",
+                  "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+                  "stream": "stderr"
+                }
+              ],
+              "observed_marker": null,
+              "status": "failed",
+              "stop_requested": false
+            },
+            {
+              "artifact_id": "kernel-panic-test",
+              "artifact_sha256": "9da30e152717d30e9f0567a33e47af76755d14b7383bc526c4c97058494eae2a",
+              "deadline_ms": 10000,
+              "diagnostics": [],
+              "id": "panic",
+              "logs": [],
+              "observed_marker": null,
+              "status": "skipped",
+              "stop_requested": false
+            }
+          ],
+          "target": "qemu-virt-a53",
+          "verification_scope": "emulator"
+        },
+        "schema_version": 1,
+        "status": "failed",
+        "target": "qemu-virt-a53"
+      }
+    }
+  ]
+}

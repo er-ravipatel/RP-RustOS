@@ -1,0 +1,139 @@
+{
+  "passed": true,
+  "cases": [
+    {
+      "name": "one_cell_ram",
+      "fixture": "E:\\Work\\RustOS\\target\\entry-memory-reference-1793512881119905900\\one_cell_ram.dtb",
+      "sha256": "457a3ced6dd84ecfc2e698b1450ca21d4b46680bae0951c46464941b03fea4b1",
+      "expected": "OK",
+      "actual": "OK BootMemoryInfo { cma_pool: None }",
+      "passed": true
+    },
+    {
+      "name": "two_cell_ram",
+      "fixture": "E:\\Work\\RustOS\\target\\entry-memory-reference-1793512881119905900\\two_cell_ram.dtb",
+      "sha256": "39fb28f9acc09029e1c76a1ca3ad2b9c1a3369f0b49cfe8336b4df610de14b06",
+      "expected": "OK",
+      "actual": "OK BootMemoryInfo { cma_pool: None }",
+      "passed": true
+    },
+    {
+      "name": "static_zero_placeholder",
+      "fixture": "E:\\Work\\RustOS\\target\\entry-memory-reference-1793512881119905900\\static_zero_placeholder.dtb",
+      "sha256": "7d9b1cf3bd59a4fd02f8c2eab7a844909bf6a731ac68db9192d0383fcb24b703",
+      "expected": "ERR Ranges(Empty)",
+      "actual": "ERR Ranges(Empty)",
+      "passed": true
+    },
+    {
+      "name": "partial_kernel",
+      "fixture": "E:\\Work\\RustOS\\target\\entry-memory-reference-1793512881119905900\\partial_kernel.dtb",
+      "sha256": "3861bdabd43ae69331706517e0aca6ca371e71fea3aa10d91817c8d23c745705",
+      "expected": "ERR Ranges(KernelNotInRam)",
+      "actual": "ERR Ranges(KernelNotInRam)",
+      "passed": true
+    },
+    {
+      "name": "partial_dtb",
+      "fixture": "E:\\Work\\RustOS\\target\\entry-memory-reference-1793512881119905900\\partial_dtb.dtb",
+      "sha256": "5f4677603e1ab1af80db24025072d798145758a2fb5d6cecebe07c7481a6fc61",
+      "expected": "ERR Ranges(DtbNotInRam)",
+      "actual": "ERR Ranges(DtbNotInRam)",
+      "passed": true
+    },
+    {
+      "name": "disabled_ram",
+      "fixture": "E:\\Work\\RustOS\\target\\entry-memory-reference-1793512881119905900\\disabled_ram.dtb",
+      "sha256": "abd891b932c857b59aefc720667c80367dd67cdac15776f95a9ecf847d088aa4",
+      "expected": "ERR Ranges(Count)",
+      "actual": "ERR Ranges(Count)",
+      "passed": true
+    },
+    {
+      "name": "unknown_status",
+      "fixture": "E:\\Work\\RustOS\\target\\entry-memory-reference-1793512881119905900\\unknown_status.dtb",
+      "sha256": "d32e5f371bfa0868d5ea2cf44eaa9ff7c570d69ca33fa89cb1d7ee0676757011",
+      "expected": "ERR Status",
+      "actual": "ERR Status",
+      "passed": true
+    },
+    {
+      "name": "overlapping_banks",
+      "fixture": "E:\\Work\\RustOS\\target\\entry-memory-reference-1793512881119905900\\overlapping_banks.dtb",
+      "sha256": "a43aced4540c7ae7bb4ee5b77f23fe5d69a9cc851c32715f5539a459a4191bd2",
+      "expected": "ERR Ranges(OverlappingRam)",
+      "actual": "ERR Ranges(OverlappingRam)",
+      "passed": true
+    },
+    {
+      "name": "split_kernel",
+      "fixture": "E:\\Work\\RustOS\\target\\entry-memory-reference-1793512881119905900\\split_kernel.dtb",
+      "sha256": "3247a17a05655f7c4df43e51f445672810ac9f3152a713889077cc70ee590bf7",
+      "expected": "ERR Ranges(KernelNotInRam)",
+      "actual": "ERR Ranges(KernelNotInRam)",
+      "passed": true
+    },
+    {
+      "name": "reserved_kernel_byte",
+      "fixture": "E:\\Work\\RustOS\\target\\entry-memory-reference-1793512881119905900\\reserved_kernel_byte.dtb",
+      "sha256": "f45553bd61ba791c65ecaa93339b8f262602358f2a293894bcf47041ae5d82e6",
+      "expected": "ERR Ranges(KernelReserved)",
+      "actual": "ERR Ranges(KernelReserved)",
+      "passed": true
+    },
+    {
+      "name": "reserved_dtb",
+      "fixture": "E:\\Work\\RustOS\\target\\entry-memory-reference-1793512881119905900\\reserved_dtb.dtb",
+      "sha256": "074e300a75f3f4d111851306254cee91a382651efafa800f1b4a027a7de59a09",
+      "expected": "OK",
+      "actual": "OK BootMemoryInfo { cma_pool: None }",
+      "passed": true
+    },
+    {
+      "name": "dynamic_cma",
+      "fixture": "E:\\Work\\RustOS\\target\\entry-memory-reference-1793512881119905900\\dynamic_cma.dtb",
+      "sha256": "598f5d1025cc4c720bba8df3df389b308eb02cff65522b9e498c403f5cd0709c",
+      "expected": "OK",
+      "actual": "OK BootMemoryInfo { cma_pool: Some(MemoryRange { start: 67108864, size: 67108864 }) }",
+      "passed": true
+    },
+    {
+      "name": "dynamic_no_space",
+      "fixture": "E:\\Work\\RustOS\\target\\entry-memory-reference-1793512881119905900\\dynamic_no_space.dtb",
+      "sha256": "2f6f6d60763741528bb0299448b75058f771bcb8dc02c8b09f24d91c3527991b",
+      "expected": "ERR Pool(NoSpace)",
+      "actual": "ERR Pool(NoSpace)",
+      "passed": true
+    },
+    {
+      "name": "outside_board",
+      "fixture": "E:\\Work\\RustOS\\target\\entry-memory-reference-1793512881119905900\\outside_board.dtb",
+      "sha256": "dd539363de111c3179080120e3cd90d20bd3c5d48f6ae7c1dd12d8ba285324b9",
+      "expected": "ERR Ranges(AddressBounds)",
+      "actual": "ERR Ranges(AddressBounds)",
+      "passed": true
+    }
+  ],
+  "build_command": [
+    "cargo",
+    "build",
+    "--manifest-path",
+    "E:\\Work\\RustOS\\bsp\\rpi-zero2w\\Cargo.toml",
+    "--example",
+    "inspect_memory",
+    "--locked",
+    "--offline"
+  ],
+  "executable_sha256": "90de3238c2b327ca5f3afe78cc6609141fa183e54d910b1d9b4a58ace0ea0787",
+  "source_sha256": {
+    "tools\\test_entry_memory_reference.py": "44881e0fef4059c6693beaa6451dea14909e0010b73a5c17e2593000e6dc72db",
+    "bsp\\rpi-zero2w\\examples\\inspect_memory.rs": "014dda69d2e6c7b35c4e7ef303a2139a86aac0522ca5a3c237b74a0dad6e3b4d",
+    "bsp\\rpi-zero2w\\src\\board.rs": "f6c2ec89a9fe199f004b99dc48aab767a606350d4db858e382bc743cfe2cc692",
+    "bsp\\rpi-zero2w\\src\\boot_memory.rs": "c19a38b2d8b942a5761ff45d296866e9330a4f761ff52e8b0f8f6564641c610d",
+    "bsp\\rpi-zero2w\\src\\cma.rs": "3afcbe1c0f464bcf2b7078e670030ac3d35a0dd7f241ac4f5db5972a481530cd",
+    "bsp\\rpi-zero2w\\src\\lib.rs": "8a90e2d5397c37bfaa11bbafcdfb98706a7933118ac70feed76f9c9de84db2ee",
+    "bsp\\rpi-zero2w\\src\\memory.rs": "6f7805574ae87b1ad51b49644c2784a916f6e03ceaabf7e7560d994cbdd6626d",
+    "bsp\\rpi-zero2w\\src\\structure.rs": "cce430f19bc4da46398d754ea277ff5b3c968ff28b25417b2977feb2884a0e82"
+  },
+  "scope": "Host Rust reference only; no assembly RAM pass, emulator or physical boot"
+}

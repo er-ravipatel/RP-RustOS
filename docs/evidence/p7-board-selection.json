@@ -1,0 +1,177 @@
+{
+  "kind": "real-cli-selection-not-pi-build",
+  "results": [
+    {
+      "config": "rustos.toml",
+      "exit_code": 0,
+      "cli": {
+        "build_ready": false,
+        "diagnostics": [
+          {
+            "code": "EXECUTION_PREREQUISITES_UNCHECKED",
+            "dependency_chain": [],
+            "field": "build",
+            "input": null,
+            "message": "Read-only inspection does not execute toolchain probes; build performs execution prerequisite checks",
+            "severity": "warning",
+            "stage": "inspection"
+          }
+        ],
+        "evidence": [],
+        "operation": "plan",
+        "result": {
+          "artifact_format": "elf",
+          "build_order": [
+            "hal",
+            "bsp-qemu-virt",
+            "console-pl011",
+            "kernel"
+          ],
+          "inputs": [
+            {
+              "path": "\\\\?\\E:\\Work\\RustOS\\bsp\\qemu-virt\\Cargo.toml",
+              "sha256": "4ed1530e5495a6a6fac8837990688129d7f5cabfc9fdacd2cb17bdce15d5021c"
+            },
+            {
+              "path": "\\\\?\\E:\\Work\\RustOS\\catalog\\modules.toml",
+              "sha256": "61c919d5d52ff130bb6662e92e14a597447c2e4cfca9cc20286b040984e1265a"
+            },
+            {
+              "path": "\\\\?\\E:\\Work\\RustOS\\core\\kernel\\Cargo.toml",
+              "sha256": "cb8ce8b604e4a0829d2dadf8908cd937d47f160c3b575a269f18c51bf412cc41"
+            },
+            {
+              "path": "\\\\?\\E:\\Work\\RustOS\\drivers\\console\\Cargo.toml",
+              "sha256": "6b5c38618d4894c5092b56d9b6ba3f19e02056e12ea0566764036d70142b3b10"
+            },
+            {
+              "path": "\\\\?\\E:\\Work\\RustOS\\hal\\Cargo.toml",
+              "sha256": "6d33ebd56c1ad822f2fdd94325ca3c28eaba7283bdb87f69212d3fe20b26e533"
+            },
+            {
+              "path": "\\\\?\\E:\\Work\\RustOS\\profiles\\qemu-virt-a53.toml",
+              "sha256": "d2416b71f90290161f76e42a5911b799f65145b7cb279783d61277afaacc0c6d"
+            },
+            {
+              "path": "\\\\?\\E:\\Work\\RustOS\\recipes\\startup-and-panic-v1.toml",
+              "sha256": "2b4e367c7960a64cbaccb8d16289e959c18a99c6432fbab693a75df17d237c3b"
+            },
+            {
+              "path": "\\\\?\\E:\\Work\\RustOS\\rustos.toml",
+              "sha256": "8404664fd3fe1e8b15bee0f3b967c4c90a891a43b97433dc6410bd4f61cda5ab"
+            }
+          ],
+          "missing_prerequisites": [
+            {
+              "code": "EXECUTION_PREREQUISITES_UNCHECKED",
+              "dependency_chain": [],
+              "field": "build",
+              "input": null,
+              "message": "Read-only inspection does not execute toolchain probes; build performs execution prerequisite checks",
+              "severity": "warning",
+              "stage": "inspection"
+            }
+          ],
+          "requested_features": [
+            "serial-console",
+            "boot-diagnostics"
+          ],
+          "resolved_modules": [
+            {
+              "id": "hal",
+              "reasons": [
+                {
+                  "from": "bsp-qemu-virt",
+                  "kind": "dependency"
+                },
+                {
+                  "from": "console-pl011",
+                  "kind": "dependency"
+                },
+                {
+                  "from": "kernel",
+                  "kind": "dependency"
+                }
+              ],
+              "version": "0.1.0"
+            },
+            {
+              "id": "bsp-qemu-virt",
+              "reasons": [
+                {
+                  "from": "qemu-virt-a53",
+                  "kind": "base"
+                }
+              ],
+              "version": "0.1.0"
+            },
+            {
+              "id": "console-pl011",
+              "reasons": [
+                {
+                  "from": "kernel",
+                  "kind": "dependency"
+                },
+                {
+                  "from": "boot-diagnostics",
+                  "kind": "feature"
+                },
+                {
+                  "from": "serial-console",
+                  "kind": "feature"
+                }
+              ],
+              "version": "0.1.0"
+            },
+            {
+              "id": "kernel",
+              "reasons": [
+                {
+                  "from": "qemu-virt-a53",
+                  "kind": "base"
+                },
+                {
+                  "from": "boot-diagnostics",
+                  "kind": "feature"
+                }
+              ],
+              "version": "0.1.0"
+            }
+          ],
+          "verification_recipe": {
+            "id": "startup-and-panic-v1",
+            "sha256": "2b4e367c7960a64cbaccb8d16289e959c18a99c6432fbab693a75df17d237c3b",
+            "version": "0.1.0"
+          }
+        },
+        "schema_version": 1,
+        "status": "passed",
+        "target": "qemu-virt-a53"
+      }
+    },
+    {
+      "config": "rustos-zero2w.toml",
+      "exit_code": 2,
+      "cli": {
+        "build_ready": null,
+        "diagnostics": [
+          {
+            "code": "TARGET_BACKEND_PENDING",
+            "dependency_chain": [],
+            "field": "target",
+            "input": "\\\\?\\E:\\Work\\RustOS\\profiles\\rpi-zero2w-a53.toml",
+            "message": "Pi metadata and module selection validated: hal, bsp-rpi-zero2w, console-pl011, kernel. Pi source readiness/build/verification is not implemented. Asset bytes were not checked.",
+            "severity": "error",
+            "stage": "inspection"
+          }
+        ],
+        "evidence": [],
+        "operation": "plan",
+        "result": null,
+        "schema_version": 1,
+        "status": "failed",
+        "target": null
+      }
+    }
+  ]
+}

@@ -1,0 +1,18 @@
+{
+  "recorded_at": "2026-11-01T12:44:11.549391+00:00",
+  "passed": true,
+  "assembler_rust_tests": 38,
+  "m1_cli_tests": 5,
+  "m1_build_acceptance_tests": 9,
+  "m1_build_evidence": "target/p5-build-1793536857628881800",
+  "strict_clippy": "fails project-wide result_large_err on Diagnostic/error types",
+  "scoped_clippy": "passed with only clippy::result_large_err explicitly allowed",
+  "complete_pi_bundle_ready": false,
+  "source_sha256": {
+    "catalog/modules.toml": "3312617c5cb8b5cd594966bbbecfeaa945c4c15865e0a215adc51380161d98cb",
+    "tools/assembler/src/lib.rs": "ecaa29b69eeecc8c24206dee55794a441e6ed84dbe1daae462ee1e92ff6801a8",
+    "tools/assembler/src/pi_build.rs": "ff2e66c2ba4f52b09c54fb0052b0b8f3ad171fb176b3f8ba3df9679229520b2a",
+    "tools/assembler/src/build.rs": "cae1cd0a4d171c247924fc8a05e128eb2bf07027f162c7be45b5f24ca737f4da",
+    "tools/assembler/tests/inspection.rs": "ac26a5842f4fb0f234482e2ccb21c40a4ad3959e6e026667151fef987fc7cc0b"
+  }
+}

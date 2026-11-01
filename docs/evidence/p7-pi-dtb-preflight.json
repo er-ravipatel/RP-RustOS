@@ -1,0 +1,24 @@
+{
+  "kind": "host-dtb-preflight-not-hardware-boot",
+  "command": [
+    "cargo",
+    "run",
+    "--manifest-path",
+    "bsp/rpi-zero2w/Cargo.toml",
+    "--example",
+    "inspect_dtb",
+    "--locked",
+    "--offline",
+    "--",
+    "out/research/m2-source-9b488bc7a1e9/boot-assets/bcm2710-rpi-zero-2-w.dtb"
+  ],
+  "exit_code": 0,
+  "stdout": "File preflight at synthetic placement 0x1000000: DtbLayout { total_size: 33724, structure: 72..30268, strings: 30268..33724, reservation_count: 1 }\n",
+  "stderr": "    Finished `dev` profile [unoptimized + debuginfo] target(s) in 0.07s\n     Running `bsp\\rpi-zero2w\\target\\debug\\examples\\inspect_dtb.exe out/research/m2-source-9b488bc7a1e9/boot-assets/bcm2710-rpi-zero-2-w.dtb`\n",
+  "synthetic_physical_address": "0x1000000",
+  "dtb_sha256": "5b31bc70011e454f482ba323b1eca22bf54fa2fa4682576ee73816a2eccfa277",
+  "source_sha256": "e4ed14ee99db3a2d5c79d90609eca2ca2e7912d3a448a671f06c93f14fe5aff1",
+  "full_tree_validation": false,
+  "usable_arm_memory_validated": false,
+  "pi_kernel_wired": false
+}

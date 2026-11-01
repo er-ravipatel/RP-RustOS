@@ -1,0 +1,13 @@
+{
+  "recorded_at": "2026-11-01T11:16:36.579873+00:00",
+  "passed": true,
+  "bsp_host_tests": 45,
+  "new_mailbox_test_methods": 9,
+  "clippy_all_targets_warnings_denied": "passed",
+  "release_aarch64_softfloat": "passed",
+  "hardware_mmio_backend": "not_implemented",
+  "source_sha256": {
+    "bsp/rpi-zero2w/src/lib.rs": "fe1b1857c78f0eaed98160e3c149bc45752eaeaa0d215e8c612d42edf6855b8d",
+    "bsp/rpi-zero2w/src/mailbox.rs": "c47a4cd5deec2d1fb6290dc2da89a64fc49a4a00a9732c1d3e1da0c0f9047912"
+  }
+}

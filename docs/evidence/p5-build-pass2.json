@@ -1,0 +1,132 @@
+{
+  "schema_version": 1,
+  "kind": "assembler-build-development",
+  "passed": true,
+  "root": "E:\\Work\\RustOS\\target\\p5-build-1793473883464165600",
+  "manifest_sha256": "81f0e16e68b932be03c7d7b1d75d1f302141c70b6456236da4eba696e16b30b0",
+  "checks": [
+    {
+      "name": "assembled ELF development emulator smoke checks",
+      "status": "passed",
+      "scope": "P4 development harness; production verify not implemented",
+      "observations": [
+        {
+          "artifact": "kernel",
+          "elf": {
+            "entry": "0x40080000",
+            "sha256": "e66ebc4c189fbbd5ef2dded49ed702f58109127f9f1d8c15ffcc7aa05572f482",
+            "size_bytes": 86544,
+            "segments": [
+              {
+                "address": "0x40080000",
+                "file_bytes": 10252,
+                "memory_bytes": 10252,
+                "flags": 5
+              },
+              {
+                "address": "0x40083000",
+                "file_bytes": 864,
+                "memory_bytes": 864,
+                "flags": 4
+              },
+              {
+                "address": "0x40084000",
+                "file_bytes": 8,
+                "memory_bytes": 65568,
+                "flags": 6
+              }
+            ],
+            "vectors": "0x40080800",
+            "stack_bottom": "0x40084020",
+            "stack_top": "0x40094020"
+          },
+          "passed": true,
+          "error": null,
+          "expected_marker": "RUSTOS_BOOT_OK",
+          "observed_marker": true,
+          "serial_output": "RustOS M1: EL1 stack=aligned BSS=zero data=ok vectors=aligned MMU/cache=off\nRUSTOS_BOOT_OK\n",
+          "stderr": "",
+          "stop_requested": true,
+          "forced_stop": false,
+          "process_settled": true,
+          "elapsed_seconds": 0.14,
+          "control": "QMP over owned stdio; P5 named-pipe/Job ownership not implemented"
+        },
+        {
+          "artifact": "kernel-panic-test",
+          "elf": {
+            "entry": "0x40080000",
+            "sha256": "9da30e152717d30e9f0567a33e47af76755d14b7383bc526c4c97058494eae2a",
+            "size_bytes": 86720,
+            "segments": [
+              {
+                "address": "0x40080000",
+                "file_bytes": 9624,
+                "memory_bytes": 9624,
+                "flags": 5
+              },
+              {
+                "address": "0x40083000",
+                "file_bytes": 928,
+                "memory_bytes": 928,
+                "flags": 4
+              },
+              {
+                "address": "0x40084000",
+                "file_bytes": 8,
+                "memory_bytes": 65568,
+                "flags": 6
+              }
+            ],
+            "vectors": "0x40080800",
+            "stack_bottom": "0x40084020",
+            "stack_top": "0x40094020"
+          },
+          "passed": true,
+          "error": null,
+          "expected_marker": "RUSTOS_EXPECTED_PANIC",
+          "observed_marker": true,
+          "serial_output": "RustOS M1: EL1 stack=aligned BSS=zero data=ok vectors=aligned MMU/cache=off\npanic: panicked at core\\kernel\\src\\main.rs:107:9:\nP4 deliberate panic\nRUSTOS_EXPECTED_PANIC\n",
+          "stderr": "",
+          "stop_requested": true,
+          "forced_stop": false,
+          "process_settled": true,
+          "elapsed_seconds": 0.141,
+          "control": "QMP over owned stdio; P5 named-pipe/Job ownership not implemented"
+        }
+      ]
+    },
+    {
+      "name": "dependency escaping snapshot rejected before compiler launch",
+      "status": "passed"
+    },
+    {
+      "name": "occupied destination preserved",
+      "status": "passed"
+    },
+    {
+      "name": "compilation failure retained without published bundle",
+      "status": "passed"
+    },
+    {
+      "name": "Windows linker path limit rejected before compilation",
+      "status": "passed"
+    },
+    {
+      "name": "malformed workspace rejected without panic",
+      "status": "passed"
+    },
+    {
+      "name": "manifest, source and artifact identities",
+      "status": "passed"
+    },
+    {
+      "name": "missing lockfile rejected before staging",
+      "status": "passed"
+    },
+    {
+      "name": "missing host tool rejected before staging",
+      "status": "passed"
+    }
+  ]
+}

@@ -1,0 +1,223 @@
+{
+  "kind": "source-closure-inspection-not-dtb-reproduction",
+  "linux_commit": "9b488bc7a1e9b61713082f3e6c4361988d62f77b",
+  "archive_sha256": "01eb0496c85b79c7a1c018241b09b63893259975672a2a12b9c44cf33ab26cb7",
+  "root": "arch/arm/boot/dts/broadcom/bcm2710-rpi-zero-2-w.dts",
+  "root_matches_separately_fetched_source": true,
+  "files": [
+    {
+      "path": "arch/arm/boot/dts/broadcom/bcm2708-rpi-bt.dtsi",
+      "sha256": "aec583a56eca3ef04400d3bd9f769685a033e7e2d674ad9dd3403992ae511b33",
+      "size_bytes": 1004
+    },
+    {
+      "path": "arch/arm/boot/dts/broadcom/bcm2708-rpi.dtsi",
+      "sha256": "7a597f1f8b9b3b69c61ba4b533e1d015603ea3093646660ef06a5c75585f60c5",
+      "size_bytes": 1085
+    },
+    {
+      "path": "arch/arm/boot/dts/broadcom/bcm2709-rpi.dtsi",
+      "sha256": "669d74968cd395cbaa877a34892be1abc3050a906f92ca951bcb7bac154fccbb",
+      "size_bytes": 137
+    },
+    {
+      "path": "arch/arm/boot/dts/broadcom/bcm270x-rpi.dtsi",
+      "sha256": "b090e0919c3133ea508e9901ae6e8acf0f64b92bc28df0241675fdbaad36d936",
+      "size_bytes": 4272
+    },
+    {
+      "path": "arch/arm/boot/dts/broadcom/bcm270x.dtsi",
+      "sha256": "163830d18fe9125581132c3e0b26be9fff15b5515fe4de04f89811d4f666555c",
+      "size_bytes": 5576
+    },
+    {
+      "path": "arch/arm/boot/dts/broadcom/bcm2710-rpi-zero-2-w.dts",
+      "sha256": "726be9d6c8d7ebe0a2163e00f3343ea66e0e87800678dd0585eb4ed2fd1acb2e",
+      "size_bytes": 4564
+    },
+    {
+      "path": "arch/arm/boot/dts/broadcom/bcm2710.dtsi",
+      "sha256": "5a82dab2fe22ac151d80893c03c7168f4b76ee39986849b9f9ce1d71ddda5307",
+      "size_bytes": 572
+    },
+    {
+      "path": "arch/arm/boot/dts/broadcom/bcm2835-common.dtsi",
+      "sha256": "2358a72058240e561633f32817ce1f4fd95695ccfac496776c90b362ce407faf",
+      "size_bytes": 4413
+    },
+    {
+      "path": "arch/arm/boot/dts/broadcom/bcm2835-rpi.dtsi",
+      "sha256": "7142bfd3bec96945b30b45f72cd2bc70ed8cddbff3961a896a58b60e57ac5350",
+      "size_bytes": 1529
+    },
+    {
+      "path": "arch/arm/boot/dts/broadcom/bcm2837.dtsi",
+      "sha256": "f984c5e2e25ce31b829ea2f2d3ea74767bd9667f27f8470d037b3b59693288a8",
+      "size_bytes": 4046
+    },
+    {
+      "path": "arch/arm/boot/dts/broadcom/bcm283x-rpi-csi1-2lane.dtsi",
+      "sha256": "76394f4cd01cec0c60308b8d0a701168839dd27d67e048893a8fed3a91f9b32e",
+      "size_bytes": 80
+    },
+    {
+      "path": "arch/arm/boot/dts/broadcom/bcm283x-rpi-i2c0mux_0_44.dtsi",
+      "sha256": "ec3234c7e3c80c2c9f5a1428218d8563a83839c9aab5afc595355c549cf8cee6",
+      "size_bytes": 71
+    },
+    {
+      "path": "arch/arm/boot/dts/broadcom/bcm283x-rpi-led-deprecated.dtsi",
+      "sha256": "399b1fd448d1ea9e06d9df3fc47af6219dfc3fa62aec010c8aea3bba80174f6a",
+      "size_bytes": 344
+    },
+    {
+      "path": "arch/arm/boot/dts/broadcom/bcm283x.dtsi",
+      "sha256": "7448dadeacb1b2050dcd92d7917410fcb80ef6e65673aa6694358becd761b479",
+      "size_bytes": 12705
+    },
+    {
+      "path": "include/dt-bindings/clock/bcm2835-aux.h",
+      "sha256": "dc23120c76da89b71ffe5fdb6201a979cbbe8dcbe399d5c6e853cd163a2ad34b",
+      "size_bytes": 227
+    },
+    {
+      "path": "include/dt-bindings/clock/bcm2835.h",
+      "sha256": "6be4dec6ec320185e3ebf243ec06b61e687493e0c9500f0e486d2dec639ad0b6",
+      "size_bytes": 1651
+    },
+    {
+      "path": "include/dt-bindings/gpio/gpio.h",
+      "sha256": "5423b3866877ead0920ec978b5b072f06087443033a72445b39faed8f288ddc1",
+      "size_bytes": 1251
+    },
+    {
+      "path": "include/dt-bindings/interrupt-controller/irq.h",
+      "sha256": "392400a309a54ea5b1a2ac2e52773d3ab68e07323109b9aed88a69fedc74e082",
+      "size_bytes": 611
+    },
+    {
+      "path": "include/dt-bindings/pinctrl/bcm2835.h",
+      "sha256": "6e69e0b5192871926db2fc6a15bab467d1bec5b9fda31a74603fbef84b555673",
+      "size_bytes": 670
+    },
+    {
+      "path": "include/dt-bindings/power/raspberrypi-power.h",
+      "sha256": "eae21118acf3c5ec97e48b81424cbaadeb9391f3a5cba3b8aba7badb3a62d2e6",
+      "size_bytes": 1126
+    },
+    {
+      "path": "include/dt-bindings/soc/bcm2835-pm.h",
+      "sha256": "afbc90d64fc82a3e0a2de961a3c845c78971695b565d2c7f4683db8fdb3f008f",
+      "size_bytes": 845
+    }
+  ],
+  "include_edges": [
+    {
+      "source": "arch/arm/boot/dts/broadcom/bcm2710-rpi-zero-2-w.dts",
+      "include": "bcm2710.dtsi",
+      "resolved": "arch/arm/boot/dts/broadcom/bcm2710.dtsi"
+    },
+    {
+      "source": "arch/arm/boot/dts/broadcom/bcm2710-rpi-zero-2-w.dts",
+      "include": "bcm2709-rpi.dtsi",
+      "resolved": "arch/arm/boot/dts/broadcom/bcm2709-rpi.dtsi"
+    },
+    {
+      "source": "arch/arm/boot/dts/broadcom/bcm2710-rpi-zero-2-w.dts",
+      "include": "bcm283x-rpi-csi1-2lane.dtsi",
+      "resolved": "arch/arm/boot/dts/broadcom/bcm283x-rpi-csi1-2lane.dtsi"
+    },
+    {
+      "source": "arch/arm/boot/dts/broadcom/bcm2710-rpi-zero-2-w.dts",
+      "include": "bcm283x-rpi-i2c0mux_0_44.dtsi",
+      "resolved": "arch/arm/boot/dts/broadcom/bcm283x-rpi-i2c0mux_0_44.dtsi"
+    },
+    {
+      "source": "arch/arm/boot/dts/broadcom/bcm2710-rpi-zero-2-w.dts",
+      "include": "bcm2708-rpi-bt.dtsi",
+      "resolved": "arch/arm/boot/dts/broadcom/bcm2708-rpi-bt.dtsi"
+    },
+    {
+      "source": "arch/arm/boot/dts/broadcom/bcm2710-rpi-zero-2-w.dts",
+      "include": "bcm283x-rpi-led-deprecated.dtsi",
+      "resolved": "arch/arm/boot/dts/broadcom/bcm283x-rpi-led-deprecated.dtsi"
+    },
+    {
+      "source": "arch/arm/boot/dts/broadcom/bcm2709-rpi.dtsi",
+      "include": "bcm2708-rpi.dtsi",
+      "resolved": "arch/arm/boot/dts/broadcom/bcm2708-rpi.dtsi"
+    },
+    {
+      "source": "arch/arm/boot/dts/broadcom/bcm2708-rpi.dtsi",
+      "include": "bcm2835-rpi.dtsi",
+      "resolved": "arch/arm/boot/dts/broadcom/bcm2835-rpi.dtsi"
+    },
+    {
+      "source": "arch/arm/boot/dts/broadcom/bcm2708-rpi.dtsi",
+      "include": "bcm270x-rpi.dtsi",
+      "resolved": "arch/arm/boot/dts/broadcom/bcm270x-rpi.dtsi"
+    },
+    {
+      "source": "arch/arm/boot/dts/broadcom/bcm2835-rpi.dtsi",
+      "include": "dt-bindings/power/raspberrypi-power.h",
+      "resolved": "include/dt-bindings/power/raspberrypi-power.h"
+    },
+    {
+      "source": "arch/arm/boot/dts/broadcom/bcm2710.dtsi",
+      "include": "bcm2837.dtsi",
+      "resolved": "arch/arm/boot/dts/broadcom/bcm2837.dtsi"
+    },
+    {
+      "source": "arch/arm/boot/dts/broadcom/bcm2710.dtsi",
+      "include": "bcm270x.dtsi",
+      "resolved": "arch/arm/boot/dts/broadcom/bcm270x.dtsi"
+    },
+    {
+      "source": "arch/arm/boot/dts/broadcom/bcm270x.dtsi",
+      "include": "dt-bindings/power/raspberrypi-power.h",
+      "resolved": "include/dt-bindings/power/raspberrypi-power.h"
+    },
+    {
+      "source": "arch/arm/boot/dts/broadcom/bcm2837.dtsi",
+      "include": "bcm283x.dtsi",
+      "resolved": "arch/arm/boot/dts/broadcom/bcm283x.dtsi"
+    },
+    {
+      "source": "arch/arm/boot/dts/broadcom/bcm2837.dtsi",
+      "include": "bcm2835-common.dtsi",
+      "resolved": "arch/arm/boot/dts/broadcom/bcm2835-common.dtsi"
+    },
+    {
+      "source": "arch/arm/boot/dts/broadcom/bcm283x.dtsi",
+      "include": "dt-bindings/pinctrl/bcm2835.h",
+      "resolved": "include/dt-bindings/pinctrl/bcm2835.h"
+    },
+    {
+      "source": "arch/arm/boot/dts/broadcom/bcm283x.dtsi",
+      "include": "dt-bindings/clock/bcm2835.h",
+      "resolved": "include/dt-bindings/clock/bcm2835.h"
+    },
+    {
+      "source": "arch/arm/boot/dts/broadcom/bcm283x.dtsi",
+      "include": "dt-bindings/clock/bcm2835-aux.h",
+      "resolved": "include/dt-bindings/clock/bcm2835-aux.h"
+    },
+    {
+      "source": "arch/arm/boot/dts/broadcom/bcm283x.dtsi",
+      "include": "dt-bindings/gpio/gpio.h",
+      "resolved": "include/dt-bindings/gpio/gpio.h"
+    },
+    {
+      "source": "arch/arm/boot/dts/broadcom/bcm283x.dtsi",
+      "include": "dt-bindings/interrupt-controller/irq.h",
+      "resolved": "include/dt-bindings/interrupt-controller/irq.h"
+    },
+    {
+      "source": "arch/arm/boot/dts/broadcom/bcm283x.dtsi",
+      "include": "dt-bindings/soc/bcm2835-pm.h",
+      "resolved": "include/dt-bindings/soc/bcm2835-pm.h"
+    }
+  ],
+  "all_includes_resolved": true,
+  "dtb_reproduction_verified": false
+}

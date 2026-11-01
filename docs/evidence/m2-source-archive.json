@@ -1,0 +1,20 @@
+{
+  "kind": "pinned-full-source-archive-not-reproduced-dtb",
+  "linux_commit": "9b488bc7a1e9b61713082f3e6c4361988d62f77b",
+  "url": "https://codeload.github.com/raspberrypi/linux/tar.gz/9b488bc7a1e9b61713082f3e6c4361988d62f77b",
+  "archive_path": "out/research/m2-source-9b488bc7a1e9/linux-9b488bc7a1e9b61713082f3e6c4361988d62f77b.tar.gz",
+  "size_bytes": 257653039,
+  "sha256": "01eb0496c85b79c7a1c018241b09b63893259975672a2a12b9c44cf33ab26cb7",
+  "repeat_local_hash_matched": true,
+  "archive_members": 98133,
+  "required_members_present": [
+    "COPYING",
+    "LICENSES/preferred/GPL-2.0",
+    "LICENSES/exceptions/Linux-syscall-note",
+    "arch/arm/boot/dts/broadcom/bcm2710-rpi-zero-2-w.dts",
+    "scripts/dtc/Makefile",
+    "Makefile"
+  ],
+  "dtb_reproduction_verified": false,
+  "toolchain_available": false
+}

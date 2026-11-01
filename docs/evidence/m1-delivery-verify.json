@@ -1,0 +1,81 @@
+{
+  "build_ready": null,
+  "diagnostics": [],
+  "evidence": [
+    ".rustos-reports/m1-5e30-18e3b88d6e6a9c5c/v-c18-18e3b88dc2a0f0c8/report.json"
+  ],
+  "operation": "verify",
+  "result": {
+    "cleanup": {
+      "diagnostics": [],
+      "kill_budget_ms": 5000,
+      "processes_settled": true,
+      "status": "passed",
+      "stop_budget_ms": 5000
+    },
+    "complete": true,
+    "diagnostics": [],
+    "evidence": [
+      "input-manifest.json",
+      "qemu-version/stdout.log"
+    ],
+    "finished_at": "2026-10-31T20:53:16.227Z",
+    "manifest_sha256": "11aa1d74b1edcb082d8772239b14885890a66bbc0a2ed401ddd0b94b0b706c97",
+    "operation": "verify",
+    "run_id": "v-c18-18e3b88dc2a0f0c8",
+    "schema_version": 1,
+    "started_at": "2026-10-31T20:53:15.619Z",
+    "status": "passed",
+    "steps": [
+      {
+        "artifact_id": "kernel",
+        "artifact_sha256": "e66ebc4c189fbbd5ef2dded49ed702f58109127f9f1d8c15ffcc7aa05572f482",
+        "deadline_ms": 10000,
+        "diagnostics": [],
+        "id": "startup",
+        "logs": [
+          {
+            "path": "startup/stdout.log",
+            "sha256": "8153b443b6f9cdff16cc80778669def6b5f91fe0a3fdf1baf4986fc2b8a59033",
+            "stream": "stdout"
+          },
+          {
+            "path": "startup/stderr.log",
+            "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+            "stream": "stderr"
+          }
+        ],
+        "observed_marker": "RUSTOS_BOOT_OK",
+        "status": "passed",
+        "stop_requested": true
+      },
+      {
+        "artifact_id": "kernel-panic-test",
+        "artifact_sha256": "9da30e152717d30e9f0567a33e47af76755d14b7383bc526c4c97058494eae2a",
+        "deadline_ms": 10000,
+        "diagnostics": [],
+        "id": "panic",
+        "logs": [
+          {
+            "path": "panic/stdout.log",
+            "sha256": "30b6cf8182d8c87847fdf3d5a7a069c9efe4c6fc87022565e227a3006466fd0c",
+            "stream": "stdout"
+          },
+          {
+            "path": "panic/stderr.log",
+            "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+            "stream": "stderr"
+          }
+        ],
+        "observed_marker": "RUSTOS_EXPECTED_PANIC",
+        "status": "passed",
+        "stop_requested": true
+      }
+    ],
+    "target": "qemu-virt-a53",
+    "verification_scope": "emulator"
+  },
+  "schema_version": 1,
+  "status": "passed",
+  "target": "qemu-virt-a53"
+}

@@ -1,0 +1,176 @@
+{
+  "toolchain": "rustc 1.88.0 (6b00bc388 2025-06-23)",
+  "assembly": "bsp\\rpi-zero2w\\target\\aarch64-unknown-none-softfloat\\release\\deps\\rustos_bsp_rpi_zero2w-a53ee3743cdb2866.s",
+  "assembly_sha256": "7930b65127ae41cc3523d95598152bff558335f346e91bee5c770d419880cf20",
+  "stack_size_section_emitted": false,
+  "functions": [
+    {
+      "symbol": "_ZN21rustos_bsp_rpi_zero2w9structure18validate_structure17h10041788114c3fc7E",
+      "calls": [
+        "_ZN21rustos_bsp_rpi_zero2w11inspect_dtb17h599a9b923ef92f3aE",
+        "_ZN4core5slice5index22slice_index_order_fail17hf1ad76ea7ddd05c6E",
+        "_ZN4core5slice5index24slice_end_index_len_fail17h52a8ba6765663cd3E",
+        "_ZN4core9panicking18panic_bounds_check17h8c5bb59a98242b90E",
+        "memcmp",
+        "memset"
+      ],
+      "indirect_branch_or_call": false,
+      "stack_adjustments": [
+        "stp\tx29, x30, [sp, #-96]!",
+        "sub\tsp, sp, #1, lsl #12",
+        "sub\tsp, sp, #1, lsl #12",
+        "sub\tsp, sp, #1, lsl #12",
+        "sub\tsp, sp, #1, lsl #12",
+        "sub\tsp, sp, #368",
+        "add\tsp, sp, #4, lsl #12",
+        "add\tsp, sp, #368"
+      ]
+    },
+    {
+      "symbol": "_ZN21rustos_bsp_rpi_zero2w5board14validate_board17h77f79425a102643eE",
+      "calls": [
+        "_ZN21rustos_bsp_rpi_zero2w11inspect_dtb17h599a9b923ef92f3aE",
+        "_ZN4core5slice5index22slice_index_order_fail17hf1ad76ea7ddd05c6E",
+        "_ZN4core5slice5index24slice_end_index_len_fail17h52a8ba6765663cd3E",
+        "_ZN4core9panicking18panic_bounds_check17h8c5bb59a98242b90E",
+        "memcmp",
+        "memset"
+      ],
+      "indirect_branch_or_call": false,
+      "stack_adjustments": [
+        "stp\tx29, x30, [sp, #-96]!",
+        "sub\tsp, sp, #1, lsl #12",
+        "sub\tsp, sp, #1, lsl #12",
+        "sub\tsp, sp, #1, lsl #12",
+        "sub\tsp, sp, #1, lsl #12",
+        "sub\tsp, sp, #400",
+        "add\tsp, sp, #4, lsl #12",
+        "add\tsp, sp, #400"
+      ]
+    },
+    {
+      "symbol": "_ZN21rustos_bsp_rpi_zero2w6memory10decode_reg17hd80a596ffc6ea8d8E",
+      "calls": [],
+      "indirect_branch_or_call": false,
+      "stack_adjustments": []
+    },
+    {
+      "symbol": "_ZN21rustos_bsp_rpi_zero2w6memory22validate_memory_ranges17h8b9f171c84104095E",
+      "calls": [
+        "_ZN4core5slice5index24slice_end_index_len_fail17h52a8ba6765663cd3E"
+      ],
+      "indirect_branch_or_call": false,
+      "stack_adjustments": []
+    },
+    {
+      "symbol": "_ZN21rustos_bsp_rpi_zero2w11boot_memory20validate_boot_memory17h97f5ac7bd9fa1100E",
+      "calls": [
+        "_ZN21rustos_bsp_rpi_zero2w11boot_memory19inspect_boot_memory17hcbd80ab6174ad8c8E"
+      ],
+      "indirect_branch_or_call": false,
+      "stack_adjustments": [
+        "sub\tsp, sp, #48",
+        "add\tsp, sp, #48"
+      ]
+    },
+    {
+      "symbol": "_ZN21rustos_bsp_rpi_zero2w11boot_memory19inspect_boot_memory17hcbd80ab6174ad8c8E",
+      "calls": [
+        "_ZN21rustos_bsp_rpi_zero2w11boot_memory19inspect_boot_memory28_$u7b$$u7b$closure$u7d$$u7d$17h1af278f998e94669E",
+        "_ZN21rustos_bsp_rpi_zero2w11boot_memory19inspect_boot_memory28_$u7b$$u7b$closure$u7d$$u7d$17he867eed70e8f9db1E",
+        "_ZN21rustos_bsp_rpi_zero2w11inspect_dtb17h599a9b923ef92f3aE",
+        "_ZN21rustos_bsp_rpi_zero2w5board14validate_board17h77f79425a102643eE",
+        "_ZN21rustos_bsp_rpi_zero2w6memory22validate_memory_ranges17h8b9f171c84104095E",
+        "_ZN4core5slice5index22slice_index_order_fail17hf1ad76ea7ddd05c6E",
+        "_ZN4core5slice5index24slice_end_index_len_fail17h52a8ba6765663cd3E",
+        "_ZN4core9panicking18panic_bounds_check17h8c5bb59a98242b90E",
+        "memcmp",
+        "memset"
+      ],
+      "indirect_branch_or_call": false,
+      "stack_adjustments": [
+        "stp\tx29, x30, [sp, #-96]!",
+        "sub\tsp, sp, #1, lsl #12",
+        "sub\tsp, sp, #176",
+        "add\tsp, sp, #5, lsl #12",
+        "add\tsp, sp, #176"
+      ]
+    },
+    {
+      "symbol": "_ZN21rustos_bsp_rpi_zero2w11boot_memory19inspect_boot_memory28_$u7b$$u7b$closure$u7d$$u7d$17he867eed70e8f9db1E",
+      "calls": [
+        "_ZN21rustos_bsp_rpi_zero2w6memory10decode_reg17hd80a596ffc6ea8d8E",
+        "_ZN4core5slice5index26slice_start_index_len_fail17h1b74a5f493af981cE",
+        "_ZN4core9panicking18panic_bounds_check17h8c5bb59a98242b90E",
+        "memcmp",
+        "memcpy"
+      ],
+      "indirect_branch_or_call": false,
+      "stack_adjustments": [
+        "sub\tsp, sp, #256",
+        "add\tsp, sp, #256"
+      ]
+    },
+    {
+      "symbol": "_ZN21rustos_bsp_rpi_zero2w11boot_memory19inspect_boot_memory28_$u7b$$u7b$closure$u7d$$u7d$17h1af278f998e94669E",
+      "calls": [
+        "_ZN4core5slice5index24slice_end_index_len_fail17h52a8ba6765663cd3E"
+      ],
+      "indirect_branch_or_call": false,
+      "stack_adjustments": []
+    },
+    {
+      "symbol": "_ZN21rustos_bsp_rpi_zero2w3cma15select_cma_pool17h316f60d65acbec7aE",
+      "calls": [
+        "_ZN21rustos_bsp_rpi_zero2w6memory22validate_memory_ranges17h8b9f171c84104095E"
+      ],
+      "indirect_branch_or_call": false,
+      "stack_adjustments": [
+        "sub\tsp, sp, #128",
+        "add\tsp, sp, #128"
+      ]
+    },
+    {
+      "symbol": "rustos_validate_boot_memory",
+      "calls": [
+        "_ZN21rustos_bsp_rpi_zero2w11boot_memory19inspect_boot_memory17hcbd80ab6174ad8c8E"
+      ],
+      "indirect_branch_or_call": false,
+      "stack_adjustments": [
+        "sub\tsp, sp, #48",
+        "add\tsp, sp, #48",
+        "add\tsp, sp, #48"
+      ]
+    },
+    {
+      "symbol": "_ZN21rustos_bsp_rpi_zero2w11reservation17h93c2c50b840f1ac3E",
+      "calls": [
+        "_ZN4core5slice5index22slice_index_order_fail17hf1ad76ea7ddd05c6E",
+        "_ZN4core5slice5index24slice_end_index_len_fail17h52a8ba6765663cd3E"
+      ],
+      "indirect_branch_or_call": false,
+      "stack_adjustments": []
+    },
+    {
+      "symbol": "_ZN21rustos_bsp_rpi_zero2w11inspect_dtb17h599a9b923ef92f3aE",
+      "calls": [
+        "_ZN21rustos_bsp_rpi_zero2w11reservation17h93c2c50b840f1ac3E"
+      ],
+      "indirect_branch_or_call": false,
+      "stack_adjustments": [
+        "sub\tsp, sp, #144",
+        "add\tsp, sp, #144"
+      ]
+    }
+  ],
+  "external_calls_requiring_separate_review": [
+    "_ZN4core5slice5index22slice_index_order_fail17hf1ad76ea7ddd05c6E",
+    "_ZN4core5slice5index24slice_end_index_len_fail17h52a8ba6765663cd3E",
+    "_ZN4core5slice5index26slice_start_index_len_fail17h1b74a5f493af981cE",
+    "_ZN4core9panicking18panic_bounds_check17h8c5bb59a98242b90E",
+    "memcmp",
+    "memcpy",
+    "memset"
+  ],
+  "conclusion": "BSP frame/call inventory only; no complete static stack bound. Includes compiler stack probing loop; simple subtraction counting is unsound."
+}

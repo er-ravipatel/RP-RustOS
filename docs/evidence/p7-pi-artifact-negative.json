@@ -1,0 +1,105 @@
+{
+  "passed": true,
+  "negative_cases": [
+    {
+      "variant": "normal",
+      "case": "wrong-machine",
+      "rejected": true
+    },
+    {
+      "variant": "normal",
+      "case": "wrong-entry",
+      "rejected": true
+    },
+    {
+      "variant": "normal",
+      "case": "program-table-overflow",
+      "rejected": true
+    },
+    {
+      "variant": "normal",
+      "case": "section-table-overflow",
+      "rejected": true
+    },
+    {
+      "variant": "normal",
+      "case": "writable-executable",
+      "rejected": true
+    },
+    {
+      "variant": "normal",
+      "case": "physical-address-mismatch",
+      "rejected": true
+    },
+    {
+      "variant": "normal",
+      "case": "load-outside-budget",
+      "rejected": true
+    },
+    {
+      "variant": "normal",
+      "case": "truncated-0",
+      "rejected": true
+    },
+    {
+      "variant": "normal",
+      "case": "truncated-7",
+      "rejected": true
+    },
+    {
+      "variant": "normal",
+      "case": "truncated-63",
+      "rejected": true
+    },
+    {
+      "variant": "panic-test",
+      "case": "wrong-machine",
+      "rejected": true
+    },
+    {
+      "variant": "panic-test",
+      "case": "wrong-entry",
+      "rejected": true
+    },
+    {
+      "variant": "panic-test",
+      "case": "program-table-overflow",
+      "rejected": true
+    },
+    {
+      "variant": "panic-test",
+      "case": "section-table-overflow",
+      "rejected": true
+    },
+    {
+      "variant": "panic-test",
+      "case": "writable-executable",
+      "rejected": true
+    },
+    {
+      "variant": "panic-test",
+      "case": "physical-address-mismatch",
+      "rejected": true
+    },
+    {
+      "variant": "panic-test",
+      "case": "load-outside-budget",
+      "rejected": true
+    },
+    {
+      "variant": "panic-test",
+      "case": "truncated-0",
+      "rejected": true
+    },
+    {
+      "variant": "panic-test",
+      "case": "truncated-7",
+      "rejected": true
+    },
+    {
+      "variant": "panic-test",
+      "case": "truncated-63",
+      "rejected": true
+    }
+  ]
+}

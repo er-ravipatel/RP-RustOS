@@ -1,0 +1,20 @@
+{
+  "build_ready": null,
+  "diagnostics": [
+    {
+      "code": "TARGET_BACKEND_PENDING",
+      "dependency_chain": [],
+      "field": "target",
+      "input": "\\\\?\\E:\\Work\\RustOS\\profiles\\rpi-zero2w-a53.toml",
+      "message": "Pi metadata/module selection: hal, console-pl011, bsp-rpi-zero2w, kernel. Typed kernel inputs: {\"target\":\"rpi-zero2w-a53\",\"manifest\":\"bsp/rpi-zero2w/kernel/Cargo.toml\",\"package\":\"rustos-pi-kernel\",\"rust_target\":\"aarch64-unknown-none-softfloat\",\"module_sources\":{\"bsp-rpi-zero2w\":\"bsp/rpi-zero2w\",\"console-pl011\":\"drivers/console\",\"hal\":\"hal\",\"kernel\":\"bsp/rpi-zero2w/kernel\"},\"snapshot_roots\":[\"bsp/rpi-zero2w\",\"drivers/console\",\"hal\"],\"variants\":[{\"id\":\"normal\",\"cargo_features\":[]},{\"id\":\"panic-test\",\"cargo_features\":[\"panic-test\"]}],\"complete_bundle_ready\":false}. Missing source prerequisites: none detected by basic layout checks. Standalone Pi entry/console is implemented; assembler snapshot build, Pi image packaging and image/hardware verification integration are pending. Asset bytes were not checked.",
+      "severity": "error",
+      "stage": "inspection"
+    }
+  ],
+  "evidence": [],
+  "operation": "validate",
+  "result": null,
+  "schema_version": 1,
+  "status": "failed",
+  "target": null
+}

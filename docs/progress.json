@@ -1,0 +1,1029 @@
+{
+  "updated_at": "2026-10-31T20:56:13+00:00",
+  "features": [
+    {
+      "id": "KERNEL",
+      "name": "Kernel and exceptions",
+      "spec": "docs/features/kernel.md",
+      "updated_at": "2026-10-31T17:53:44+00:00",
+      "stages": {
+        "requirements": {
+          "status": "draft",
+          "evidence": [
+            "docs/features/kernel.md (initial proposal; not approved)"
+          ]
+        },
+        "analysis": {
+          "status": "draft",
+          "evidence": [
+            "docs/features/kernel.md (initial proposal; not approved)"
+          ]
+        },
+        "design": {
+          "status": "draft",
+          "evidence": [
+            "docs/features/kernel.md (initial proposal; not approved)"
+          ]
+        },
+        "review": {
+          "status": "not_started",
+          "evidence": []
+        },
+        "documentation": {
+          "status": "draft",
+          "evidence": [
+            "docs/features/kernel.md (initial proposal; not approved)"
+          ]
+        },
+        "implementation": {
+          "status": "not_started",
+          "evidence": []
+        },
+        "verification": {
+          "status": "not_started",
+          "evidence": []
+        }
+      },
+      "blockers": [],
+      "next_action": "Refine KERNEL-001 through KERNEL-003 and resolve: Entry conditions, exception levels, panic policy."
+    },
+    {
+      "id": "MM",
+      "name": "Memory management",
+      "spec": "docs/features/mm.md",
+      "updated_at": "2026-10-31T17:53:44+00:00",
+      "stages": {
+        "requirements": {
+          "status": "draft",
+          "evidence": [
+            "docs/features/mm.md (initial proposal; not approved)"
+          ]
+        },
+        "analysis": {
+          "status": "draft",
+          "evidence": [
+            "docs/features/mm.md (initial proposal; not approved)"
+          ]
+        },
+        "design": {
+          "status": "draft",
+          "evidence": [
+            "docs/features/mm.md (initial proposal; not approved)"
+          ]
+        },
+        "review": {
+          "status": "not_started",
+          "evidence": []
+        },
+        "documentation": {
+          "status": "draft",
+          "evidence": [
+            "docs/features/mm.md (initial proposal; not approved)"
+          ]
+        },
+        "implementation": {
+          "status": "not_started",
+          "evidence": []
+        },
+        "verification": {
+          "status": "not_started",
+          "evidence": []
+        }
+      },
+      "blockers": [],
+      "next_action": "Refine MM-001 through MM-003 and resolve: Physical allocator, address layout, page tables, heap policy."
+    },
+    {
+      "id": "SCHED",
+      "name": "Task scheduling",
+      "spec": "docs/features/sched.md",
+      "updated_at": "2026-10-31T17:53:44+00:00",
+      "stages": {
+        "requirements": {
+          "status": "draft",
+          "evidence": [
+            "docs/features/sched.md (initial proposal; not approved)"
+          ]
+        },
+        "analysis": {
+          "status": "draft",
+          "evidence": [
+            "docs/features/sched.md (initial proposal; not approved)"
+          ]
+        },
+        "design": {
+          "status": "draft",
+          "evidence": [
+            "docs/features/sched.md (initial proposal; not approved)"
+          ]
+        },
+        "review": {
+          "status": "not_started",
+          "evidence": []
+        },
+        "documentation": {
+          "status": "draft",
+          "evidence": [
+            "docs/features/sched.md (initial proposal; not approved)"
+          ]
+        },
+        "implementation": {
+          "status": "not_started",
+          "evidence": []
+        },
+        "verification": {
+          "status": "not_started",
+          "evidence": []
+        }
+      },
+      "blockers": [],
+      "next_action": "Refine SCHED-001 through SCHED-003 and resolve: Preemption, fairness, task states, multicore scope."
+    },
+    {
+      "id": "FS",
+      "name": "Filesystem",
+      "spec": "docs/features/fs.md",
+      "updated_at": "2026-10-31T17:53:44+00:00",
+      "stages": {
+        "requirements": {
+          "status": "draft",
+          "evidence": [
+            "docs/features/fs.md (initial proposal; not approved)"
+          ]
+        },
+        "analysis": {
+          "status": "draft",
+          "evidence": [
+            "docs/features/fs.md (initial proposal; not approved)"
+          ]
+        },
+        "design": {
+          "status": "draft",
+          "evidence": [
+            "docs/features/fs.md (initial proposal; not approved)"
+          ]
+        },
+        "review": {
+          "status": "not_started",
+          "evidence": []
+        },
+        "documentation": {
+          "status": "draft",
+          "evidence": [
+            "docs/features/fs.md (initial proposal; not approved)"
+          ]
+        },
+        "implementation": {
+          "status": "not_started",
+          "evidence": []
+        },
+        "verification": {
+          "status": "not_started",
+          "evidence": []
+        }
+      },
+      "blockers": [],
+      "next_action": "Refine FS-001 through FS-003 and resolve: Path rules, handle ownership, filesystem format, recovery policy."
+    },
+    {
+      "id": "IPC",
+      "name": "Interprocess communication",
+      "spec": "docs/features/ipc.md",
+      "updated_at": "2026-10-31T17:53:44+00:00",
+      "stages": {
+        "requirements": {
+          "status": "draft",
+          "evidence": [
+            "docs/features/ipc.md (initial proposal; not approved)"
+          ]
+        },
+        "analysis": {
+          "status": "draft",
+          "evidence": [
+            "docs/features/ipc.md (initial proposal; not approved)"
+          ]
+        },
+        "design": {
+          "status": "draft",
+          "evidence": [
+            "docs/features/ipc.md (initial proposal; not approved)"
+          ]
+        },
+        "review": {
+          "status": "not_started",
+          "evidence": []
+        },
+        "documentation": {
+          "status": "draft",
+          "evidence": [
+            "docs/features/ipc.md (initial proposal; not approved)"
+          ]
+        },
+        "implementation": {
+          "status": "not_started",
+          "evidence": []
+        },
+        "verification": {
+          "status": "not_started",
+          "evidence": []
+        }
+      },
+      "blockers": [],
+      "next_action": "Refine IPC-001 through IPC-003 and resolve: Message ownership, buffer limits, endpoint permissions."
+    },
+    {
+      "id": "SYSCALL",
+      "name": "Syscall boundary and executable loading",
+      "spec": "docs/features/syscall.md",
+      "updated_at": "2026-10-31T17:53:44+00:00",
+      "stages": {
+        "requirements": {
+          "status": "draft",
+          "evidence": [
+            "docs/features/syscall.md (initial proposal; not approved)"
+          ]
+        },
+        "analysis": {
+          "status": "draft",
+          "evidence": [
+            "docs/features/syscall.md (initial proposal; not approved)"
+          ]
+        },
+        "design": {
+          "status": "draft",
+          "evidence": [
+            "docs/features/syscall.md (initial proposal; not approved)"
+          ]
+        },
+        "review": {
+          "status": "not_started",
+          "evidence": []
+        },
+        "documentation": {
+          "status": "draft",
+          "evidence": [
+            "docs/features/syscall.md (initial proposal; not approved)"
+          ]
+        },
+        "implementation": {
+          "status": "not_started",
+          "evidence": []
+        },
+        "verification": {
+          "status": "not_started",
+          "evidence": []
+        }
+      },
+      "blockers": [],
+      "next_action": "Refine SYSCALL-001 through SYSCALL-003 and resolve: Calling convention, executable format, ABI versioning, error codes."
+    },
+    {
+      "id": "HAL",
+      "name": "Hardware abstraction",
+      "spec": "docs/features/hal.md",
+      "updated_at": "2026-10-31T17:53:44+00:00",
+      "stages": {
+        "requirements": {
+          "status": "draft",
+          "evidence": [
+            "docs/features/hal.md (initial proposal; not approved)"
+          ]
+        },
+        "analysis": {
+          "status": "draft",
+          "evidence": [
+            "docs/features/hal.md (initial proposal; not approved)"
+          ]
+        },
+        "design": {
+          "status": "draft",
+          "evidence": [
+            "docs/features/hal.md (initial proposal; not approved)"
+          ]
+        },
+        "review": {
+          "status": "not_started",
+          "evidence": []
+        },
+        "documentation": {
+          "status": "draft",
+          "evidence": [
+            "docs/features/hal.md (initial proposal; not approved)"
+          ]
+        },
+        "implementation": {
+          "status": "not_started",
+          "evidence": []
+        },
+        "verification": {
+          "status": "not_started",
+          "evidence": []
+        }
+      },
+      "blockers": [],
+      "next_action": "Refine HAL-001 through HAL-003 and resolve: Trait boundaries, static or dynamic dispatch, interrupt-safe access."
+    },
+    {
+      "id": "BSP",
+      "name": "Pi Zero 2 W board support",
+      "spec": "docs/features/bsp.md",
+      "updated_at": "2026-10-31T17:53:44+00:00",
+      "stages": {
+        "requirements": {
+          "status": "draft",
+          "evidence": [
+            "docs/features/bsp.md (initial proposal; not approved)"
+          ]
+        },
+        "analysis": {
+          "status": "draft",
+          "evidence": [
+            "docs/features/bsp.md (initial proposal; not approved)"
+          ]
+        },
+        "design": {
+          "status": "draft",
+          "evidence": [
+            "docs/features/bsp.md (initial proposal; not approved)"
+          ]
+        },
+        "review": {
+          "status": "not_started",
+          "evidence": []
+        },
+        "documentation": {
+          "status": "draft",
+          "evidence": [
+            "docs/features/bsp.md (initial proposal; not approved)"
+          ]
+        },
+        "implementation": {
+          "status": "not_started",
+          "evidence": []
+        },
+        "verification": {
+          "status": "not_started",
+          "evidence": []
+        }
+      },
+      "blockers": [],
+      "next_action": "Refine BSP-001 through BSP-003 and resolve: Firmware inputs, UART choice, addresses, memory discovery."
+    },
+    {
+      "id": "BLOCK",
+      "name": "Block storage driver",
+      "spec": "docs/features/block.md",
+      "updated_at": "2026-10-31T17:53:44+00:00",
+      "stages": {
+        "requirements": {
+          "status": "draft",
+          "evidence": [
+            "docs/features/block.md (initial proposal; not approved)"
+          ]
+        },
+        "analysis": {
+          "status": "draft",
+          "evidence": [
+            "docs/features/block.md (initial proposal; not approved)"
+          ]
+        },
+        "design": {
+          "status": "draft",
+          "evidence": [
+            "docs/features/block.md (initial proposal; not approved)"
+          ]
+        },
+        "review": {
+          "status": "not_started",
+          "evidence": []
+        },
+        "documentation": {
+          "status": "draft",
+          "evidence": [
+            "docs/features/block.md (initial proposal; not approved)"
+          ]
+        },
+        "implementation": {
+          "status": "not_started",
+          "evidence": []
+        },
+        "verification": {
+          "status": "not_started",
+          "evidence": []
+        }
+      },
+      "blockers": [],
+      "next_action": "Refine BLOCK-001 through BLOCK-003 and resolve: Controller choice, sector size, DMA policy, timeout recovery."
+    },
+    {
+      "id": "CONSOLE",
+      "name": "Console driver",
+      "spec": "docs/features/console.md",
+      "updated_at": "2026-10-31T17:53:44+00:00",
+      "stages": {
+        "requirements": {
+          "status": "draft",
+          "evidence": [
+            "docs/features/console.md (initial proposal; not approved)"
+          ]
+        },
+        "analysis": {
+          "status": "draft",
+          "evidence": [
+            "docs/features/console.md (initial proposal; not approved)"
+          ]
+        },
+        "design": {
+          "status": "draft",
+          "evidence": [
+            "docs/features/console.md (initial proposal; not approved)"
+          ]
+        },
+        "review": {
+          "status": "not_started",
+          "evidence": []
+        },
+        "documentation": {
+          "status": "draft",
+          "evidence": [
+            "docs/features/console.md (initial proposal; not approved)"
+          ]
+        },
+        "implementation": {
+          "status": "not_started",
+          "evidence": []
+        },
+        "verification": {
+          "status": "not_started",
+          "evidence": []
+        }
+      },
+      "blockers": [],
+      "next_action": "Refine CONSOLE-001 through CONSOLE-003 and resolve: UART selection, buffering, polling versus interrupts, line endings."
+    },
+    {
+      "id": "GPIO",
+      "name": "GPIO driver",
+      "spec": "docs/features/gpio.md",
+      "updated_at": "2026-10-31T17:53:44+00:00",
+      "stages": {
+        "requirements": {
+          "status": "draft",
+          "evidence": [
+            "docs/features/gpio.md (initial proposal; not approved)"
+          ]
+        },
+        "analysis": {
+          "status": "draft",
+          "evidence": [
+            "docs/features/gpio.md (initial proposal; not approved)"
+          ]
+        },
+        "design": {
+          "status": "draft",
+          "evidence": [
+            "docs/features/gpio.md (initial proposal; not approved)"
+          ]
+        },
+        "review": {
+          "status": "not_started",
+          "evidence": []
+        },
+        "documentation": {
+          "status": "draft",
+          "evidence": [
+            "docs/features/gpio.md (initial proposal; not approved)"
+          ]
+        },
+        "implementation": {
+          "status": "not_started",
+          "evidence": []
+        },
+        "verification": {
+          "status": "not_started",
+          "evidence": []
+        }
+      },
+      "blockers": [],
+      "next_action": "Refine GPIO-001 through GPIO-003 and resolve: Pin numbering, permitted functions, electrical setup documentation."
+    },
+    {
+      "id": "TIMER",
+      "name": "Timer driver",
+      "spec": "docs/features/timer.md",
+      "updated_at": "2026-10-31T17:53:44+00:00",
+      "stages": {
+        "requirements": {
+          "status": "draft",
+          "evidence": [
+            "docs/features/timer.md (initial proposal; not approved)"
+          ]
+        },
+        "analysis": {
+          "status": "draft",
+          "evidence": [
+            "docs/features/timer.md (initial proposal; not approved)"
+          ]
+        },
+        "design": {
+          "status": "draft",
+          "evidence": [
+            "docs/features/timer.md (initial proposal; not approved)"
+          ]
+        },
+        "review": {
+          "status": "not_started",
+          "evidence": []
+        },
+        "documentation": {
+          "status": "draft",
+          "evidence": [
+            "docs/features/timer.md (initial proposal; not approved)"
+          ]
+        },
+        "implementation": {
+          "status": "not_started",
+          "evidence": []
+        },
+        "verification": {
+          "status": "not_started",
+          "evidence": []
+        }
+      },
+      "blockers": [],
+      "next_action": "Refine TIMER-001 through TIMER-003 and resolve: Clock source, units, wrap handling, interrupt acknowledgment."
+    },
+    {
+      "id": "INIT",
+      "name": "Init process",
+      "spec": "docs/features/init.md",
+      "updated_at": "2026-10-31T17:53:44+00:00",
+      "stages": {
+        "requirements": {
+          "status": "draft",
+          "evidence": [
+            "docs/features/init.md (initial proposal; not approved)"
+          ]
+        },
+        "analysis": {
+          "status": "draft",
+          "evidence": [
+            "docs/features/init.md (initial proposal; not approved)"
+          ]
+        },
+        "design": {
+          "status": "draft",
+          "evidence": [
+            "docs/features/init.md (initial proposal; not approved)"
+          ]
+        },
+        "review": {
+          "status": "not_started",
+          "evidence": []
+        },
+        "documentation": {
+          "status": "draft",
+          "evidence": [
+            "docs/features/init.md (initial proposal; not approved)"
+          ]
+        },
+        "implementation": {
+          "status": "not_started",
+          "evidence": []
+        },
+        "verification": {
+          "status": "not_started",
+          "evidence": []
+        }
+      },
+      "blockers": [],
+      "next_action": "Refine INIT-001 through INIT-003 and resolve: Startup resources, restart behavior, fatal failure handling."
+    },
+    {
+      "id": "SHELL",
+      "name": "Interactive shell",
+      "spec": "docs/features/shell.md",
+      "updated_at": "2026-10-31T17:53:44+00:00",
+      "stages": {
+        "requirements": {
+          "status": "draft",
+          "evidence": [
+            "docs/features/shell.md (initial proposal; not approved)"
+          ]
+        },
+        "analysis": {
+          "status": "draft",
+          "evidence": [
+            "docs/features/shell.md (initial proposal; not approved)"
+          ]
+        },
+        "design": {
+          "status": "draft",
+          "evidence": [
+            "docs/features/shell.md (initial proposal; not approved)"
+          ]
+        },
+        "review": {
+          "status": "not_started",
+          "evidence": []
+        },
+        "documentation": {
+          "status": "draft",
+          "evidence": [
+            "docs/features/shell.md (initial proposal; not approved)"
+          ]
+        },
+        "implementation": {
+          "status": "not_started",
+          "evidence": []
+        },
+        "verification": {
+          "status": "not_started",
+          "evidence": []
+        }
+      },
+      "blockers": [],
+      "next_action": "Refine SHELL-001 through SHELL-003 and resolve: Grammar, built-ins, path lookup, signals and job-control scope."
+    },
+    {
+      "id": "UTILS",
+      "name": "Command-line utilities",
+      "spec": "docs/features/utils.md",
+      "updated_at": "2026-10-31T17:53:44+00:00",
+      "stages": {
+        "requirements": {
+          "status": "draft",
+          "evidence": [
+            "docs/features/utils.md (initial proposal; not approved)"
+          ]
+        },
+        "analysis": {
+          "status": "draft",
+          "evidence": [
+            "docs/features/utils.md (initial proposal; not approved)"
+          ]
+        },
+        "design": {
+          "status": "draft",
+          "evidence": [
+            "docs/features/utils.md (initial proposal; not approved)"
+          ]
+        },
+        "review": {
+          "status": "not_started",
+          "evidence": []
+        },
+        "documentation": {
+          "status": "draft",
+          "evidence": [
+            "docs/features/utils.md (initial proposal; not approved)"
+          ]
+        },
+        "implementation": {
+          "status": "not_started",
+          "evidence": []
+        },
+        "verification": {
+          "status": "not_started",
+          "evidence": []
+        }
+      },
+      "blockers": [],
+      "next_action": "Refine UTILS-001 through UTILS-003 and resolve: Initial command list, argument conventions, shared utility support."
+    },
+    {
+      "id": "CRT",
+      "name": "C runtime startup",
+      "spec": "docs/features/crt.md",
+      "updated_at": "2026-10-31T17:53:44+00:00",
+      "stages": {
+        "requirements": {
+          "status": "draft",
+          "evidence": [
+            "docs/features/crt.md (initial proposal; not approved)"
+          ]
+        },
+        "analysis": {
+          "status": "draft",
+          "evidence": [
+            "docs/features/crt.md (initial proposal; not approved)"
+          ]
+        },
+        "design": {
+          "status": "draft",
+          "evidence": [
+            "docs/features/crt.md (initial proposal; not approved)"
+          ]
+        },
+        "review": {
+          "status": "not_started",
+          "evidence": []
+        },
+        "documentation": {
+          "status": "draft",
+          "evidence": [
+            "docs/features/crt.md (initial proposal; not approved)"
+          ]
+        },
+        "implementation": {
+          "status": "not_started",
+          "evidence": []
+        },
+        "verification": {
+          "status": "not_started",
+          "evidence": []
+        }
+      },
+      "blockers": [],
+      "next_action": "Refine CRT-001 through CRT-003 and resolve: C ABI, target triple, argument layout, global initialization."
+    },
+    {
+      "id": "LIBC",
+      "name": "C library subset",
+      "spec": "docs/features/libc.md",
+      "updated_at": "2026-10-31T17:53:44+00:00",
+      "stages": {
+        "requirements": {
+          "status": "draft",
+          "evidence": [
+            "docs/features/libc.md (initial proposal; not approved)"
+          ]
+        },
+        "analysis": {
+          "status": "draft",
+          "evidence": [
+            "docs/features/libc.md (initial proposal; not approved)"
+          ]
+        },
+        "design": {
+          "status": "draft",
+          "evidence": [
+            "docs/features/libc.md (initial proposal; not approved)"
+          ]
+        },
+        "review": {
+          "status": "not_started",
+          "evidence": []
+        },
+        "documentation": {
+          "status": "draft",
+          "evidence": [
+            "docs/features/libc.md (initial proposal; not approved)"
+          ]
+        },
+        "implementation": {
+          "status": "not_started",
+          "evidence": []
+        },
+        "verification": {
+          "status": "not_started",
+          "evidence": []
+        }
+      },
+      "blockers": [],
+      "next_action": "Refine LIBC-001 through LIBC-003 and resolve: Supported functions, errno model, allocation and I/O semantics."
+    },
+    {
+      "id": "MICROPYTHON",
+      "name": "MicroPython integration",
+      "spec": "docs/features/micropython.md",
+      "updated_at": "2026-10-31T17:53:44+00:00",
+      "stages": {
+        "requirements": {
+          "status": "draft",
+          "evidence": [
+            "docs/features/micropython.md (initial proposal; not approved)"
+          ]
+        },
+        "analysis": {
+          "status": "draft",
+          "evidence": [
+            "docs/features/micropython.md (initial proposal; not approved)"
+          ]
+        },
+        "design": {
+          "status": "draft",
+          "evidence": [
+            "docs/features/micropython.md (initial proposal; not approved)"
+          ]
+        },
+        "review": {
+          "status": "not_started",
+          "evidence": []
+        },
+        "documentation": {
+          "status": "draft",
+          "evidence": [
+            "docs/features/micropython.md (initial proposal; not approved)"
+          ]
+        },
+        "implementation": {
+          "status": "not_started",
+          "evidence": []
+        },
+        "verification": {
+          "status": "not_started",
+          "evidence": []
+        }
+      },
+      "blockers": [],
+      "next_action": "Refine MICROPYTHON-001 through MICROPYTHON-003 and resolve: Port baseline, garbage collector roots, modules, memory budget."
+    },
+    {
+      "id": "IMAGE-BUILDER",
+      "name": "Build foundation and image builder",
+      "spec": "docs/features/image-builder.md",
+      "updated_at": "2026-10-31T17:53:44+00:00",
+      "stages": {
+        "requirements": {
+          "status": "draft",
+          "evidence": [
+            "docs/features/image-builder.md (initial proposal; not approved)"
+          ]
+        },
+        "analysis": {
+          "status": "draft",
+          "evidence": [
+            "docs/features/image-builder.md (initial proposal; not approved)"
+          ]
+        },
+        "design": {
+          "status": "draft",
+          "evidence": [
+            "docs/features/image-builder.md (initial proposal; not approved)"
+          ]
+        },
+        "review": {
+          "status": "not_started",
+          "evidence": []
+        },
+        "documentation": {
+          "status": "draft",
+          "evidence": [
+            "docs/features/image-builder.md (initial proposal; not approved)"
+          ]
+        },
+        "implementation": {
+          "status": "not_started",
+          "evidence": []
+        },
+        "verification": {
+          "status": "not_started",
+          "evidence": []
+        }
+      },
+      "blockers": [],
+      "next_action": "Refine IMAGE-BUILDER-001 through IMAGE-BUILDER-003 and resolve: Host support, pinned versions, firmware sourcing, image layout."
+    },
+    {
+      "id": "PACKAGER",
+      "name": "Program and asset packaging",
+      "spec": "docs/features/packager.md",
+      "updated_at": "2026-10-31T17:53:44+00:00",
+      "stages": {
+        "requirements": {
+          "status": "draft",
+          "evidence": [
+            "docs/features/packager.md (initial proposal; not approved)"
+          ]
+        },
+        "analysis": {
+          "status": "draft",
+          "evidence": [
+            "docs/features/packager.md (initial proposal; not approved)"
+          ]
+        },
+        "design": {
+          "status": "draft",
+          "evidence": [
+            "docs/features/packager.md (initial proposal; not approved)"
+          ]
+        },
+        "review": {
+          "status": "not_started",
+          "evidence": []
+        },
+        "documentation": {
+          "status": "draft",
+          "evidence": [
+            "docs/features/packager.md (initial proposal; not approved)"
+          ]
+        },
+        "implementation": {
+          "status": "not_started",
+          "evidence": []
+        },
+        "verification": {
+          "status": "not_started",
+          "evidence": []
+        }
+      },
+      "blockers": [],
+      "next_action": "Refine PACKAGER-001 through PACKAGER-003 and resolve: Manifest format, ABI identification, versioning, integrity requirements."
+    },
+    {
+      "id": "M1-EMULATOR-BOOT",
+      "name": "M1 emulator startup slice (tested subset)",
+      "spec": "docs/features/m1-emulator-boot.md",
+      "updated_at": "2026-10-31T18:40:20+00:00",
+      "stages": {
+        "requirements": {
+          "status": "complete",
+          "evidence": [
+            "docs/p4-verification.md"
+          ]
+        },
+        "analysis": {
+          "status": "complete",
+          "evidence": [
+            "docs/p4-verification.md"
+          ]
+        },
+        "design": {
+          "status": "complete",
+          "evidence": [
+            "docs/p4-verification.md"
+          ]
+        },
+        "review": {
+          "status": "complete",
+          "evidence": [
+            "docs/p4-verification.md"
+          ]
+        },
+        "documentation": {
+          "status": "complete",
+          "evidence": [
+            "docs/p4-verification.md"
+          ]
+        },
+        "implementation": {
+          "status": "complete",
+          "evidence": [
+            "docs/p4-verification.md"
+          ]
+        },
+        "verification": {
+          "status": "complete",
+          "evidence": [
+            "docs/p4-verification.md"
+          ]
+        }
+      },
+      "blockers": [],
+      "next_action": "P4 subset complete. Broader subsystems, physical boards and production assembler delivery remain separate."
+    },
+    {
+      "id": "M1-ASSEMBLER",
+      "name": "M1 assembler and emulator verification (delivered scope)",
+      "spec": "docs/features/m1-assembler.md",
+      "updated_at": "2026-10-31T20:56:13+00:00",
+      "stages": {
+        "requirements": {
+          "status": "complete",
+          "evidence": [
+            "docs/m1-acceptance.md"
+          ]
+        },
+        "analysis": {
+          "status": "complete",
+          "evidence": [
+            "docs/m1-acceptance.md"
+          ]
+        },
+        "design": {
+          "status": "complete",
+          "evidence": [
+            "docs/m1-acceptance.md"
+          ]
+        },
+        "review": {
+          "status": "complete",
+          "evidence": [
+            "docs/m1-acceptance.md"
+          ]
+        },
+        "documentation": {
+          "status": "complete",
+          "evidence": [
+            "docs/m1-acceptance.md"
+          ]
+        },
+        "implementation": {
+          "status": "complete",
+          "evidence": [
+            "docs/m1-acceptance.md"
+          ]
+        },
+        "verification": {
+          "status": "complete",
+          "evidence": [
+            "docs/m1-acceptance.md"
+          ]
+        }
+      },
+      "blockers": [],
+      "next_action": "M1 delivered; M2 Zero 2 W image remains separate."
+    }
+  ]
+}

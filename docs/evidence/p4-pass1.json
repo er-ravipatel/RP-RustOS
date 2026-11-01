@@ -1,0 +1,151 @@
+{
+  "scope": "P4 kernel development evidence; not an assembler bundle or production verification report",
+  "qemu": "QEMU emulator version 11.1.0 (v11.1.0-12130-ge470268ff4)",
+  "rustc": "rustc 1.88.0 (6b00bc388 2025-06-23)",
+  "passed": true,
+  "scenarios": [
+    {
+      "scenario": "normal",
+      "artifact": "target\\p4\\normal\\aarch64-unknown-none-softfloat\\release\\rustos-kernel",
+      "elf": {
+        "entry": "0x40080000",
+        "sha256": "c5818d4c89c66a252f39ff3dc756ce3307bca55966a9ec6698871d7eb908fdfe",
+        "size_bytes": 86584,
+        "segments": [
+          {
+            "address": "0x40080000",
+            "file_bytes": 10204,
+            "memory_bytes": 10204,
+            "flags": 5
+          },
+          {
+            "address": "0x40083000",
+            "file_bytes": 864,
+            "memory_bytes": 864,
+            "flags": 4
+          },
+          {
+            "address": "0x40084000",
+            "file_bytes": 8,
+            "memory_bytes": 65568,
+            "flags": 6
+          }
+        ],
+        "vectors": "0x40080800",
+        "stack_bottom": "0x40084020",
+        "stack_top": "0x40094020"
+      },
+      "passed": true,
+      "error": null,
+      "expected_marker": "RUSTOS_BOOT_OK",
+      "observed_marker": true,
+      "serial_output": "RustOS M1: EL1 stack=aligned BSS=zero data=ok vectors=aligned MMU/cache=off\nRUSTOS_BOOT_OK\n",
+      "stderr": "",
+      "stop_requested": true,
+      "forced_stop": false,
+      "process_settled": true,
+      "elapsed_seconds": 0.14,
+      "control": "QMP over owned stdio; P5 named-pipe/Job ownership not implemented"
+    },
+    {
+      "scenario": "panic",
+      "artifact": "target\\p4\\panic\\aarch64-unknown-none-softfloat\\release\\rustos-kernel",
+      "elf": {
+        "entry": "0x40080000",
+        "sha256": "dd37c2eb61e9b3d48cc638d067bf93cf67bd823ae53c6b34e26504b4c4c2751a",
+        "size_bytes": 86760,
+        "segments": [
+          {
+            "address": "0x40080000",
+            "file_bytes": 9576,
+            "memory_bytes": 9576,
+            "flags": 5
+          },
+          {
+            "address": "0x40083000",
+            "file_bytes": 928,
+            "memory_bytes": 928,
+            "flags": 4
+          },
+          {
+            "address": "0x40084000",
+            "file_bytes": 8,
+            "memory_bytes": 65568,
+            "flags": 6
+          }
+        ],
+        "vectors": "0x40080800",
+        "stack_bottom": "0x40084020",
+        "stack_top": "0x40094020"
+      },
+      "passed": true,
+      "error": null,
+      "expected_marker": "RUSTOS_EXPECTED_PANIC",
+      "observed_marker": true,
+      "serial_output": "RustOS M1: EL1 stack=aligned BSS=zero data=ok vectors=aligned MMU/cache=off\npanic: panicked at core\\kernel\\src\\main.rs:41:9:\nP4 deliberate panic\nRUSTOS_EXPECTED_PANIC\n",
+      "stderr": "",
+      "stop_requested": true,
+      "forced_stop": false,
+      "process_settled": true,
+      "elapsed_seconds": 0.125,
+      "control": "QMP over owned stdio; P5 named-pipe/Job ownership not implemented"
+    },
+    {
+      "scenario": "fault",
+      "artifact": "target\\p4\\fault\\aarch64-unknown-none-softfloat\\release\\rustos-kernel",
+      "elf": {
+        "entry": "0x40080000",
+        "sha256": "367148f0d0bdb3ce52d0526b717f5516b42cd9ee9a6732699cfe1febcd34c813",
+        "size_bytes": 86584,
+        "segments": [
+          {
+            "address": "0x40080000",
+            "file_bytes": 10208,
+            "memory_bytes": 10208,
+            "flags": 5
+          },
+          {
+            "address": "0x40083000",
+            "file_bytes": 864,
+            "memory_bytes": 864,
+            "flags": 4
+          },
+          {
+            "address": "0x40084000",
+            "file_bytes": 8,
+            "memory_bytes": 65568,
+            "flags": 6
+          }
+        ],
+        "vectors": "0x40080800",
+        "stack_bottom": "0x40084020",
+        "stack_top": "0x40094020"
+      },
+      "passed": true,
+      "error": null,
+      "expected_marker": "RUSTOS_EXCEPTION",
+      "observed_marker": true,
+      "serial_output": "RustOS M1: EL1 stack=aligned BSS=zero data=ok vectors=aligned MMU/cache=off\nRUSTOS_EXCEPTION ESR=0xf2000000 ELR=0x40081388 FAR=0x0\n",
+      "stderr": "",
+      "stop_requested": true,
+      "forced_stop": false,
+      "process_settled": true,
+      "elapsed_seconds": 0.141,
+      "control": "QMP over owned stdio; P5 named-pipe/Job ownership not implemented"
+    },
+    {
+      "scenario": "unsupported-entry-negative",
+      "passed": true,
+      "error": null,
+      "expected_marker": null,
+      "observed_marker": false,
+      "serial_output": "",
+      "stderr": "",
+      "stop_requested": true,
+      "forced_stop": false,
+      "process_settled": true,
+      "elapsed_seconds": 2.078,
+      "control": "QMP over owned stdio; P5 named-pipe/Job ownership not implemented"
+    }
+  ]
+}

@@ -1,0 +1,55 @@
+{
+  "kind": "source-and-license-research-not-release-clearance",
+  "firmware_commit": "f2491b71ed49880cc8285e41e03f81b163c6cd59",
+  "linux_source_hint": "9b488bc7a1e9b61713082f3e6c4361988d62f77b",
+  "linux_source_hint_origin": "extra/git_hash; does not independently prove DTB reproduction",
+  "records": [
+    {
+      "repository": "raspberrypi/firmware",
+      "commit": "f2491b71ed49880cc8285e41e03f81b163c6cd59",
+      "path": "README.md",
+      "url": "https://raw.githubusercontent.com/raspberrypi/firmware/f2491b71ed49880cc8285e41e03f81b163c6cd59/README.md",
+      "size_bytes": 935,
+      "sha256": "3a26b725dda9591997a51c0497a63001c669d3654c0fcc923fe8159684499871",
+      "repeat_fetch_matched": true
+    },
+    {
+      "repository": "raspberrypi/firmware",
+      "commit": "f2491b71ed49880cc8285e41e03f81b163c6cd59",
+      "path": "boot/COPYING.linux",
+      "url": "https://raw.githubusercontent.com/raspberrypi/firmware/f2491b71ed49880cc8285e41e03f81b163c6cd59/boot/COPYING.linux",
+      "size_bytes": 18693,
+      "sha256": "af8067302947c01fd9eee72befa54c7e3ef8a48fecde7fd71277f2290b2bf0f7",
+      "repeat_fetch_matched": true
+    },
+    {
+      "repository": "raspberrypi/firmware",
+      "commit": "f2491b71ed49880cc8285e41e03f81b163c6cd59",
+      "path": "extra/git_hash",
+      "url": "https://raw.githubusercontent.com/raspberrypi/firmware/f2491b71ed49880cc8285e41e03f81b163c6cd59/extra/git_hash",
+      "size_bytes": 41,
+      "sha256": "fe8d49ee826022b1f0acab0f6391880f593f0093a1233300e607c593fe670e5a",
+      "repeat_fetch_matched": true
+    },
+    {
+      "repository": "raspberrypi/linux",
+      "commit": "9b488bc7a1e9b61713082f3e6c4361988d62f77b",
+      "path": "COPYING",
+      "url": "https://raw.githubusercontent.com/raspberrypi/linux/9b488bc7a1e9b61713082f3e6c4361988d62f77b/COPYING",
+      "size_bytes": 496,
+      "sha256": "fb5a425bd3b3cd6071a3a9aff9909a859e7c1158d54d32e07658398cd67eb6a0",
+      "repeat_fetch_matched": true
+    },
+    {
+      "repository": "raspberrypi/linux",
+      "commit": "9b488bc7a1e9b61713082f3e6c4361988d62f77b",
+      "path": "arch/arm/boot/dts/broadcom/bcm2710-rpi-zero-2-w.dts",
+      "url": "https://raw.githubusercontent.com/raspberrypi/linux/9b488bc7a1e9b61713082f3e6c4361988d62f77b/arch/arm/boot/dts/broadcom/bcm2710-rpi-zero-2-w.dts",
+      "size_bytes": 4564,
+      "sha256": "726be9d6c8d7ebe0a2163e00f3343ea66e0e87800678dd0585eb4ed2fd1acb2e",
+      "repeat_fetch_matched": true
+    }
+  ],
+  "dtb_reproduction_verified": false,
+  "source_distribution_prepared": false
+}

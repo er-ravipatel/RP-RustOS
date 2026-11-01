@@ -1,0 +1,127 @@
+{
+  "kind": "real-dtb-source-compilation-not-rustos-boot",
+  "dtb_sha256": "5b31bc70011e454f482ba323b1eca22bf54fa2fa4682576ee73816a2eccfa277",
+  "both_rebuilt_bytes_equal_candidate": true,
+  "configs_match": true,
+  "temporary_containers_removed": true,
+  "runs": [
+    {
+      "result_path": "out/research/m2-source-9b488bc7a1e9/repro-1793483096000216500/result.json",
+      "kind": "dtb-source-reproduction-not-rustos-boot",
+      "image_id": "sha256:0590af722b628eb3089f4c6f23363a94b41775df81a78b5f33a2bafa1924f5d4",
+      "command": [
+        "docker",
+        "run",
+        "--rm",
+        "--name",
+        "rustos-dtb-repro-1793483096000216500",
+        "--network",
+        "none",
+        "--cap-drop",
+        "ALL",
+        "--security-opt",
+        "no-new-privileges",
+        "--cpus",
+        "2",
+        "--memory",
+        "2g",
+        "--pids-limit",
+        "256",
+        "--mount",
+        "type=bind,source=E:\\Work\\RustOS\\out\\research\\m2-source-9b488bc7a1e9\\linux-9b488bc7a1e9b61713082f3e6c4361988d62f77b.tar.gz,target=/input/source.tar.gz,readonly",
+        "--mount",
+        "type=bind,source=E:\\Work\\RustOS\\out\\research\\m2-source-9b488bc7a1e9\\repro-1793483096000216500,target=/output",
+        "sha256:0590af722b628eb3089f4c6f23363a94b41775df81a78b5f33a2bafa1924f5d4"
+      ],
+      "exit_code": 0,
+      "timed_out": false,
+      "elapsed_seconds": 14.508,
+      "expected_dtb_sha256": "5b31bc70011e454f482ba323b1eca22bf54fa2fa4682576ee73816a2eccfa277",
+      "actual_dtb_sha256": "5b31bc70011e454f482ba323b1eca22bf54fa2fa4682576ee73816a2eccfa277",
+      "binary_match": true,
+      "artifacts": [
+        {
+          "path": "build.log",
+          "size_bytes": 20939,
+          "sha256": "6459ed07a3e97441fd4571442be0dc769f54934adef4b0795ff4eb1fab8d85e6"
+        },
+        {
+          "path": "dtb-command.txt",
+          "size_bytes": 4329,
+          "sha256": "47474634553a30a29e9d359691a0fe77c43bad4e78e2c11aa3cf5ebd9b013ed2"
+        },
+        {
+          "path": "kernel.config",
+          "size_bytes": 256023,
+          "sha256": "fb37b809db8c90455d19f9141b6d99cd58591d11b476b9a477b3f3272f12ca60"
+        },
+        {
+          "path": "rebuilt.dtb",
+          "size_bytes": 33724,
+          "sha256": "5b31bc70011e454f482ba323b1eca22bf54fa2fa4682576ee73816a2eccfa277"
+        }
+      ],
+      "network": "none",
+      "source_mount": "read-only"
+    },
+    {
+      "result_path": "out/research/m2-source-9b488bc7a1e9/repro-1793483122114479200/result.json",
+      "kind": "dtb-source-reproduction-not-rustos-boot",
+      "image_id": "sha256:0590af722b628eb3089f4c6f23363a94b41775df81a78b5f33a2bafa1924f5d4",
+      "command": [
+        "docker",
+        "run",
+        "--rm",
+        "--name",
+        "rustos-dtb-repro-1793483122114479200",
+        "--network",
+        "none",
+        "--cap-drop",
+        "ALL",
+        "--security-opt",
+        "no-new-privileges",
+        "--cpus",
+        "2",
+        "--memory",
+        "2g",
+        "--pids-limit",
+        "256",
+        "--mount",
+        "type=bind,source=E:\\Work\\RustOS\\out\\research\\m2-source-9b488bc7a1e9\\linux-9b488bc7a1e9b61713082f3e6c4361988d62f77b.tar.gz,target=/input/source.tar.gz,readonly",
+        "--mount",
+        "type=bind,source=E:\\Work\\RustOS\\out\\research\\m2-source-9b488bc7a1e9\\repro-1793483122114479200,target=/output",
+        "sha256:0590af722b628eb3089f4c6f23363a94b41775df81a78b5f33a2bafa1924f5d4"
+      ],
+      "exit_code": 0,
+      "timed_out": false,
+      "elapsed_seconds": 14.282,
+      "expected_dtb_sha256": "5b31bc70011e454f482ba323b1eca22bf54fa2fa4682576ee73816a2eccfa277",
+      "actual_dtb_sha256": "5b31bc70011e454f482ba323b1eca22bf54fa2fa4682576ee73816a2eccfa277",
+      "binary_match": true,
+      "artifacts": [
+        {
+          "path": "build.log",
+          "size_bytes": 20939,
+          "sha256": "6459ed07a3e97441fd4571442be0dc769f54934adef4b0795ff4eb1fab8d85e6"
+        },
+        {
+          "path": "dtb-command.txt",
+          "size_bytes": 4329,
+          "sha256": "47474634553a30a29e9d359691a0fe77c43bad4e78e2c11aa3cf5ebd9b013ed2"
+        },
+        {
+          "path": "kernel.config",
+          "size_bytes": 256023,
+          "sha256": "fb37b809db8c90455d19f9141b6d99cd58591d11b476b9a477b3f3272f12ca60"
+        },
+        {
+          "path": "rebuilt.dtb",
+          "size_bytes": 33724,
+          "sha256": "5b31bc70011e454f482ba323b1eca22bf54fa2fa4682576ee73816a2eccfa277"
+        }
+      ],
+      "network": "none",
+      "source_mount": "read-only"
+    }
+  ]
+}

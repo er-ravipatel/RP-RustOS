@@ -1,0 +1,17 @@
+{
+  "recorded_at": "2026-11-01T11:22:33.195641+00:00",
+  "passed": true,
+  "bsp_tests": 48,
+  "console_helper_tests": 4,
+  "bsp_host_clippy": "passed",
+  "pi_target_clippy": "passed",
+  "bsp_release_aarch64": "passed",
+  "kernel_calls_clock_backend": false,
+  "source_sha256": {
+    "bsp/rpi-zero2w/src/uart_clock.rs": "5560f3407faeee56577738264ae5f1314c72c0d69f3a4f89840ef2732cfd1b9c",
+    "bsp/rpi-zero2w/kernel/src/main.rs": "717ef50ebe6bbd17cc8617de5ce88b890d1f519123686e09ff842e243ab6cb9d",
+    "bsp/rpi-zero2w/kernel/link.ld": "2dc20a26876dfd75bb319a7ecf7e95eebdc93883b280e2065f84176519c665a3",
+    "bsp/rpi-zero2w/Cargo.toml": "b3259807a2579f7a9bd90b95d26685a737c0afe4b13d631e83b82ab270397d62",
+    "tools/test_pi_kernel_entry.py": "7f886a8858e81cf4996965b5e811390e114b44112a00997b68d2f62e0057df69"
+  }
+}

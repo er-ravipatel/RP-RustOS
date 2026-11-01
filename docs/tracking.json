@@ -1,0 +1,1815 @@
+{
+  "schema_version": 1,
+  "updated_at": "2026-11-01T12:44:11.557897+00:00",
+  "decisions": [
+    {
+      "id": "D1",
+      "title": "RustOS-only OS assembler; build-time modular selection",
+      "status": "agreed",
+      "evidence": [
+        "docs/product-direction.md"
+      ]
+    },
+    {
+      "id": "D2",
+      "title": "Configuration file and CLI first; graphical selection deferred",
+      "status": "agreed",
+      "evidence": [
+        "docs/assembler-requirements.md"
+      ]
+    },
+    {
+      "id": "D3",
+      "title": "Emulator M1; Zero 2 W M2; Pi 5 later",
+      "status": "agreed",
+      "evidence": [
+        "docs/product-direction.md"
+      ]
+    },
+    {
+      "id": "D4",
+      "title": "One application with six internal ownership boundaries",
+      "status": "agreed",
+      "evidence": [
+        "docs/assembler-architecture.md"
+      ]
+    },
+    {
+      "id": "D5",
+      "title": "Validate first; isolate runs; preserve outputs; report failures and cleanup",
+      "status": "agreed",
+      "evidence": [
+        "docs/assembler-workflows.md"
+      ]
+    },
+    {
+      "id": "D6",
+      "title": "Show requirements, decisions, workflows and progress in dashboard",
+      "status": "agreed",
+      "evidence": [
+        "docs/README.md"
+      ]
+    },
+    {
+      "id": "D7",
+      "title": "One delivery milestone; maximum two active items: primary plus research",
+      "status": "agreed",
+      "evidence": [
+        "docs/priorities.md"
+      ]
+    },
+    {
+      "id": "D8",
+      "title": "M1 uses native Windows, QEMU virt and Cortex-A53 with bare-metal AArch64 soft-float",
+      "status": "agreed",
+      "evidence": [
+        "docs/m1-environment.md",
+        "docs/m1-environment-verification.md"
+      ]
+    },
+    {
+      "id": "D9",
+      "title": "TOML with separate user config, target profile and module catalog; repository-local inputs first",
+      "status": "agreed",
+      "evidence": [
+        "docs/configuration-design.md"
+      ]
+    },
+    {
+      "id": "D10",
+      "title": "Four CLI operations: validate, plan, build, verify; physical media writing separate",
+      "status": "agreed",
+      "evidence": [
+        "docs/cli-design.md"
+      ]
+    },
+    {
+      "id": "D11",
+      "title": "Confirmed separate hashed test kernels, exact markers, ten-second deadline, owned cleanup, and no-replacement publication",
+      "status": "agreed",
+      "evidence": [
+        "docs/verification-publication-review.md"
+      ]
+    },
+    {
+      "id": "D12",
+      "title": "Report/manifest and EL1 kernel startup contracts approved as implementation baselines",
+      "status": "agreed",
+      "evidence": [
+        "docs/report-contract.md",
+        "docs/kernel-startup-contract.md"
+      ]
+    },
+    {
+      "id": "D13",
+      "title": "Explicit repo discovery, owned Windows Job Objects/QMP lifecycle and bounded output approved",
+      "status": "agreed",
+      "evidence": [
+        "docs/catalog-and-process-design.md",
+        "docs/schemas/README.md"
+      ]
+    },
+    {
+      "id": "D14",
+      "title": "Approved M1 profile 0.1.1: instruction_counting=auto maps to -icount shift=auto",
+      "status": "agreed",
+      "evidence": [
+        "docs/p5-verification.md"
+      ]
+    },
+    {
+      "id": "D15",
+      "title": "M2 PL011 transmit-only diagnostics; Pi BSP owns GPIO and firmware clock setup",
+      "status": "agreed",
+      "evidence": [
+        "docs/m2-console-contract.md"
+      ]
+    },
+    {
+      "id": "D16",
+      "title": "M2 explicit boot memory, separate EL2-to-EL1 entry and one active core",
+      "status": "agreed",
+      "evidence": [
+        "docs/m2-boot-contract.md"
+      ]
+    },
+    {
+      "id": "D17",
+      "title": "M2 separate normal/panic 64 MiB MBR/FAT32 images and independent inspection",
+      "status": "agreed",
+      "evidence": [
+        "docs/m2-image-contract.md"
+      ]
+    },
+    {
+      "id": "D18",
+      "title": "M2 strict versioned target/contracts, one board, locked assets and separate image/hardware evidence",
+      "status": "agreed",
+      "evidence": [
+        "docs/m2-profile-report-contract.md"
+      ]
+    },
+    {
+      "id": "D19",
+      "title": "M2 pinned real firmware/DTB assets with reproduced source archive and licence sidecar",
+      "status": "agreed",
+      "evidence": [
+        "docs/m2-asset-lock-review.md",
+        "docs/evidence/m2-asset-lock-validation.json"
+      ]
+    },
+    {
+      "id": "D20",
+      "title": "Honor narrow dynamic CMA request with a reserved pool; retain stackless safety before private stack use",
+      "status": "agreed",
+      "evidence": [
+        "docs/m2-cma-entry-review.md"
+      ]
+    },
+    {
+      "id": "D21",
+      "title": "Cortex-A53 EL1 control baseline and explicit pre-BSS Rust validator ABI",
+      "status": "agreed",
+      "evidence": [
+        "docs/m2-cpu-entry-review.md"
+      ]
+    },
+    {
+      "id": "D22",
+      "title": "Bounded mailbox UART clock setup, lifetime-long buffers, measured-rate validation and GPIO/PL011 order",
+      "status": "agreed",
+      "evidence": [
+        "docs/m2-mailbox-uart-review.md"
+      ]
+    },
+    {
+      "id": "D23",
+      "title": "Final variant token: bounded prefix drain followed by LF commit, with host-observed last-byte delivery",
+      "status": "agreed",
+      "evidence": [
+        "docs/m2-marker-commit-review.md"
+      ]
+    }
+  ],
+  "gaps": [
+    {
+      "id": "G1",
+      "title": "First-delivery scope",
+      "status": "complete",
+      "next_action": "Scoped M1 gap closed; reopen applicable hardware-specific questions for M2.",
+      "evidence": [
+        "docs/m1-acceptance.md"
+      ]
+    },
+    {
+      "id": "G2",
+      "title": "Testable requirements",
+      "status": "complete",
+      "next_action": "Scoped M1 gap closed; reopen applicable hardware-specific questions for M2.",
+      "evidence": [
+        "docs/m1-acceptance.md"
+      ]
+    },
+    {
+      "id": "G3",
+      "title": "Ownership and interfaces",
+      "status": "complete",
+      "next_action": "Scoped M1 gap closed; reopen applicable hardware-specific questions for M2.",
+      "evidence": [
+        "docs/m1-acceptance.md"
+      ]
+    },
+    {
+      "id": "G4",
+      "title": "Workflows and failure handling",
+      "status": "complete",
+      "next_action": "Scoped M1 gap closed; reopen applicable hardware-specific questions for M2.",
+      "evidence": [
+        "docs/m1-acceptance.md"
+      ]
+    },
+    {
+      "id": "G5",
+      "title": "Dashboard traceability and evidence",
+      "status": "complete",
+      "next_action": "Scoped M1 gap closed; reopen applicable hardware-specific questions for M2.",
+      "evidence": [
+        "docs/m1-acceptance.md"
+      ]
+    },
+    {
+      "id": "G6",
+      "title": "Priorities and active-work limits",
+      "status": "complete",
+      "next_action": "Apply the agreed queue and slot limits during delivery.",
+      "evidence": [
+        "docs/priorities.md",
+        "docs/plan-evaluation.md"
+      ]
+    },
+    {
+      "id": "G7",
+      "title": "Complete interruption and reporting/cleanup failure acceptance",
+      "status": "complete",
+      "next_action": "Scoped M1 gap closed; reopen applicable hardware-specific questions for M2.",
+      "evidence": [
+        "docs/m1-acceptance.md"
+      ]
+    }
+  ],
+  "milestones": [
+    {
+      "id": "M1",
+      "title": "Minimal assembler and emulator boot",
+      "status": "complete",
+      "next_action": "M1 emulator acceptance met; next delivery milestone is M2 Zero 2 W SD-card image.",
+      "evidence": [
+        "docs/m1-acceptance.md"
+      ]
+    },
+    {
+      "id": "M2",
+      "title": "Zero 2 W bootable SD-card image",
+      "status": "in_progress",
+      "next_action": "Integrated DTB RAM/static/header reservation validation implemented (29 BSP tests, AArch64 and Clippy pass). Pinned static DTB rejected for dynamic CMA as intended. Review dynamic reservation policy and stackless handoff next; startup/kernel wiring remain pending.",
+      "evidence": [
+        "docs/m2-plan.md",
+        "docs/m2-second-review.md",
+        "docs/evidence/m2-firmware-candidate.json",
+        "docs/m2-input-contract-verification.md",
+        "docs/m2-contract-handoff.md"
+      ]
+    },
+    {
+      "id": "PORT",
+      "title": "Pi 5 portability verification",
+      "status": "not_started",
+      "next_action": "After initial target, specify Pi 5-specific support.",
+      "evidence": [
+        "docs/product-direction.md"
+      ]
+    }
+  ],
+  "workflow": [
+    {
+      "id": "W1",
+      "title": "Validate configuration and resolve modules",
+      "owner": "CLI/profiles/resolver",
+      "policy": "Reject unsupported inputs before compilation.",
+      "status": "complete",
+      "evidence": [
+        "docs/m1-acceptance.md"
+      ]
+    },
+    {
+      "id": "W2",
+      "title": "Prepare isolated run directory",
+      "owner": "CLI coordinator",
+      "policy": "Reject occupied destinations and preserve previous outputs.",
+      "status": "complete",
+      "evidence": [
+        "docs/m1-acceptance.md"
+      ]
+    },
+    {
+      "id": "W3",
+      "title": "Compile selected modules",
+      "owner": "Build orchestrator",
+      "policy": "On failure stop dependent stages; retain diagnostics.",
+      "status": "complete",
+      "evidence": [
+        "docs/m1-acceptance.md"
+      ]
+    },
+    {
+      "id": "W4",
+      "title": "Package artifacts and manifest",
+      "owner": "Packager",
+      "policy": "Do not publish partial output as a complete bundle.",
+      "status": "complete",
+      "evidence": [
+        "docs/m1-acceptance.md"
+      ]
+    },
+    {
+      "id": "W5",
+      "title": "Verify emulator output",
+      "owner": "Verification runner",
+      "policy": "Bounded tests; preserve failed-test artifacts as unverified.",
+      "status": "complete",
+      "evidence": [
+        "docs/m1-acceptance.md"
+      ]
+    },
+    {
+      "id": "W6",
+      "title": "Cancel, time out and clean up",
+      "owner": "Coordinator/active module",
+      "policy": "Settle only owned processes; explicitly report cleanup failure.",
+      "status": "complete",
+      "evidence": [
+        "docs/m1-acceptance.md"
+      ]
+    },
+    {
+      "id": "W7",
+      "title": "Report outcomes and retain evidence",
+      "owner": "CLI/reporting",
+      "policy": "Separate build/package/emulator/hardware results; skipped is not passed.",
+      "status": "complete",
+      "evidence": [
+        "docs/m1-acceptance.md"
+      ]
+    }
+  ],
+  "requirements": [
+    {
+      "id": "ASM-001",
+      "title": "Read a versioned configuration and reject malformed data, unknown fields, unsupported versions, and unknown targets/features",
+      "acceptance": "Run fixtures for each case; report the offending field and reason, return nonzero, and do not start compilation",
+      "milestone": "M1",
+      "owner": "CLI/configuration",
+      "priority": "proposed M1",
+      "updated_at": "2026-10-31T20:56:13+00:00",
+      "stages": {
+        "requirements": {
+          "status": "complete",
+          "evidence": [
+            "docs/m1-acceptance.md"
+          ]
+        },
+        "analysis": {
+          "status": "complete",
+          "evidence": [
+            "docs/m1-acceptance.md"
+          ]
+        },
+        "design": {
+          "status": "complete",
+          "evidence": [
+            "docs/m1-acceptance.md"
+          ]
+        },
+        "review": {
+          "status": "complete",
+          "evidence": [
+            "docs/m1-acceptance.md"
+          ]
+        },
+        "documentation": {
+          "status": "complete",
+          "evidence": [
+            "docs/m1-acceptance.md"
+          ]
+        },
+        "implementation": {
+          "status": "complete",
+          "evidence": [
+            "docs/m1-acceptance.md"
+          ]
+        },
+        "verification": {
+          "status": "complete",
+          "evidence": [
+            "docs/m1-acceptance.md"
+          ]
+        }
+      },
+      "design": [
+        "docs/configuration-design.md",
+        "docs/cli-design.md",
+        "docs/schemas/README.md"
+      ],
+      "changes": [
+        "tools/assembler/src/lib.rs",
+        "tools/assembler/src/main.rs"
+      ],
+      "tests": [
+        "tools/assembler/tests/inspection.rs",
+        "tools/test_assembler_cli.py",
+        "tools/test_assembler_build.py"
+      ],
+      "blockers": [],
+      "next_action": "Maintain scoped M1 regression coverage; M2 hardware image acceptance remains separate."
+    },
+    {
+      "id": "ASM-002",
+      "title": "Resolve required modules and explain why each module was selected",
+      "acceptance": "A valid minimal profile produces a resolved plan listing requested and automatically required modules, with dependency reasons",
+      "milestone": "M1",
+      "owner": "Resolver",
+      "priority": "proposed M1",
+      "updated_at": "2026-10-31T20:56:13+00:00",
+      "stages": {
+        "requirements": {
+          "status": "complete",
+          "evidence": [
+            "docs/m1-acceptance.md"
+          ]
+        },
+        "analysis": {
+          "status": "complete",
+          "evidence": [
+            "docs/m1-acceptance.md"
+          ]
+        },
+        "design": {
+          "status": "complete",
+          "evidence": [
+            "docs/m1-acceptance.md"
+          ]
+        },
+        "review": {
+          "status": "complete",
+          "evidence": [
+            "docs/m1-acceptance.md"
+          ]
+        },
+        "documentation": {
+          "status": "complete",
+          "evidence": [
+            "docs/m1-acceptance.md"
+          ]
+        },
+        "implementation": {
+          "status": "complete",
+          "evidence": [
+            "docs/m1-acceptance.md"
+          ]
+        },
+        "verification": {
+          "status": "complete",
+          "evidence": [
+            "docs/m1-acceptance.md"
+          ]
+        }
+      },
+      "design": [
+        "docs/configuration-design.md"
+      ],
+      "changes": [
+        "tools/assembler/src/lib.rs",
+        "tools/assembler/src/main.rs"
+      ],
+      "tests": [
+        "tools/assembler/tests/inspection.rs",
+        "tools/test_assembler_cli.py",
+        "tools/test_assembler_build.py"
+      ],
+      "blockers": [],
+      "next_action": "Maintain scoped M1 regression coverage; M2 hardware image acceptance remains separate."
+    },
+    {
+      "id": "ASM-003",
+      "title": "Reject incompatible modules, dependency cycles, and unavailable required modules",
+      "acceptance": "Invalid fixtures identify the conflicting modules or cycle and fail before compilation",
+      "milestone": "M1",
+      "owner": "Resolver",
+      "priority": "proposed M1",
+      "updated_at": "2026-10-31T20:56:13+00:00",
+      "stages": {
+        "requirements": {
+          "status": "complete",
+          "evidence": [
+            "docs/m1-acceptance.md"
+          ]
+        },
+        "analysis": {
+          "status": "complete",
+          "evidence": [
+            "docs/m1-acceptance.md"
+          ]
+        },
+        "design": {
+          "status": "complete",
+          "evidence": [
+            "docs/m1-acceptance.md"
+          ]
+        },
+        "review": {
+          "status": "complete",
+          "evidence": [
+            "docs/m1-acceptance.md"
+          ]
+        },
+        "documentation": {
+          "status": "complete",
+          "evidence": [
+            "docs/m1-acceptance.md"
+          ]
+        },
+        "implementation": {
+          "status": "complete",
+          "evidence": [
+            "docs/m1-acceptance.md"
+          ]
+        },
+        "verification": {
+          "status": "complete",
+          "evidence": [
+            "docs/m1-acceptance.md"
+          ]
+        }
+      },
+      "design": [
+        "docs/configuration-design.md"
+      ],
+      "changes": [
+        "tools/assembler/src/lib.rs",
+        "tools/assembler/src/main.rs"
+      ],
+      "tests": [
+        "tools/assembler/tests/inspection.rs",
+        "tools/test_assembler_cli.py",
+        "tools/test_assembler_build.py"
+      ],
+      "blockers": [],
+      "next_action": "Maintain scoped M1 regression coverage; M2 hardware image acceptance remains separate."
+    },
+    {
+      "id": "ASM-004",
+      "title": "Provide validation and plan inspection without compiling or packaging",
+      "acceptance": "The inspection command emits the resolved plan; no build subprocess is invoked and no OS artifact is produced",
+      "milestone": "M1",
+      "owner": "CLI/resolver",
+      "priority": "proposed M1",
+      "updated_at": "2026-10-31T20:56:13+00:00",
+      "stages": {
+        "requirements": {
+          "status": "complete",
+          "evidence": [
+            "docs/m1-acceptance.md"
+          ]
+        },
+        "analysis": {
+          "status": "complete",
+          "evidence": [
+            "docs/m1-acceptance.md"
+          ]
+        },
+        "design": {
+          "status": "complete",
+          "evidence": [
+            "docs/m1-acceptance.md"
+          ]
+        },
+        "review": {
+          "status": "complete",
+          "evidence": [
+            "docs/m1-acceptance.md"
+          ]
+        },
+        "documentation": {
+          "status": "complete",
+          "evidence": [
+            "docs/m1-acceptance.md"
+          ]
+        },
+        "implementation": {
+          "status": "complete",
+          "evidence": [
+            "docs/m1-acceptance.md"
+          ]
+        },
+        "verification": {
+          "status": "complete",
+          "evidence": [
+            "docs/m1-acceptance.md"
+          ]
+        }
+      },
+      "design": [
+        "docs/configuration-design.md",
+        "docs/cli-design.md"
+      ],
+      "changes": [
+        "tools/assembler/src/lib.rs",
+        "tools/assembler/src/main.rs"
+      ],
+      "tests": [
+        "tools/assembler/tests/inspection.rs",
+        "tools/test_assembler_cli.py",
+        "tools/test_assembler_build.py"
+      ],
+      "blockers": [],
+      "next_action": "Maintain scoped M1 regression coverage; M2 hardware image acceptance remains separate."
+    },
+    {
+      "id": "ASM-005",
+      "title": "Build selected components using recorded toolchain and input versions",
+      "acceptance": "A documented clean setup produces the expected kernel artifact; tool failures return nonzero with the failing step and diagnostic",
+      "milestone": "M1",
+      "owner": "Build orchestrator",
+      "priority": "proposed M1",
+      "updated_at": "2026-10-31T20:56:13+00:00",
+      "stages": {
+        "requirements": {
+          "status": "complete",
+          "evidence": [
+            "docs/m1-acceptance.md"
+          ]
+        },
+        "analysis": {
+          "status": "complete",
+          "evidence": [
+            "docs/m1-acceptance.md"
+          ]
+        },
+        "design": {
+          "status": "complete",
+          "evidence": [
+            "docs/m1-acceptance.md"
+          ]
+        },
+        "review": {
+          "status": "complete",
+          "evidence": [
+            "docs/m1-acceptance.md"
+          ]
+        },
+        "documentation": {
+          "status": "complete",
+          "evidence": [
+            "docs/m1-acceptance.md"
+          ]
+        },
+        "implementation": {
+          "status": "complete",
+          "evidence": [
+            "docs/m1-acceptance.md"
+          ]
+        },
+        "verification": {
+          "status": "complete",
+          "evidence": [
+            "docs/m1-acceptance.md"
+          ]
+        }
+      },
+      "design": [
+        "docs/cli-design.md",
+        "docs/kernel-startup-contract.md",
+        "docs/p4-verification.md"
+      ],
+      "changes": [
+        "tools/assembler/src/build.rs",
+        "tools/assembler/src/native.rs"
+      ],
+      "tests": [
+        "tools/test_assembler_build.py",
+        "tools/test_assembler_failures.py"
+      ],
+      "blockers": [],
+      "next_action": "Maintain scoped M1 regression coverage; M2 hardware image acceptance remains separate."
+    },
+    {
+      "id": "ASM-006",
+      "title": "Produce a machine-readable manifest describing the configuration, resolved modules, source revisions or hashes, tool versions, and artifact hashes",
+      "acceptance": "Inspect a successful result; manifest entries match actual selected inputs and generated artifact hashes",
+      "milestone": "M1",
+      "owner": "Packager",
+      "priority": "proposed M1",
+      "updated_at": "2026-10-31T20:56:13+00:00",
+      "stages": {
+        "requirements": {
+          "status": "complete",
+          "evidence": [
+            "docs/m1-acceptance.md"
+          ]
+        },
+        "analysis": {
+          "status": "complete",
+          "evidence": [
+            "docs/m1-acceptance.md"
+          ]
+        },
+        "design": {
+          "status": "complete",
+          "evidence": [
+            "docs/m1-acceptance.md"
+          ]
+        },
+        "review": {
+          "status": "complete",
+          "evidence": [
+            "docs/m1-acceptance.md"
+          ]
+        },
+        "documentation": {
+          "status": "complete",
+          "evidence": [
+            "docs/m1-acceptance.md"
+          ]
+        },
+        "implementation": {
+          "status": "complete",
+          "evidence": [
+            "docs/m1-acceptance.md"
+          ]
+        },
+        "verification": {
+          "status": "complete",
+          "evidence": [
+            "docs/m1-acceptance.md"
+          ]
+        }
+      },
+      "design": [
+        "docs/cli-design.md",
+        "docs/report-contract.md",
+        "docs/schemas/README.md"
+      ],
+      "changes": [
+        "tools/assembler/src/build.rs",
+        "tools/assembler/src/native.rs"
+      ],
+      "tests": [
+        "tools/test_assembler_build.py",
+        "tools/test_assembler_failures.py"
+      ],
+      "blockers": [],
+      "next_action": "Maintain scoped M1 regression coverage; M2 hardware image acceptance remains separate."
+    },
+    {
+      "id": "ASM-007",
+      "title": "Validate output paths, preserve source inputs, and prevent a failed run from being presented as a successful result",
+      "acceptance": "An existing destination is rejected by default; interrupted or failed runs leave no success marker and identify any partial output",
+      "milestone": "M1",
+      "owner": "CLI/packager",
+      "priority": "proposed M1",
+      "updated_at": "2026-10-31T20:56:13+00:00",
+      "stages": {
+        "requirements": {
+          "status": "complete",
+          "evidence": [
+            "docs/m1-acceptance.md"
+          ]
+        },
+        "analysis": {
+          "status": "complete",
+          "evidence": [
+            "docs/m1-acceptance.md"
+          ]
+        },
+        "design": {
+          "status": "complete",
+          "evidence": [
+            "docs/m1-acceptance.md"
+          ]
+        },
+        "review": {
+          "status": "complete",
+          "evidence": [
+            "docs/m1-acceptance.md"
+          ]
+        },
+        "documentation": {
+          "status": "complete",
+          "evidence": [
+            "docs/m1-acceptance.md"
+          ]
+        },
+        "implementation": {
+          "status": "complete",
+          "evidence": [
+            "docs/m1-acceptance.md"
+          ]
+        },
+        "verification": {
+          "status": "complete",
+          "evidence": [
+            "docs/m1-acceptance.md"
+          ]
+        }
+      },
+      "design": [
+        "docs/configuration-design.md",
+        "docs/cli-design.md",
+        "docs/verification-publication-review.md"
+      ],
+      "changes": [
+        "tools/assembler/src/build.rs",
+        "tools/assembler/src/native.rs"
+      ],
+      "tests": [
+        "tools/test_assembler_build.py",
+        "tools/test_assembler_failures.py"
+      ],
+      "blockers": [],
+      "next_action": "Maintain scoped M1 regression coverage; M2 hardware image acceptance remains separate."
+    },
+    {
+      "id": "ASM-008",
+      "title": "Run emulator verification with bounded execution and separate startup and deliberate-panic checks",
+      "acceptance": "Verify expected markers for each scenario; missing markers, unexpected process termination, or timeout fail the relevant check and return nonzero",
+      "milestone": "M1",
+      "owner": "Verification runner",
+      "priority": "proposed M1",
+      "updated_at": "2026-10-31T20:56:13+00:00",
+      "stages": {
+        "requirements": {
+          "status": "complete",
+          "evidence": [
+            "docs/m1-acceptance.md"
+          ]
+        },
+        "analysis": {
+          "status": "complete",
+          "evidence": [
+            "docs/m1-acceptance.md"
+          ]
+        },
+        "design": {
+          "status": "complete",
+          "evidence": [
+            "docs/m1-acceptance.md"
+          ]
+        },
+        "review": {
+          "status": "complete",
+          "evidence": [
+            "docs/m1-acceptance.md"
+          ]
+        },
+        "documentation": {
+          "status": "complete",
+          "evidence": [
+            "docs/m1-acceptance.md"
+          ]
+        },
+        "implementation": {
+          "status": "complete",
+          "evidence": [
+            "docs/m1-acceptance.md"
+          ]
+        },
+        "verification": {
+          "status": "complete",
+          "evidence": [
+            "docs/m1-acceptance.md"
+          ]
+        }
+      },
+      "design": [
+        "docs/cli-design.md",
+        "docs/verification-publication-review.md",
+        "docs/kernel-startup-contract.md",
+        "docs/schemas/README.md",
+        "docs/p4-verification.md"
+      ],
+      "changes": [
+        "tools/assembler/src/verify.rs",
+        "tools/assembler/src/execution.rs",
+        "tools/assembler/src/native.rs"
+      ],
+      "tests": [
+        "tools/test_assembler_verify.py",
+        "tools/test_assembler_failures.py"
+      ],
+      "blockers": [],
+      "next_action": "Maintain scoped M1 regression coverage; M2 hardware image acceptance remains separate."
+    },
+    {
+      "id": "ASM-009",
+      "title": "Report build, packaging, and verification outcomes separately, including skipped verification",
+      "acceptance": "Build-only execution reports verification as not run; a verification failure remains visible even when compilation succeeded",
+      "milestone": "M1",
+      "owner": "CLI/reporting",
+      "priority": "proposed M1",
+      "updated_at": "2026-10-31T20:56:13+00:00",
+      "stages": {
+        "requirements": {
+          "status": "complete",
+          "evidence": [
+            "docs/m1-acceptance.md"
+          ]
+        },
+        "analysis": {
+          "status": "complete",
+          "evidence": [
+            "docs/m1-acceptance.md"
+          ]
+        },
+        "design": {
+          "status": "complete",
+          "evidence": [
+            "docs/m1-acceptance.md"
+          ]
+        },
+        "review": {
+          "status": "complete",
+          "evidence": [
+            "docs/m1-acceptance.md"
+          ]
+        },
+        "documentation": {
+          "status": "complete",
+          "evidence": [
+            "docs/m1-acceptance.md"
+          ]
+        },
+        "implementation": {
+          "status": "complete",
+          "evidence": [
+            "docs/m1-acceptance.md"
+          ]
+        },
+        "verification": {
+          "status": "complete",
+          "evidence": [
+            "docs/m1-acceptance.md"
+          ]
+        }
+      },
+      "design": [
+        "docs/cli-design.md",
+        "docs/report-contract.md",
+        "docs/schemas/README.md"
+      ],
+      "changes": [
+        "tools/assembler/src/verify.rs",
+        "tools/assembler/src/execution.rs",
+        "tools/assembler/src/native.rs"
+      ],
+      "tests": [
+        "tools/test_assembler_verify.py",
+        "tools/test_assembler_failures.py"
+      ],
+      "blockers": [],
+      "next_action": "Maintain scoped M1 regression coverage; M2 hardware image acceptance remains separate."
+    },
+    {
+      "id": "ASM-010",
+      "title": "Package a Zero 2 W profile into a bootable SD-card image with identified boot assets",
+      "acceptance": "Inspect image contents and manifest, then capture startup and panic output on the physical board using a recorded procedure",
+      "milestone": "M2",
+      "owner": "Packager/BSP",
+      "priority": "proposed M2",
+      "updated_at": "2026-10-31T17:53:44+00:00",
+      "stages": {
+        "requirements": {
+          "status": "draft",
+          "evidence": [
+            "docs/assembler-requirements.md"
+          ]
+        },
+        "analysis": {
+          "status": "not_started",
+          "evidence": []
+        },
+        "design": {
+          "status": "not_started",
+          "evidence": []
+        },
+        "review": {
+          "status": "not_started",
+          "evidence": []
+        },
+        "documentation": {
+          "status": "draft",
+          "evidence": [
+            "docs/assembler-requirements.md"
+          ]
+        },
+        "implementation": {
+          "status": "not_started",
+          "evidence": []
+        },
+        "verification": {
+          "status": "not_started",
+          "evidence": []
+        }
+      },
+      "design": [],
+      "changes": [],
+      "tests": [],
+      "blockers": [],
+      "next_action": "Review acceptance details and map to a concrete design and verification procedure."
+    },
+    {
+      "id": "ASM-011",
+      "title": "Keep image creation separate from writing physical media",
+      "acceptance": "Image assembly does not write to a physical disk; M2 documents a separate media-writing procedure",
+      "milestone": "M2",
+      "owner": "CLI/packager",
+      "priority": "proposed M2",
+      "updated_at": "2026-10-31T17:53:44+00:00",
+      "stages": {
+        "requirements": {
+          "status": "draft",
+          "evidence": [
+            "docs/assembler-requirements.md"
+          ]
+        },
+        "analysis": {
+          "status": "not_started",
+          "evidence": []
+        },
+        "design": {
+          "status": "not_started",
+          "evidence": []
+        },
+        "review": {
+          "status": "not_started",
+          "evidence": []
+        },
+        "documentation": {
+          "status": "draft",
+          "evidence": [
+            "docs/assembler-requirements.md"
+          ]
+        },
+        "implementation": {
+          "status": "not_started",
+          "evidence": []
+        },
+        "verification": {
+          "status": "not_started",
+          "evidence": []
+        }
+      },
+      "design": [],
+      "changes": [],
+      "tests": [],
+      "blockers": [],
+      "next_action": "Review acceptance details and map to a concrete design and verification procedure."
+    },
+    {
+      "id": "ASM-012",
+      "title": "Force compilation or packaging failure",
+      "acceptance": "Downstream steps skipped, nonzero outcome, logs retained, previous successful output unchanged",
+      "milestone": "M1",
+      "owner": "Coordinator",
+      "priority": "proposed M1",
+      "updated_at": "2026-10-31T20:56:13+00:00",
+      "stages": {
+        "requirements": {
+          "status": "complete",
+          "evidence": [
+            "docs/m1-acceptance.md"
+          ]
+        },
+        "analysis": {
+          "status": "complete",
+          "evidence": [
+            "docs/m1-acceptance.md"
+          ]
+        },
+        "design": {
+          "status": "complete",
+          "evidence": [
+            "docs/m1-acceptance.md"
+          ]
+        },
+        "review": {
+          "status": "complete",
+          "evidence": [
+            "docs/m1-acceptance.md"
+          ]
+        },
+        "documentation": {
+          "status": "complete",
+          "evidence": [
+            "docs/m1-acceptance.md"
+          ]
+        },
+        "implementation": {
+          "status": "complete",
+          "evidence": [
+            "docs/m1-acceptance.md"
+          ]
+        },
+        "verification": {
+          "status": "complete",
+          "evidence": [
+            "docs/m1-acceptance.md"
+          ]
+        }
+      },
+      "design": [
+        "docs/cli-design.md"
+      ],
+      "changes": [
+        "tools/assembler/src/build.rs",
+        "tools/assembler/src/native.rs"
+      ],
+      "tests": [
+        "tools/test_assembler_build.py",
+        "tools/test_assembler_failures.py"
+      ],
+      "blockers": [],
+      "next_action": "Maintain scoped M1 regression coverage; M2 hardware image acceptance remains separate."
+    },
+    {
+      "id": "ASM-013",
+      "title": "Fail requested emulator verification after packaging",
+      "acceptance": "Artifact retained with failed verification; overall run fails; build/package results retained",
+      "milestone": "M1",
+      "owner": "Verification runner",
+      "priority": "proposed M1",
+      "updated_at": "2026-10-31T20:56:13+00:00",
+      "stages": {
+        "requirements": {
+          "status": "complete",
+          "evidence": [
+            "docs/m1-acceptance.md"
+          ]
+        },
+        "analysis": {
+          "status": "complete",
+          "evidence": [
+            "docs/m1-acceptance.md"
+          ]
+        },
+        "design": {
+          "status": "complete",
+          "evidence": [
+            "docs/m1-acceptance.md"
+          ]
+        },
+        "review": {
+          "status": "complete",
+          "evidence": [
+            "docs/m1-acceptance.md"
+          ]
+        },
+        "documentation": {
+          "status": "complete",
+          "evidence": [
+            "docs/m1-acceptance.md"
+          ]
+        },
+        "implementation": {
+          "status": "complete",
+          "evidence": [
+            "docs/m1-acceptance.md"
+          ]
+        },
+        "verification": {
+          "status": "complete",
+          "evidence": [
+            "docs/m1-acceptance.md"
+          ]
+        }
+      },
+      "design": [
+        "docs/cli-design.md",
+        "docs/verification-publication-review.md"
+      ],
+      "changes": [
+        "tools/assembler/src/verify.rs",
+        "tools/assembler/src/execution.rs",
+        "tools/assembler/src/native.rs"
+      ],
+      "tests": [
+        "tools/test_assembler_verify.py",
+        "tools/test_assembler_failures.py"
+      ],
+      "blockers": [],
+      "next_action": "Maintain scoped M1 regression coverage; M2 hardware image acceptance remains separate."
+    },
+    {
+      "id": "ASM-014",
+      "title": "Cancel an active run or trigger its deadline",
+      "acceptance": "Owned processes settled; cancelled/timed-out outcome recorded; cleanup failure explicitly reported if settlement fails",
+      "milestone": "M1",
+      "owner": "Coordinator",
+      "priority": "proposed M1",
+      "updated_at": "2026-10-31T20:56:13+00:00",
+      "stages": {
+        "requirements": {
+          "status": "complete",
+          "evidence": [
+            "docs/m1-acceptance.md"
+          ]
+        },
+        "analysis": {
+          "status": "complete",
+          "evidence": [
+            "docs/m1-acceptance.md"
+          ]
+        },
+        "design": {
+          "status": "complete",
+          "evidence": [
+            "docs/m1-acceptance.md"
+          ]
+        },
+        "review": {
+          "status": "complete",
+          "evidence": [
+            "docs/m1-acceptance.md"
+          ]
+        },
+        "documentation": {
+          "status": "complete",
+          "evidence": [
+            "docs/m1-acceptance.md"
+          ]
+        },
+        "implementation": {
+          "status": "complete",
+          "evidence": [
+            "docs/m1-acceptance.md"
+          ]
+        },
+        "verification": {
+          "status": "complete",
+          "evidence": [
+            "docs/m1-acceptance.md"
+          ]
+        }
+      },
+      "design": [
+        "docs/cli-design.md",
+        "docs/verification-publication-review.md",
+        "docs/schemas/README.md"
+      ],
+      "changes": [
+        "tools/assembler/src/verify.rs",
+        "tools/assembler/src/execution.rs",
+        "tools/assembler/src/native.rs"
+      ],
+      "tests": [
+        "tools/test_assembler_verify.py",
+        "tools/test_assembler_failures.py"
+      ],
+      "blockers": [],
+      "next_action": "Maintain scoped M1 regression coverage; M2 hardware image acceptance remains separate."
+    },
+    {
+      "id": "ASM-015",
+      "title": "Inspect a run result in the progress dashboard",
+      "acceptance": "Show target, artifact identity, per-step outcome, verification scope, logs/evidence, and cleanup result; never infer success from missing data",
+      "milestone": "M1",
+      "owner": "Dashboard/reporting",
+      "priority": "proposed M1",
+      "updated_at": "2026-10-31T20:56:13+00:00",
+      "stages": {
+        "requirements": {
+          "status": "complete",
+          "evidence": [
+            "docs/m1-acceptance.md"
+          ]
+        },
+        "analysis": {
+          "status": "complete",
+          "evidence": [
+            "docs/m1-acceptance.md"
+          ]
+        },
+        "design": {
+          "status": "complete",
+          "evidence": [
+            "docs/m1-acceptance.md"
+          ]
+        },
+        "review": {
+          "status": "complete",
+          "evidence": [
+            "docs/m1-acceptance.md"
+          ]
+        },
+        "documentation": {
+          "status": "complete",
+          "evidence": [
+            "docs/m1-acceptance.md"
+          ]
+        },
+        "implementation": {
+          "status": "complete",
+          "evidence": [
+            "docs/m1-acceptance.md"
+          ]
+        },
+        "verification": {
+          "status": "complete",
+          "evidence": [
+            "docs/m1-acceptance.md"
+          ]
+        }
+      },
+      "design": [
+        "docs/cli-design.md",
+        "docs/report-contract.md",
+        "docs/schemas/README.md"
+      ],
+      "changes": [
+        "docs/dashboard/executions.py",
+        "docs/dashboard/server.py",
+        "docs/dashboard/planning.js",
+        "tools/assembler/src/execution.rs"
+      ],
+      "tests": [
+        "docs/dashboard/test_executions.py",
+        "docs/dashboard/test_server.py"
+      ],
+      "blockers": [],
+      "next_action": "Maintain scoped M1 regression coverage; M2 hardware image acceptance remains separate."
+    }
+  ],
+  "environment": [
+    {
+      "id": "ENV1",
+      "title": "REA user-level VS Code/Codex configuration",
+      "status": "verified via CLI; VS Code startup reported by user",
+      "detail": "REA 6.8.0 registered globally. Active agent tool connection not independently verified."
+    },
+    {
+      "id": "ENV2",
+      "title": "Windows Ghidra native analysis",
+      "status": "verified via CLI",
+      "detail": "Ghidra 12.1.4 and Temurin JDK 21.0.13; static x64 PE fixture decompiled to return 42. This is tooling evidence, not RustOS verification."
+    },
+    {
+      "id": "ENV3",
+      "title": "Raspberry Pi ELF/firmware analysis environment",
+      "status": "not configured",
+      "detail": "Supported Linux analysis setup remains pending; no Raspberry Pi image has been analyzed."
+    },
+    {
+      "id": "ENV4",
+      "title": "M1 QEMU and Rust target",
+      "status": "environment probes passed",
+      "detail": "Windows QEMU 11.1.0; virt-11.1/cortex-a53; synthetic ELF serial marker verified; Rust 1.88.0 no_std AArch64 object generated. RustOS not booted."
+    }
+  ],
+  "runs": [
+    {
+      "id": "p4-final",
+      "kind": "kernel-development",
+      "target": "qemu-virt-a53",
+      "artifact": "target\\p4\\normal\\aarch64-unknown-none-softfloat\\release\\rustos-kernel SHA256 e66ebc4c189fbbd5ef2dded49ed702f58109127f9f1d8c15ffcc7aa05572f482",
+      "updated_at": "2026-10-31T18:40:20+00:00",
+      "status": "passed",
+      "verification_scope": "emulator",
+      "cleanup": "All five checks settled through owned QMP stdio; forced stop not needed. Production Job Object/named-pipe lifecycle remains P5.",
+      "evidence": [
+        "docs/p4-verification.md"
+      ],
+      "steps": [
+        {
+          "name": "normal development check",
+          "status": "passed",
+          "evidence": [
+            "docs/evidence/p4-final.json"
+          ]
+        },
+        {
+          "name": "panic development check",
+          "status": "passed",
+          "evidence": [
+            "docs/evidence/p4-final.json"
+          ]
+        },
+        {
+          "name": "fault development check",
+          "status": "passed",
+          "evidence": [
+            "docs/evidence/p4-final.json"
+          ]
+        },
+        {
+          "name": "unexpected-panic development check",
+          "status": "passed",
+          "evidence": [
+            "docs/evidence/p4-final.json"
+          ]
+        },
+        {
+          "name": "unsupported-entry-negative development check",
+          "status": "passed",
+          "evidence": [
+            "docs/evidence/p4-final.json"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "p5-process-foundation",
+      "kind": "host-development",
+      "target": "windows-msvc",
+      "artifact": "tools/assembler/target/debug/job-fixture.exe sha256:4b2e441d906b5e4db9a6ba4ab2c3181fbcf6f2c34b3b6e65aab63fa29157ab33",
+      "updated_at": "2026-10-31T18:54:35+00:00",
+      "status": "passed",
+      "verification_scope": "none",
+      "cleanup": "Owned test trees settled; unrelated owned job survived targeted cleanup. This is host primitive evidence, not an assembled OS verification.",
+      "evidence": [
+        "docs/p5-process-verification.md"
+      ],
+      "steps": [
+        {
+          "name": "28 Rust methods: inspector, quoting and Windows process/publication tests",
+          "status": "passed",
+          "evidence": [
+            "docs/p5-process-verification.md"
+          ]
+        },
+        {
+          "name": "Clippy with documented pre-existing lint exclusions",
+          "status": "passed",
+          "evidence": [
+            "docs/p5-process-verification.md"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "p5-build-final",
+      "kind": "assembler-build-development",
+      "target": "qemu-virt-a53",
+      "artifact": "target/p5-build-1793473883464165600/bundle/manifest.json sha256:81f0e16e68b932be03c7d7b1d75d1f302141c70b6456236da4eba696e16b30b0",
+      "updated_at": "2026-10-31T19:11:59+00:00",
+      "status": "passed",
+      "verification_scope": "none",
+      "cleanup": "Build tools settled inside owned Windows jobs. Independent P4 guest smoke checks used QMP stdio; production verify remains pending.",
+      "evidence": [
+        "docs/p5-build-verification.md",
+        "docs/evidence/p5-build-pass1.json",
+        "docs/evidence/p5-build-pass2.json"
+      ],
+      "steps": [
+        {
+          "name": "Assembly, manifest identity and build rejection cases: nine acceptance methods passed twice",
+          "status": "passed",
+          "evidence": [
+            "docs/p5-build-verification.md"
+          ]
+        },
+        {
+          "name": "Independent development harness booted both assembled ELF variants; this is not production verify",
+          "status": "passed",
+          "evidence": [
+            "docs/evidence/p5-build-pass2.json"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "m1-delivery-acceptance",
+      "kind": "milestone-acceptance",
+      "target": "qemu-virt-a53",
+      "artifact": "out/m1/manifest.json sha256:11aa1d74b1edcb082d8772239b14885890a66bbc0a2ed401ddd0b94b0b706c97",
+      "updated_at": "2026-10-31T20:56:13+00:00",
+      "status": "passed",
+      "verification_scope": "emulator",
+      "cleanup": "Delivery guests settled through owned QMP shutdown. Real console cancellation settled owned trees; simulated unconfirmed cleanup was required to fail.",
+      "evidence": [
+        "docs/m1-acceptance.md"
+      ],
+      "steps": [
+        {
+          "name": "Delivered normal startup and deliberate-panic scenarios",
+          "status": "passed",
+          "evidence": [
+            "docs/evidence/m1-delivery-verify.json"
+          ]
+        },
+        {
+          "name": "Eight expected failure-path tests passed twice",
+          "status": "passed",
+          "evidence": [
+            "docs/evidence/p5-failures-pass1.json",
+            "docs/evidence/p5-failures-pass2.json"
+          ]
+        }
+      ]
+    }
+  ],
+  "work_policy": {
+    "selected_milestone": "M2",
+    "max_active": 2,
+    "primary_slots": 1,
+    "research_slots": 1
+  },
+  "work_items": [
+    {
+      "id": "P1",
+      "order": 1,
+      "title": "Select emulator, machine and development environment",
+      "kind": "primary",
+      "milestone": "M1",
+      "status": "complete",
+      "exit_condition": "Recorded compatible target, tools, invocation, and verification approach.",
+      "next_action": "Proceed to P2 configuration/profile/module schema design.",
+      "evidence": [
+        "docs/priorities.md",
+        "docs/m1-environment.md",
+        "docs/m1-environment-verification.md"
+      ]
+    },
+    {
+      "id": "P2",
+      "order": 2,
+      "title": "Define configuration, target profile and module metadata",
+      "kind": "primary",
+      "milestone": "M1",
+      "status": "complete",
+      "exit_condition": "Concrete schemas, minimal example and invalid-input fixtures.",
+      "next_action": "Begin P3 parser/validator/resolver implementation against the approved contracts.",
+      "evidence": [
+        "docs/priorities.md",
+        "docs/configuration-design.md",
+        "docs/cli-design.md",
+        "docs/report-contract.md",
+        "docs/kernel-startup-contract.md",
+        "docs/catalog-and-process-design.md",
+        "docs/schemas/README.md",
+        "docs/p2-handoff.md"
+      ]
+    },
+    {
+      "id": "P3",
+      "order": 3,
+      "title": "Implement validation and dependency resolution",
+      "kind": "primary",
+      "milestone": "M1",
+      "status": "complete",
+      "exit_condition": "Inspectable module selection and invalid combinations rejected before compilation.",
+      "next_action": "Proceed to queued P4 minimal kernel implementation; build/verify remain later integration.",
+      "evidence": [
+        "docs/p3-verification.md"
+      ]
+    },
+    {
+      "id": "P4",
+      "order": 4,
+      "title": "Build minimal kernel and diagnostics",
+      "kind": "primary",
+      "milestone": "M1",
+      "status": "complete",
+      "exit_condition": "Documented build and emulator startup/panic evidence.",
+      "next_action": "Proceed to queued P5 end-to-end assembler build/package/verify integration.",
+      "evidence": [
+        "docs/p4-verification.md"
+      ]
+    },
+    {
+      "id": "P5",
+      "order": 5,
+      "title": "Connect assembly, manifests and automated verification",
+      "kind": "primary",
+      "milestone": "M1",
+      "status": "complete",
+      "exit_condition": "End-to-end assembly and bounded tests produce manifest and evidence.",
+      "next_action": "M1 complete; preserve regression coverage and select M2 hardware-image work next.",
+      "evidence": [
+        "docs/m1-acceptance.md"
+      ]
+    },
+    {
+      "id": "P6",
+      "order": 6,
+      "title": "Define Zero 2 W boot, image and hardware verification contracts",
+      "kind": "research",
+      "milestone": "M2",
+      "status": "in_progress",
+      "exit_condition": "Two documented review passes, concrete design confirmation and recorded hardware setup.",
+      "next_action": "Inventory recorded: two headerless Zero 2 W boards, Pi 5, 64 GB/2 GB cards, reader and labelled 5.1 V/3 A adapter; serial adapter absent. Physical connection and media-erasure permission remain pending.",
+      "evidence": [
+        "docs/m2-plan.md",
+        "docs/m2-second-review.md",
+        "docs/evidence/m2-firmware-candidate.json",
+        "docs/m2-console-contract.md",
+        "docs/m2-boot-contract.md",
+        "docs/m2-image-contract.md",
+        "docs/m2-profile-report-contract.md",
+        "docs/m2-input-contract-verification.md",
+        "docs/m2-asset-licensing.md",
+        "docs/evidence/m2-asset-license-research.json",
+        "docs/m2-output-contract-verification.md",
+        "docs/m2-session-contract-verification.md",
+        "docs/m2-failure-contract-verification.md",
+        "docs/m2-contract-handoff.md",
+        "docs/m2-source-package.md",
+        "docs/evidence/m2-source-archive.json",
+        "docs/evidence/m2-dtb-source-closure.json",
+        "docs/evidence/m2-local-boot-assets.json",
+        "docs/m2-dtb-reproduction.md",
+        "docs/evidence/m2-dtb-reproduction.json",
+        "docs/m2-asset-lock-review.md",
+        "docs/evidence/m2-asset-lock-validation.json",
+        "docs/p7-console-preparation.md",
+        "docs/m2-hardware-setup.md"
+      ]
+    },
+    {
+      "id": "P7",
+      "order": 7,
+      "title": "Implement Pi target selection, startup and console",
+      "kind": "primary",
+      "milestone": "M2",
+      "status": "in_progress",
+      "exit_condition": "Strict profile/board selection, reviewed Pi entry/console implementation and recorded host/M1 regression results.",
+      "next_action": "Exact internal-compiler Pi ELFs pass layout and conservative stack checks: both 21440/65536 bytes; direct console dispatch and marker tail verified. Twenty altered/truncated ELF cases reject; five stack-analyzer tests pass. Next bind exact-output entry behavior, then flat kernel generation and complete image packaging; public Pi gate remains.",
+      "evidence": [
+        "docs/p7-console-preparation.md",
+        "docs/evidence/p7-console-m1-regression.json",
+        "docs/p7-profile-parsing.md",
+        "docs/evidence/p7-pi-profile-inspection.json",
+        "docs/p7-board-selection.md",
+        "docs/evidence/p7-board-selection.json",
+        "docs/p7-source-readiness.md",
+        "docs/evidence/p7-pi-source-inspection.json",
+        "docs/p7-pi-bsp-preflight.md",
+        "docs/evidence/p7-pi-dtb-preflight.json",
+        "docs/p7-dtb-structure.md",
+        "docs/evidence/p7-pi-dtb-structure.json",
+        "docs/p7-memory-ranges.md",
+        "docs/p7-board-compatibility.md",
+        "docs/p7-memory-decoding.md",
+        "docs/p7-boot-memory.md",
+        "docs/m2-cma-entry-review.md",
+        "docs/redox-research.md",
+        "docs/redox-boot-research.md",
+        "docs/ventoy-research.md",
+        "docs/research-index.md",
+        "docs/p7-cma-reservation.md",
+        "docs/p7-stackless-entry-design.md",
+        "docs/blog-os-research.md",
+        "docs/p7-entry-machine-probe.md",
+        "docs/evidence/p7-entry-machine-probe.json",
+        "docs/p7-entry-handoff.md",
+        "docs/evidence/p7-entry-handoff.json",
+        "docs/p7-entry-negative-tests.md",
+        "docs/evidence/p7-entry-negative-tests.json",
+        "docs/p7-entry-header-tests.md",
+        "docs/evidence/p7-entry-header-tests.json",
+        "docs/p7-entry-reservation-tests.md",
+        "docs/evidence/p7-entry-reservation-tests.json",
+        "docs/p7-entry-token-tests.md",
+        "docs/evidence/p7-entry-token-tests.json",
+        "docs/p7-entry-duplicate-tests.md",
+        "docs/evidence/p7-entry-duplicate-tests.json",
+        "docs/p7-entry-root-tests.md",
+        "docs/evidence/p7-entry-root-tests.json",
+        "docs/p7-memory-reference-fixtures.md",
+        "docs/evidence/p7-memory-reference-fixtures.json",
+        "docs/p7-entry-ram-tests.md",
+        "docs/evidence/p7-entry-ram-tests.json",
+        "docs/evidence/p7-entry-ram-regression.json",
+        "docs/p7-entry-ram-guards.md",
+        "docs/evidence/p7-entry-ram-guards.json",
+        "docs/evidence/p7-entry-ram-guards-regression.json",
+        "docs/p7-entry-static-tests.md",
+        "docs/evidence/p7-entry-static-tests.json",
+        "docs/evidence/p7-entry-static-ram-regression.json",
+        "docs/evidence/p7-entry-static-regression.json",
+        "docs/evidence/p7-entry-static-alignment-discovery.json",
+        "docs/p7-entry-cma-shape-tests.md",
+        "docs/evidence/p7-entry-cma-shape-tests.json",
+        "docs/evidence/p7-entry-cma-static-regression.json",
+        "docs/evidence/p7-entry-cma-ram-regression.json",
+        "docs/evidence/p7-entry-cma-regression.json",
+        "docs/p7-entry-pinned-dtb-model.md",
+        "docs/evidence/p7-entry-pinned-dtb-model.json",
+        "docs/p7-entry-safety-audit.md",
+        "docs/evidence/p7-entry-audit-node-discovery.json",
+        "docs/evidence/p7-entry-audit-ram.json",
+        "docs/evidence/p7-entry-audit-pinned.json",
+        "docs/evidence/p7-entry-audit-static.json",
+        "docs/evidence/p7-entry-audit-cma.json",
+        "docs/evidence/p7-entry-audit-entry.json",
+        "docs/p7-entry-first-write.md",
+        "docs/evidence/p7-entry-first-write.json",
+        "docs/evidence/p7-entry-first-write-ram.json",
+        "docs/evidence/p7-entry-first-write-static.json",
+        "docs/evidence/p7-entry-first-write-cma.json",
+        "docs/evidence/p7-entry-first-write-pinned.json",
+        "docs/evidence/p7-entry-first-write-regression.json",
+        "docs/m2-cpu-entry-review.md",
+        "docs/p7-entry-el1.md",
+        "docs/evidence/p7-entry-el1.json",
+        "docs/p7-entry-rust-call.md",
+        "docs/evidence/p7-entry-rust-call.json",
+        "docs/p7-entry-cpu-review.md",
+        "docs/evidence/p7-entry-cpu-guards.json",
+        "docs/evidence/p7-entry-rust-panic.json",
+        "docs/evidence/p7-entry-stack-inventory.json",
+        "docs/p7-entry-multicore.md",
+        "docs/evidence/p7-entry-multicore.json",
+        "docs/evidence/p7-entry-multicore-observation-discovery.json",
+        "docs/evidence/p7-entry-multicore-preflight-regression.json",
+        "docs/evidence/p7-entry-multicore-el1-regression.json",
+        "docs/evidence/p7-entry-multicore-rust-regression.json",
+        "docs/p7-entry-stack-bound.md",
+        "docs/evidence/p7-entry-stack-runtime.json",
+        "docs/evidence/p7-entry-stack-no_pool.json",
+        "docs/evidence/p7-entry-stack-cma_pool.json",
+        "docs/evidence/p7-entry-stack-cma_no_space.json",
+        "docs/evidence/p7-entry-stack-rust_panic.json",
+        "docs/p7-pi-kernel-entry.md",
+        "docs/evidence/p7-pi-kernel-entry.json",
+        "docs/evidence/p7-pi-kernel-stack.json",
+        "docs/m2-mailbox-uart-review.md",
+        "docs/p7-mailbox-protocol.md",
+        "docs/evidence/p7-mailbox-protocol.json",
+        "docs/evidence/p7-mailbox-entry-regression.json",
+        "docs/evidence/p7-mailbox-entry-stack.json",
+        "docs/p7-uart-clock-backend.md",
+        "docs/evidence/p7-uart-clock-backend.json",
+        "docs/evidence/p7-uart-clock-entry.json",
+        "docs/evidence/p7-uart-clock-stack.json",
+        "docs/p7-pi-console-preparation.md",
+        "docs/evidence/p7-pi-console-preparation.json",
+        "docs/evidence/p7-pi-console-path.json",
+        "docs/evidence/p7-pi-console-entry-regression.json",
+        "docs/evidence/p7-pi-console-entry-stack.json",
+        "docs/p7-pi-console-controlled.md",
+        "docs/evidence/p7-pi-console-controlled.json",
+        "docs/evidence/p7-pi-console-controlled-unmodified.json",
+        "docs/evidence/p7-pi-console-controlled-entry.json",
+        "docs/p7-console-full-stack.md",
+        "docs/evidence/p7-console-full-stack-normal.json",
+        "docs/evidence/p7-console-full-stack-panic.json",
+        "docs/evidence/p7-console-full-stack-controlled.json",
+        "docs/evidence/p7-console-full-stack-unmodified.json",
+        "docs/evidence/p7-console-full-stack-entry.json",
+        "docs/m2-marker-commit-review.md",
+        "docs/p7-marker-commit.md",
+        "docs/evidence/p7-marker-commit-controlled.json",
+        "docs/evidence/p7-marker-commit-stack-normal.json",
+        "docs/evidence/p7-marker-commit-stack-panic.json",
+        "docs/evidence/p7-marker-commit-unmodified.json",
+        "docs/evidence/p7-marker-commit-entry.json",
+        "docs/p7-pi-source-preparation.md",
+        "docs/evidence/p7-pi-source-preparation.json",
+        "docs/evidence/p7-pi-source-preparation-cli.json",
+        "docs/p7-pi-offline-snapshot.md",
+        "docs/evidence/p7-pi-offline-snapshot.json",
+        "docs/p7-pi-compiler.md",
+        "docs/evidence/p7-pi-compiler.json",
+        "docs/p7-pi-artifact-contracts.md",
+        "docs/evidence/p7-pi-artifact-contracts.json",
+        "docs/evidence/p7-pi-artifact-negative.json"
+      ]
+    },
+    {
+      "id": "P8",
+      "order": 8,
+      "title": "Package and independently inspect Pi SD images",
+      "kind": "primary",
+      "milestone": "M2",
+      "status": "not_started",
+      "exit_condition": "Locked assets/source sidecar and two inspected immutable images with negative-test evidence.",
+      "next_action": "After P7, implement bounded target-specific packaging and image inspection.",
+      "evidence": [
+        "docs/m2-image-contract.md",
+        "docs/m2-asset-lock-review.md"
+      ]
+    },
+    {
+      "id": "P9",
+      "order": 9,
+      "title": "Prepare media and verify physical Zero 2 W startup/panic",
+      "kind": "primary",
+      "milestone": "M2",
+      "status": "not_started",
+      "exit_condition": "Exact image identities and physical board serial startup/panic evidence with recorded failures.",
+      "next_action": "Collect hardware setup, then prepare media procedure and explicit capture only after images exist.",
+      "evidence": [
+        "docs/m2-plan.md"
+      ]
+    }
+  ]
+}

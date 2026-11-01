@@ -1,0 +1,49 @@
+{
+  "kind": "host-dtb-structure-validation-not-hardware-boot",
+  "command": [
+    "cargo",
+    "run",
+    "--manifest-path",
+    "bsp/rpi-zero2w/Cargo.toml",
+    "--example",
+    "inspect_dtb",
+    "--locked",
+    "--offline",
+    "--",
+    "out/research/m2-source-9b488bc7a1e9/boot-assets/bcm2710-rpi-zero-2-w.dtb"
+  ],
+  "exit_code": 0,
+  "stdout": "File preflight at synthetic placement 0x1000000: DtbLayout { total_size: 33724, structure: 72..30268, strings: 30268..33724, reservation_count: 1 }\n",
+  "stderr": "    Finished `dev` profile [unoptimized + debuginfo] target(s) in 0.00s\n     Running `bsp\\rpi-zero2w\\target\\debug\\examples\\inspect_dtb.exe out/research/m2-source-9b488bc7a1e9/boot-assets/bcm2710-rpi-zero-2-w.dtb`\n",
+  "synthetic_physical_address": "0x1000000",
+  "inputs": [
+    {
+      "path": "bsp/rpi-zero2w/src/lib.rs",
+      "sha256": "863915f54bd25137706e4989bfd80b96c50e317896b7f7373a304cf99af98a50"
+    },
+    {
+      "path": "bsp/rpi-zero2w/src/structure.rs",
+      "sha256": "2d2a9b3ab6009406b7e69e0bd45f704a08322e1e35acdd77a99c9d49ac9ed92f"
+    },
+    {
+      "path": "out/research/m2-source-9b488bc7a1e9/boot-assets/bcm2710-rpi-zero-2-w.dtb",
+      "sha256": "5b31bc70011e454f482ba323b1eca22bf54fa2fa4682576ee73816a2eccfa277"
+    }
+  ],
+  "bsp_test_methods": 13,
+  "independent_real_file_counts": {
+    "max_depth": 5,
+    "tokens": 1373,
+    "max_name_bytes": 29,
+    "max_properties_per_node": 159,
+    "largest_node": "/__symbols__"
+  },
+  "limits": {
+    "depth": 16,
+    "tokens": 16384,
+    "name_bytes": 128,
+    "properties_per_node": 256
+  },
+  "usable_arm_memory_validated": false,
+  "pi_kernel_wired": false
+}
