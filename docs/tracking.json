@@ -1641,7 +1641,7 @@
       "milestone": "M2",
       "status": "in_progress",
       "exit_condition": "Strict profile/board selection, reviewed Pi entry/console implementation and recorded host/M1 regression results.",
-      "next_action": "Exact internal-compiler Pi ELFs pass layout and conservative stack checks: both 21440/65536 bytes; direct console dispatch and marker tail verified. Twenty altered/truncated ELF cases reject; five stack-analyzer tests pass. Next bind exact-output entry behavior, then flat kernel generation and complete image packaging; public Pi gate remains.",
+      "next_action": "Exact compiler normal/panic ELFs pass ten entry/BSS cases and four-core observations; current QEMU measured-clock response rejects safely at stage 4 with no success token. Layout/stack already verified. Next flat kernel generation and complete image packaging; hardware UART acceptance and public Pi publication remain pending.",
       "evidence": [
         "docs/p7-console-preparation.md",
         "docs/evidence/p7-console-m1-regression.json",
@@ -1781,7 +1781,9 @@
         "docs/evidence/p7-pi-compiler.json",
         "docs/p7-pi-artifact-contracts.md",
         "docs/evidence/p7-pi-artifact-contracts.json",
-        "docs/evidence/p7-pi-artifact-negative.json"
+        "docs/evidence/p7-pi-artifact-negative.json",
+        "docs/p7-pi-compiler-entry.md",
+        "docs/evidence/p7-pi-compiler-entry.json"
       ]
     },
     {
