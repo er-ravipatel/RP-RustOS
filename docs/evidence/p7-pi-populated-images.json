@@ -1,0 +1,40 @@
+{
+  "passed": true,
+  "asset_lock_sha256": "537d7d3b991369db5ec4bb3475ddf37b41dd2217b56b53e44d69c163b356e850",
+  "compiler_report_sha256": "94f08d28713801a991199c468be72c9f4a992c6e6430a0d13e50f6b512786f4f",
+  "images": [
+    {
+      "variant": "normal",
+      "passed": true,
+      "files": {
+        "COPYING.linux": "af8067302947c01fd9eee72befa54c7e3ef8a48fecde7fd71277f2290b2bf0f7",
+        "LICENCE.broadcom": "c7283ff51f863d93a275c66e3b4cb08021a5dd4d8c1e7acc47d872fbe52d3d6b",
+        "bcm2710-rpi-zero-2-w.dtb": "5b31bc70011e454f482ba323b1eca22bf54fa2fa4682576ee73816a2eccfa277",
+        "bootcode.bin": "beb5da60b58f6ef334a92801cbf033c08314fae081761e2fdc904d1a7ef457cc",
+        "config.txt": "3cb1b35eb3ba26c320d93e515bdfaf428738424c1af19eb18652bb1e4f47c6f3",
+        "fixup.dat": "4d9f13d0090dce21e12b8ba179218f5c214e1d7a324182e345cb10d491f50b8e",
+        "kernel8.img": "d3b026f2b38f3bce9b494791e60a452a174d75535d38dfbfd7223611c5e173e6",
+        "start.elf": "dbab350306e64a59cbe529f48a97d950baebd54c5f6c7808c8367eb3a7aa1d0a"
+      },
+      "allocated_clusters": 6205,
+      "image_sha256": "c213fe0e0a6a43420e3b05556c624a0661348ef3d03d4184bcc2fa1354299bfe"
+    },
+    {
+      "variant": "panic-test",
+      "passed": true,
+      "files": {
+        "COPYING.linux": "af8067302947c01fd9eee72befa54c7e3ef8a48fecde7fd71277f2290b2bf0f7",
+        "LICENCE.broadcom": "c7283ff51f863d93a275c66e3b4cb08021a5dd4d8c1e7acc47d872fbe52d3d6b",
+        "bcm2710-rpi-zero-2-w.dtb": "5b31bc70011e454f482ba323b1eca22bf54fa2fa4682576ee73816a2eccfa277",
+        "bootcode.bin": "beb5da60b58f6ef334a92801cbf033c08314fae081761e2fdc904d1a7ef457cc",
+        "config.txt": "3cb1b35eb3ba26c320d93e515bdfaf428738424c1af19eb18652bb1e4f47c6f3",
+        "fixup.dat": "4d9f13d0090dce21e12b8ba179218f5c214e1d7a324182e345cb10d491f50b8e",
+        "kernel8.img": "4eadc33174ee401448ed7bcebe74242a2a8f49bbde7cf34ae51c333a79f68c95",
+        "start.elf": "dbab350306e64a59cbe529f48a97d950baebd54c5f6c7808c8367eb3a7aa1d0a"
+      },
+      "allocated_clusters": 6205,
+      "image_sha256": "13c46350d39ec2d11a99b27fcca4b90513a287747adaf12416b6b5fb728986ed"
+    }
+  ],
+  "scope": "Engineering images only; source archive and complete bundle publication not covered. Inspection does not establish firmware or physical boot success."
+}

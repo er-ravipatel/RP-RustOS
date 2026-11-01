@@ -10,6 +10,73 @@ fn invalid(message: &str) -> Failure {
     Failure::new("PI_BUILD_CONTRACT", message, 3)
 }
 
+const ASSET_LOCK_SHA256: &str = "537d7d3b991369db5ec4bb3475ddf37b41dd2217b56b53e44d69c163b356e850";
+const BOOT_CONFIG: &[u8] = b"[all]\narm_64bit=1\nkernel=kernel8.img\nkernel_address=0x200000\ndevice_tree=bcm2710-rpi-zero-2-w.dtb\n";
+
+fn repository_file(repo: &Path, relative: &str) -> BuildResult<Vec<u8>> {
+    let mut path = repo.to_path_buf();
+    for part in relative.split('/') {
+        if part.is_empty() || part == "." || part == ".." || part.contains(['\\', ':']) {
+            return Err(invalid("Unsafe Pi asset path"));
+        }
+        path.push(part);
+        if super::linked(&fs::symlink_metadata(&path)?) {
+            return Err(invalid("Pi asset path contains a link or reparse point"));
+        }
+    }
+    build::checked_file(&path)
+}
+
+struct BootAssets {
+    lock: Vec<u8>,
+    files: BTreeMap<String, Vec<u8>>,
+}
+
+fn boot_assets(repo: &Path) -> BuildResult<BootAssets> {
+    let lock = repository_file(repo, "assets/locks/rpi-zero2w-boot-assets.lock.json")?;
+    if build::hash(&lock) != ASSET_LOCK_SHA256 {
+        return Err(invalid("Pi asset lock differs from approved D19 identity"));
+    }
+    let parsed: Value =
+        serde_json::from_slice(&lock).map_err(|_| invalid("Invalid Pi asset lock JSON"))?;
+    let root = parsed["cache_root"]
+        .as_str()
+        .ok_or_else(|| invalid("Missing asset cache root"))?;
+    let assets = parsed["assets"]
+        .as_array()
+        .ok_or_else(|| invalid("Missing boot assets"))?;
+    let mut files = BTreeMap::new();
+    for asset in assets {
+        let name = asset["path"]
+            .as_str()
+            .ok_or_else(|| invalid("Missing asset filename"))?;
+        let bytes = repository_file(repo, &format!("{root}/boot-assets/{name}"))?;
+        if asset["size_bytes"].as_u64() != Some(bytes.len() as u64)
+            || asset["sha256"].as_str() != Some(build::hash(&bytes).as_str())
+            || files.insert(name.to_string(), bytes).is_some()
+        {
+            return Err(invalid(
+                "Pi boot asset hash, size or unique identity mismatch",
+            ));
+        }
+    }
+    let expected: BTreeSet<_> = [
+        "bootcode.bin",
+        "start.elf",
+        "fixup.dat",
+        "bcm2710-rpi-zero-2-w.dtb",
+        "LICENCE.broadcom",
+        "COPYING.linux",
+    ]
+    .into_iter()
+    .collect();
+    if files.keys().map(String::as_str).collect::<BTreeSet<_>>() != expected {
+        return Err(invalid("Incomplete Pi boot asset inventory"));
+    }
+    files.insert("config.txt".into(), BOOT_CONFIG.to_vec());
+    Ok(BootAssets { lock, files })
+}
+
 fn field<const N: usize>(data: &[u8], offset: usize) -> BuildResult<[u8; N]> {
     data.get(
         offset
@@ -188,6 +255,8 @@ impl PiKernelPlan {
         }
         fs::create_dir(output)?; // Never reuse or replace an existing run.
         let output = build::local_path(&output.canonicalize()?);
+        let assets = boot_assets(&repo)?;
+        build::write_new(&output.join("boot-assets.lock.json"), &assets.lock)?;
         let snapshot = output.join("source");
         fs::create_dir(&snapshot)?;
         let mut sources = Vec::new();
@@ -269,7 +338,20 @@ impl PiKernelPlan {
             let flat = flat_kernel(&bytes)?;
             let flat_path = logs.join("kernel8.img");
             build::write_new(&flat_path, &flat)?;
-            records.push(json!({"variant":variant.id,"features":variant.cargo_features,"elf":elf,"sha256":build::hash(&bytes),"flat_kernel":flat_path,"flat_sha256":build::hash(&flat),"flat_bytes":flat.len(),"load_address":0x200000,"metadata":metadata}));
+            let mut files = assets.files.clone();
+            files.insert("kernel8.img".into(), flat.clone());
+            let disk = crate::pi_image::image(&files).map_err(invalid)?;
+            let image_path = logs.join(if variant.id == "normal" {
+                "rustos-zero2w.img"
+            } else {
+                "rustos-zero2w-panic.img"
+            });
+            build::write_new(&image_path, &disk)?;
+            let inventory: BTreeMap<_, _> = files
+                .iter()
+                .map(|(name, contents)| (name.clone(), build::hash(contents)))
+                .collect();
+            records.push(json!({"variant":variant.id,"features":variant.cargo_features,"elf":elf,"sha256":build::hash(&bytes),"flat_kernel":flat_path,"flat_sha256":build::hash(&flat),"flat_bytes":flat.len(),"load_address":0x200000,"sd_image":image_path,"image_sha256":build::hash(&disk),"image_bytes":disk.len(),"inventory":inventory,"metadata":metadata}));
         }
         for source in &sources {
             if build::hash(&build::checked_file(&snapshot.join(&source.path))?) != source.sha256 {
@@ -281,7 +363,7 @@ impl PiKernelPlan {
                 "Normal and panic artifacts have identical identity",
             ));
         }
-        let bytes = serde_json::to_vec_pretty(&json!({"kind":"pi-internal-compiler","complete_bundle_ready":false,"plan":self,"sources":sources,"tools":tools,"variants":records}))
+        let bytes = serde_json::to_vec_pretty(&json!({"kind":"pi-internal-compiler","complete_bundle_ready":false,"asset_lock_sha256":ASSET_LOCK_SHA256,"plan":self,"sources":sources,"tools":tools,"variants":records}))
             .map_err(|_| invalid("Cannot encode Pi compiler evidence"))?;
         build::write_new(&output.join("report.json"), &bytes)?;
         Ok(())
@@ -355,6 +437,31 @@ impl PiKernelPlan {
 #[cfg(test)]
 mod tests {
     use super::*;
+    #[test]
+    fn asset_lock_changes_and_missing_cache_reject() {
+        let id = std::time::SystemTime::now()
+            .duration_since(std::time::SystemTime::UNIX_EPOCH)
+            .unwrap()
+            .as_nanos();
+        let root =
+            Path::new(env!("CARGO_MANIFEST_DIR")).join(format!("target/asset-negative-{id}"));
+        fs::create_dir_all(root.join("assets/locks")).unwrap();
+        let lock = root.join("assets/locks/rpi-zero2w-boot-assets.lock.json");
+        fs::write(&lock, b"{}").unwrap();
+        assert!(boot_assets(&root).is_err());
+        fs::write(
+            &lock,
+            include_bytes!("../../../assets/locks/rpi-zero2w-boot-assets.lock.json"),
+        )
+        .unwrap();
+        assert!(boot_assets(&root).is_err());
+        assert!(repository_file(&root, "../outside").is_err());
+        assert!(repository_file(&root, "C:/outside").is_err());
+        let cache = root.join("out/research/m2-source-9b488bc7a1e9/boot-assets");
+        fs::create_dir_all(&cache).unwrap();
+        fs::write(cache.join("bootcode.bin"), b"corrupted cached firmware").unwrap();
+        assert!(boot_assets(&root).is_err());
+    }
     fn tiny_elf() -> Vec<u8> {
         let mut data = vec![0; 256];
         data[..7].copy_from_slice(b"\x7fELF\x02\x01\x01");

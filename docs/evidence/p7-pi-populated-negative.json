@@ -1,0 +1,9 @@
+{
+  "passed": true,
+  "rejected": [
+    "lock",
+    "variant",
+    "kernel-hash",
+    "inventory"
+  ]
+}

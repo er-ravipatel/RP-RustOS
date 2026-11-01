@@ -44,10 +44,6 @@ fn alias(name: &str, index: usize) -> [u8; 11] {
     result
 }
 
-#[cfg_attr(
-    not(test),
-    expect(dead_code, reason = "complete Pi image orchestration is pending")
-)]
 pub(crate) fn image(files: &BTreeMap<String, Vec<u8>>) -> Result<Vec<u8>, &'static str> {
     if files.is_empty() || files.len() > 32 {
         return Err("Image requires 1..32 root files");

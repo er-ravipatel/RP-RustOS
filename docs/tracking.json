@@ -1641,7 +1641,7 @@
       "milestone": "M2",
       "status": "in_progress",
       "exit_condition": "Strict profile/board selection, reviewed Pi entry/console implementation and recorded host/M1 regression results.",
-      "next_action": "Deterministic D17 FAT32 writer and separate engineering reader pass synthetic 64 MiB image checks, exact file extraction, eight corruption rejections and 43 regular Rust tests; M1 14 acceptance checks pass. Next bind locked boot assets and normal/panic flat kernels, expand real-inventory inspection and complete image publication. Physical testing not ready.",
+      "next_action": "Both populated engineering SD images pass separate FAT/content inspection using locked boot assets and per-variant kernel identities. 44 Rust and 14 M1 acceptance tests pass. Next source-package provenance, complete schema-2 bundle publication and production inspection; hardware handoff remains pending.",
       "evidence": [
         "docs/p7-console-preparation.md",
         "docs/evidence/p7-console-m1-regression.json",
@@ -1789,7 +1789,9 @@
         "docs/evidence/p7-pi-flat-contracts.json",
         "docs/evidence/p7-pi-flat-entry.json",
         "docs/p7-pi-fat-geometry.md",
-        "docs/evidence/p7-pi-fat-geometry.json"
+        "docs/evidence/p7-pi-fat-geometry.json",
+        "docs/p7-pi-populated-images.md",
+        "docs/evidence/p7-pi-populated-images.json"
       ]
     },
     {
@@ -1900,9 +1902,23 @@
       "summary": "Added this dashboard work log, summary validation and a persistent project instruction for every future code change.",
       "validation": "27 dashboard tests, tracking validation and JavaScript syntax check pass.",
       "next_action": "Next populate the Pi images with locked boot assets and kernels.",
-      "commit": null,
+      "commit": "0a9f53a",
       "evidence": [
         "docs/dashboard/README.md"
+      ]
+    },
+    {
+      "id": "work-populated-images",
+      "updated_at": "2026-11-01",
+      "title": "Populate Pi engineering images",
+      "summary": "Generated separate normal/panic 64 MiB engineering SD images from the exact D19 asset lock, six verified firmware/licence files, explicit boot settings and matching flat kernels.",
+      "validation": "44 regular Rust tests and offline image generation pass; independent filesystem/content inspection and four provenance mutations pass; exact-output entry/stack and 14 M1 acceptance checks pass.",
+      "next_action": "Finish source-package provenance, complete schema-2 bundle publication and production image inspection before the hardware handoff.",
+      "commit": null,
+      "evidence": [
+        "docs/p7-pi-populated-images.md",
+        "docs/evidence/p7-pi-populated-images.json",
+        "docs/evidence/p7-pi-populated-negative.json"
       ]
     }
   ]
