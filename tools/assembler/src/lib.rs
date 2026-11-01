@@ -2,6 +2,7 @@
 //! `inspect` never launches a subprocess or creates output files.
 use serde::{Deserialize, Serialize};
 mod pi_build;
+mod pi_image;
 mod target_profile;
 use sha2::{Digest, Sha256};
 use std::{

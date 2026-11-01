@@ -1,0 +1,23 @@
+{
+  "positive": {
+    "passed": true,
+    "files": {
+      "LICENCE.broadcom": "cff42ed2ceb7eec2e0adab497a1ddffef91b09a691e426491120489cff15d5ae",
+      "bcm2710-rpi-zero-2-w.dtb": "f8b1b4beb959d41c74d8ad6acd030916fed1cc634eaf29e26aa3e6841143cc11",
+      "config.txt": "25533c29b143d3c05173bf526719e8eaec169741370ab47087ab99cc38b9a08f",
+      "empty.txt": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    "allocated_clusters": 5,
+    "image_sha256": "2439591ba6cda34b85382f9421eac6b1d2650db1d2ce58119717e9689d1ddc3f"
+  },
+  "rejected_corruptions": [
+    "mbr-signature",
+    "partition-type",
+    "boot-backup",
+    "fsinfo-backup",
+    "fat-mirror",
+    "long-name-checksum",
+    "file-content",
+    "root-chain-cycle"
+  ]
+}

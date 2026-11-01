@@ -1641,7 +1641,7 @@
       "milestone": "M2",
       "status": "in_progress",
       "exit_condition": "Strict profile/board selection, reviewed Pi entry/console implementation and recorded host/M1 regression results.",
-      "next_action": "Internal compiler generates both flat kernels with bounded ELF conversion; independent byte reconstruction, exact-output layout/stack and ten entry/BSS cases pass. 41 regular Rust, five M1 CLI and nine M1 build tests pass. Next complete SD image packaging and independent inspection. No physical boot or public Pi bundle readiness claimed.",
+      "next_action": "Deterministic D17 FAT32 writer and separate engineering reader pass synthetic 64 MiB image checks, exact file extraction, eight corruption rejections and 43 regular Rust tests; M1 14 acceptance checks pass. Next bind locked boot assets and normal/panic flat kernels, expand real-inventory inspection and complete image publication. Physical testing not ready.",
       "evidence": [
         "docs/p7-console-preparation.md",
         "docs/evidence/p7-console-m1-regression.json",
@@ -1787,7 +1787,9 @@
         "docs/p7-pi-flat-kernels.md",
         "docs/evidence/p7-pi-flat-compiler.json",
         "docs/evidence/p7-pi-flat-contracts.json",
-        "docs/evidence/p7-pi-flat-entry.json"
+        "docs/evidence/p7-pi-flat-entry.json",
+        "docs/p7-pi-fat-geometry.md",
+        "docs/evidence/p7-pi-fat-geometry.json"
       ]
     },
     {
