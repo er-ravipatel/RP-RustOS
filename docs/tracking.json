@@ -1819,5 +1819,91 @@
         "docs/m2-plan.md"
       ]
     }
+  ],
+  "work_updates": [
+    {
+      "id": "work-source",
+      "updated_at": "2026-11-01",
+      "title": "Pi source selection",
+      "summary": "Mapped the Pi kernel to its actual BSP/kernel workspace and typed four-module input plan.",
+      "validation": "38 regular Rust tests and 14 M1 acceptance checks passed.",
+      "next_action": "Complete bundle backend stayed gated.",
+      "commit": "e3266b1",
+      "evidence": [
+        "docs/p7-pi-source-preparation.md"
+      ]
+    },
+    {
+      "id": "work-compiler",
+      "updated_at": "2026-11-01",
+      "title": "Offline Pi compilation",
+      "summary": "Added reusable isolated source snapshots and locked/offline normal/panic compilation with structured failures.",
+      "validation": "Both variants compiled; source hashes, local closure and rejection checks passed.",
+      "next_action": "Complete image publication remained pending.",
+      "commit": "e3266b1",
+      "evidence": [
+        "docs/p7-pi-compiler.md"
+      ]
+    },
+    {
+      "id": "work-contracts",
+      "updated_at": "2026-11-01",
+      "title": "Exact-output kernel contracts",
+      "summary": "Checked the compiled kernel memory layout, clock buffers and conservative stack bounds.",
+      "validation": "Both variants passed at 21440/65536 stack bytes; 20 altered ELF cases rejected.",
+      "next_action": "No physical firmware acceptance established.",
+      "commit": "e3266b1",
+      "evidence": [
+        "docs/p7-pi-artifact-contracts.md"
+      ]
+    },
+    {
+      "id": "work-entry",
+      "updated_at": "2026-11-01",
+      "title": "Exact-output entry verification",
+      "summary": "Bound emulator entry/BSS observations to the recorded normal/panic kernel hashes.",
+      "validation": "Ten entry/BSS cases and secondary-core parking passed.",
+      "next_action": "QEMU measured-clock service rejects at stage 4; physical UART acceptance remains pending.",
+      "commit": "0d5433b",
+      "evidence": [
+        "docs/p7-pi-compiler-entry.md"
+      ]
+    },
+    {
+      "id": "work-flat",
+      "updated_at": "2026-11-01",
+      "title": "Flat Pi kernels",
+      "summary": "Generated kernel8.img bytes from bounded ELF load segments and recorded hashes.",
+      "validation": "Independent byte reconstruction, 41 Rust tests and 14 M1 checks passed.",
+      "next_action": "Complete SD images still pending.",
+      "commit": "06fce95",
+      "evidence": [
+        "docs/p7-pi-flat-kernels.md"
+      ]
+    },
+    {
+      "id": "work-fat",
+      "updated_at": "2026-11-01",
+      "title": "Deterministic FAT32 packaging",
+      "summary": "Added the fixed 64 MiB image writer and separate root-file reader.",
+      "validation": "43 regular Rust tests, synthetic extraction, eight corruption cases and 14 M1 checks passed.",
+      "next_action": "Real locked firmware/kernel inventory and production publication remain pending.",
+      "commit": "22dfe67",
+      "evidence": [
+        "docs/p7-pi-fat-geometry.md"
+      ]
+    },
+    {
+      "id": "work-dashboard",
+      "updated_at": "2026-11-01",
+      "title": "Visible code-work summaries",
+      "summary": "Added this dashboard work log, summary validation and a persistent project instruction for every future code change.",
+      "validation": "27 dashboard tests, tracking validation and JavaScript syntax check pass.",
+      "next_action": "Next populate the Pi images with locked boot assets and kernels.",
+      "commit": null,
+      "evidence": [
+        "docs/dashboard/README.md"
+      ]
+    }
   ]
 }

@@ -1,5 +1,6 @@
 """Validate planning data without asserting that referenced work is complete."""
 import json
+import re
 from pathlib import Path
 from check import STAGES, STATES
 
@@ -22,6 +23,17 @@ def references(paths):
 
 def validate_tracking(data):
     require(data.get('schema_version') == 1 and data.get('updated_at'), 'Invalid schema/timestamp')
+    updates = data.get('work_updates', [])
+    require(isinstance(updates, list), 'Invalid work summaries')
+    seen_updates = set()
+    for record in updates:
+        require(isinstance(record, dict), 'Invalid code-work summary')
+        require(record.get('id') and record['id'] not in seen_updates, 'Missing/duplicate work-summary ID')
+        seen_updates.add(record['id'])
+        require(all(isinstance(record.get(key), str) and record[key].strip() for key in ('updated_at', 'title', 'summary', 'validation', 'next_action')), 'Incomplete code-work summary')
+        require('commit' in record and (record['commit'] is None or isinstance(record['commit'], str) and re.fullmatch('[a-f0-9]{7,40}', record['commit'])), 'Invalid work-summary commit')
+        references(record.get('evidence'))
+        require(record['evidence'], 'Work summary needs evidence')
     policy = data.get('work_policy', {})
     require(policy.get('max_active') == 2, 'Expected agreed two-item limit')
     require(policy.get('selected_milestone') in {m['id'] for m in data['milestones']}, 'Unknown selected milestone')

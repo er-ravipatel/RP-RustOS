@@ -11,6 +11,20 @@ class TrackingValidationTests(unittest.TestCase):
     def test_current_register(self):
         validate_tracking(self.data)
 
+    def test_work_summaries_reject_missing_validation_and_duplicate_ids(self):
+        self.data['work_updates'][0]['validation'] = ''
+        with self.assertRaises(ValueError):
+            validate_tracking(self.data)
+        self.setUp()
+        self.data['work_updates'].append(copy.deepcopy(self.data['work_updates'][0]))
+        with self.assertRaises(ValueError):
+            validate_tracking(self.data)
+
+    def test_work_summary_commit_cannot_be_an_arbitrary_url(self):
+        self.data['work_updates'][0]['commit'] = 'https://example.invalid/'
+        with self.assertRaises(ValueError):
+            validate_tracking(self.data)
+
     def test_completion_requires_evidence(self):
         stage = self.data['requirements'][0]['stages']['verification']
         stage.update(status='complete', evidence=[])

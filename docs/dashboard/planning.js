@@ -4,6 +4,9 @@ const runtimeStates=['not_run','running','passed','failed','cancelled','timed_ou
 const planningSections=['decisions','gaps','milestones','workflow','requirements','environment','runs'];
 function validateTracking(d){
   if(d.schema_version!==1||!d.updated_at)throw Error('Invalid planning register version/timestamp');
+  const updateIds=new Set();
+  if(!Array.isArray(d.work_updates||[]))throw Error('Invalid work summaries');
+  for(const r of d.work_updates||[]){if(!r.id||updateIds.has(r.id)||!r.updated_at||!r.title||!r.summary||!r.validation||!r.next_action||!Array.isArray(r.evidence)||!r.evidence.length||(r.commit!==null&&!/^[a-f0-9]{7,40}$/.test(r.commit)))throw Error('Invalid code-work summary');updateIds.add(r.id);for(const path of r.evidence)if(!/^docs\/[a-zA-Z0-9_./-]+\.(md|json|txt|log)$/.test(path)||path.includes('..'))throw Error('Invalid summary evidence');}
   if(d.work_policy?.max_active!==2||!Array.isArray(d.work_items)||!d.work_items.length)throw Error('Missing agreed work policy');
   const active=d.work_items.filter(i=>['in_progress','blocked'].includes(i.status));
   if(active.length>2||new Set(d.work_items.map(i=>i.id)).size!==d.work_items.length)throw Error('Invalid work queue or active limit exceeded');
@@ -35,6 +38,8 @@ function stateBadge(value){return el('span',value.replaceAll('_',' '),'badge '+v
 function evidenceCell(record){const box=el('div');refLinks(box,record.evidence);return box;}
 function renderPlanning(d){
  const root=document.querySelector('#planning');root.replaceChildren();
+ root.append(el('h2','Code work summaries'),el('p','Recorded changes, validation results and remaining work. Updated with each code change; refreshes every five seconds.'));
+ planningTable(root,['When / change','Summary','Validation','Next / limitations','Commit / evidence'],(d.work_updates||[]).slice().reverse(),r=>{const refs=evidenceCell(r);const a=el('a',r.commit||'Commit history');a.href=r.commit?'https://github.com/er-ravipatel/RP-RustOS/commit/'+r.commit:'https://github.com/er-ravipatel/RP-RustOS/commits/main/';refs.prepend(a,document.createTextNode(' '));return[r.updated_at+' · '+r.title,r.summary,r.validation,r.next_action,refs];});
  const active=d.work_items.filter(i=>['in_progress','blocked'].includes(i.status));
  root.append(el('h2','Delivery focus and active-work queue'),el('p','Selected milestone: '+d.work_policy.selected_milestone+' · active slots: '+active.length+'/2 (one primary, one optional research). Blocked items occupy a slot until returned to the backlog.'));
  planningTable(root,['Order / work item','Milestone / slot','Status','Exit condition','Next action'],d.work_items.slice().sort((a,b)=>a.order-b.order),r=>[r.order+' · '+r.title,r.milestone+' · '+r.kind,stateBadge(r.status),r.exit_condition,r.next_action]);

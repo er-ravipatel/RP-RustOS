@@ -43,3 +43,7 @@ Profile 0.1.1 includes the approved instruction-counting setting. New runs show 
 The [M1 acceptance record](../m1-acceptance.md) closes the scoped emulator milestone. Fault-injected cleanup observations are labelled `assembler-verify-fault-fixture`; incomplete reporting failures retain their own evidence links. Build diagnostics distinguish compilation/packaging passes, skipped packaging and verification not run. The broader subsystem rows and M2 hardware-image requirements remain separate from completed M1 feature rows.
 
 Windows uses an exclusive localhost listener. A second server on the same port must fail rather than returning requests from different importer versions. When refreshing a server, inspect all listeners and stop only processes confirmed to run this project's dashboard.
+
+## Code work summaries
+
+The dashboard begins with a visible code-work summary table from `work_updates` in the planning register. Every code change must record what changed, validation results, remaining work or limitations, and evidence links. Commit hashes link to GitHub; entries committed with their own record link to project history until an immutable hash is recorded. Summaries are explicit records, not automatic verification or live build telemetry. Both registers refresh every five seconds. This requirement is also recorded in the root project instructions.
