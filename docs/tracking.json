@@ -1641,7 +1641,7 @@
       "milestone": "M2",
       "status": "in_progress",
       "exit_condition": "Strict profile/board selection, reviewed Pi entry/console implementation and recorded host/M1 regression results.",
-      "next_action": "Exact compiler normal/panic ELFs pass ten entry/BSS cases and four-core observations; current QEMU measured-clock response rejects safely at stage 4 with no success token. Layout/stack already verified. Next flat kernel generation and complete image packaging; hardware UART acceptance and public Pi publication remain pending.",
+      "next_action": "Internal compiler generates both flat kernels with bounded ELF conversion; independent byte reconstruction, exact-output layout/stack and ten entry/BSS cases pass. 41 regular Rust, five M1 CLI and nine M1 build tests pass. Next complete SD image packaging and independent inspection. No physical boot or public Pi bundle readiness claimed.",
       "evidence": [
         "docs/p7-console-preparation.md",
         "docs/evidence/p7-console-m1-regression.json",
@@ -1783,7 +1783,11 @@
         "docs/evidence/p7-pi-artifact-contracts.json",
         "docs/evidence/p7-pi-artifact-negative.json",
         "docs/p7-pi-compiler-entry.md",
-        "docs/evidence/p7-pi-compiler-entry.json"
+        "docs/evidence/p7-pi-compiler-entry.json",
+        "docs/p7-pi-flat-kernels.md",
+        "docs/evidence/p7-pi-flat-compiler.json",
+        "docs/evidence/p7-pi-flat-contracts.json",
+        "docs/evidence/p7-pi-flat-entry.json"
       ]
     },
     {

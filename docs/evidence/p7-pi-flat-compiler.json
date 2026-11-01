@@ -1,0 +1,946 @@
+{
+  "complete_bundle_ready": false,
+  "kind": "pi-internal-compiler",
+  "plan": {
+    "complete_bundle_ready": false,
+    "manifest": "bsp/rpi-zero2w/kernel/Cargo.toml",
+    "module_sources": {
+      "bsp-rpi-zero2w": "bsp/rpi-zero2w",
+      "console-pl011": "drivers/console",
+      "hal": "hal",
+      "kernel": "bsp/rpi-zero2w/kernel"
+    },
+    "package": "rustos-pi-kernel",
+    "rust_target": "aarch64-unknown-none-softfloat",
+    "snapshot_roots": [
+      "bsp/rpi-zero2w",
+      "drivers/console",
+      "hal"
+    ],
+    "target": "rpi-zero2w-a53",
+    "variants": [
+      {
+        "cargo_features": [],
+        "id": "normal"
+      },
+      {
+        "cargo_features": [
+          "panic-test"
+        ],
+        "id": "panic-test"
+      }
+    ]
+  },
+  "sources": [
+    {
+      "path": "bsp/rpi-zero2w/Cargo.lock",
+      "sha256": "2055580533875a2605520d0715b1e03ca7f03b71d6a8f433d2de6734904a6499"
+    },
+    {
+      "path": "bsp/rpi-zero2w/Cargo.toml",
+      "sha256": "b3259807a2579f7a9bd90b95d26685a737c0afe4b13d631e83b82ab270397d62"
+    },
+    {
+      "path": "bsp/rpi-zero2w/examples/inspect_dtb.rs",
+      "sha256": "67c33bc06673dbd3d554753703a9ef7603466e38d393938d3de9800421059ba6"
+    },
+    {
+      "path": "bsp/rpi-zero2w/examples/inspect_memory.rs",
+      "sha256": "014dda69d2e6c7b35c4e7ef303a2139a86aac0522ca5a3c237b74a0dad6e3b4d"
+    },
+    {
+      "path": "bsp/rpi-zero2w/kernel/Cargo.lock",
+      "sha256": "1872820b8b97069ba71f375005167631f888c35ae2880aa7e9d89400a218afcd"
+    },
+    {
+      "path": "bsp/rpi-zero2w/kernel/Cargo.toml",
+      "sha256": "bad5f9176eb69317c4458bcdcfe230f427e9cc750839217d5858b1a6bb88621c"
+    },
+    {
+      "path": "bsp/rpi-zero2w/kernel/build.rs",
+      "sha256": "f9a2da01fc9b5ff164074345708d0fa2b58ebb3ceffcfed641a564a234154d65"
+    },
+    {
+      "path": "bsp/rpi-zero2w/kernel/link.ld",
+      "sha256": "2dc20a26876dfd75bb319a7ecf7e95eebdc93883b280e2065f84176519c665a3"
+    },
+    {
+      "path": "bsp/rpi-zero2w/kernel/src/entry/cpu-guards.S",
+      "sha256": "c8425caece621ab54686cc60f95c1eb52a4e9dfb5cf2a09983ec4616f29df401"
+    },
+    {
+      "path": "bsp/rpi-zero2w/kernel/src/entry/el1-transition.S",
+      "sha256": "d12a83121a1b16e887e894a4a030024304f9a0d2f31a145855d7ffe31de32917"
+    },
+    {
+      "path": "bsp/rpi-zero2w/kernel/src/entry/finish.S",
+      "sha256": "e0d5e56a698e05790683637221598a3df29487f8407cff95c787fe3279d06e61"
+    },
+    {
+      "path": "bsp/rpi-zero2w/kernel/src/entry/preflight.S",
+      "sha256": "f754711633c51e5f14d5dc45ec79757b3ad321c4cc6343c9babebef8faa9d579"
+    },
+    {
+      "path": "bsp/rpi-zero2w/kernel/src/entry.S",
+      "sha256": "af1d40267a496181433f5419a883953d664cf7e3494bdff8d851b947e85bef48"
+    },
+    {
+      "path": "bsp/rpi-zero2w/kernel/src/main.rs",
+      "sha256": "7216ae2a0fea4528061f2bce6d9a063b5345ccc0f6b2fdec29ad0ef2eb813cb0"
+    },
+    {
+      "path": "bsp/rpi-zero2w/src/board.rs",
+      "sha256": "f6c2ec89a9fe199f004b99dc48aab767a606350d4db858e382bc743cfe2cc692"
+    },
+    {
+      "path": "bsp/rpi-zero2w/src/boot_memory.rs",
+      "sha256": "c19a38b2d8b942a5761ff45d296866e9330a4f761ff52e8b0f8f6564641c610d"
+    },
+    {
+      "path": "bsp/rpi-zero2w/src/cma.rs",
+      "sha256": "3afcbe1c0f464bcf2b7078e670030ac3d35a0dd7f241ac4f5db5972a481530cd"
+    },
+    {
+      "path": "bsp/rpi-zero2w/src/entry_abi.rs",
+      "sha256": "676f67bbb4e8e1f9b71816a4458ec9587ba61d7cff10d87ca8bded23c710d4c7"
+    },
+    {
+      "path": "bsp/rpi-zero2w/src/lib.rs",
+      "sha256": "061526737885867f5c4897daa3dc1d3c72c00fc3a88921064ad1b09bbfb02960"
+    },
+    {
+      "path": "bsp/rpi-zero2w/src/mailbox.rs",
+      "sha256": "c47a4cd5deec2d1fb6290dc2da89a64fc49a4a00a9732c1d3e1da0c0f9047912"
+    },
+    {
+      "path": "bsp/rpi-zero2w/src/memory.rs",
+      "sha256": "6f7805574ae87b1ad51b49644c2784a916f6e03ceaabf7e7560d994cbdd6626d"
+    },
+    {
+      "path": "bsp/rpi-zero2w/src/structure.rs",
+      "sha256": "cce430f19bc4da46398d754ea277ff5b3c968ff28b25417b2977feb2884a0e82"
+    },
+    {
+      "path": "bsp/rpi-zero2w/src/uart_clock.rs",
+      "sha256": "429fd6411e38a9b851da2d949a67443bfda3b576d71d751d57b5ba1c4a6bb84e"
+    },
+    {
+      "path": "bsp/rpi-zero2w/src/uart_prepare.rs",
+      "sha256": "24650e3b690c6bdb90d097c628edda0e4ce6d3a682c08d5f055215043eb49da1"
+    },
+    {
+      "path": "drivers/console/Cargo.toml",
+      "sha256": "6b5c38618d4894c5092b56d9b6ba3f19e02056e12ea0566764036d70142b3b10"
+    },
+    {
+      "path": "drivers/console/src/lib.rs",
+      "sha256": "5d5def88d558fe4869fcf032eb59813ffb2bd0c523b8a6b09bb6932392df8737"
+    },
+    {
+      "path": "hal/Cargo.toml",
+      "sha256": "6d33ebd56c1ad822f2fdd94325ca3c28eaba7283bdb87f69212d3fe20b26e533"
+    },
+    {
+      "path": "hal/src/lib.rs",
+      "sha256": "ba643425f697d96526dd045d8f8bdfa3acbf93ff784824f5f66b620fd2c974cc"
+    }
+  ],
+  "tools": [
+    {
+      "executable": "C:\\Users\\Ravi\\.cargo\\bin\\cargo.exe",
+      "version": "cargo 1.88.0 (873a06493 2025-05-10)\nrelease: 1.88.0\ncommit-hash: 873a0649350c486caf67be772828a4f36bb4734c\ncommit-date: 2025-05-10\nhost: x86_64-pc-windows-msvc\nlibgit2: 1.9.0 (sys:0.20.0 vendored)\nlibcurl: 8.12.1-DEV (sys:0.4.80+curl-8.12.1 vendored ssl:Schannel)\nos: Windows 10.0.26300 (Windows 11 Professional) [64-bit]\n"
+    },
+    {
+      "executable": "C:\\Users\\Ravi\\.cargo\\bin\\rustc.exe",
+      "version": "rustc 1.88.0 (6b00bc388 2025-06-23)\nbinary: rustc\ncommit-hash: 6b00bc3880198600130e1cf62b8f8a93494488cc\ncommit-date: 2025-06-23\nhost: x86_64-pc-windows-msvc\nrelease: 1.88.0\nLLVM version: 20.1.5\n"
+    }
+  ],
+  "variants": [
+    {
+      "elf": "E:\\Work\\RustOS\\target\\pi-compiler-1793538692625731100\\normal\\target\\aarch64-unknown-none-softfloat\\release\\rustos-pi-kernel",
+      "features": [],
+      "flat_bytes": 35000,
+      "flat_kernel": "E:\\Work\\RustOS\\target\\pi-compiler-1793538692625731100\\normal\\kernel8.img",
+      "flat_sha256": "5ad0a1b55cd35ebe0bb9261de80eab770808ece0a01c969da07f900b5838727b",
+      "load_address": 2097152,
+      "metadata": {
+        "metadata": null,
+        "packages": [
+          {
+            "authors": [],
+            "categories": [],
+            "default_run": null,
+            "dependencies": [
+              {
+                "features": [],
+                "kind": null,
+                "name": "rustos-console",
+                "optional": false,
+                "path": "E:\\Work\\RustOS\\target\\pi-compiler-1793538692625731100\\source\\drivers\\console",
+                "registry": null,
+                "rename": null,
+                "req": "*",
+                "source": null,
+                "target": null,
+                "uses_default_features": true
+              }
+            ],
+            "description": null,
+            "documentation": null,
+            "edition": "2021",
+            "features": {},
+            "homepage": null,
+            "id": "path+file:///E:/Work/RustOS/target/pi-compiler-1793538692625731100/source/bsp/rpi-zero2w#rustos-bsp-rpi-zero2w@0.1.0",
+            "keywords": [],
+            "license": null,
+            "license_file": null,
+            "links": null,
+            "manifest_path": "E:\\Work\\RustOS\\target\\pi-compiler-1793538692625731100\\source\\bsp\\rpi-zero2w\\Cargo.toml",
+            "metadata": null,
+            "name": "rustos-bsp-rpi-zero2w",
+            "publish": [],
+            "readme": null,
+            "repository": null,
+            "rust_version": null,
+            "source": null,
+            "targets": [
+              {
+                "crate_types": [
+                  "lib"
+                ],
+                "doc": true,
+                "doctest": true,
+                "edition": "2021",
+                "kind": [
+                  "lib"
+                ],
+                "name": "rustos_bsp_rpi_zero2w",
+                "src_path": "E:\\Work\\RustOS\\target\\pi-compiler-1793538692625731100\\source\\bsp\\rpi-zero2w\\src\\lib.rs",
+                "test": true
+              },
+              {
+                "crate_types": [
+                  "bin"
+                ],
+                "doc": false,
+                "doctest": false,
+                "edition": "2021",
+                "kind": [
+                  "example"
+                ],
+                "name": "inspect_dtb",
+                "src_path": "E:\\Work\\RustOS\\target\\pi-compiler-1793538692625731100\\source\\bsp\\rpi-zero2w\\examples\\inspect_dtb.rs",
+                "test": false
+              },
+              {
+                "crate_types": [
+                  "bin"
+                ],
+                "doc": false,
+                "doctest": false,
+                "edition": "2021",
+                "kind": [
+                  "example"
+                ],
+                "name": "inspect_memory",
+                "src_path": "E:\\Work\\RustOS\\target\\pi-compiler-1793538692625731100\\source\\bsp\\rpi-zero2w\\examples\\inspect_memory.rs",
+                "test": false
+              }
+            ],
+            "version": "0.1.0"
+          },
+          {
+            "authors": [],
+            "categories": [],
+            "default_run": null,
+            "dependencies": [
+              {
+                "features": [],
+                "kind": null,
+                "name": "rustos-hal",
+                "optional": false,
+                "path": "E:\\Work\\RustOS\\target\\pi-compiler-1793538692625731100\\source\\hal",
+                "registry": null,
+                "rename": null,
+                "req": "*",
+                "source": null,
+                "target": null,
+                "uses_default_features": true
+              }
+            ],
+            "description": null,
+            "documentation": null,
+            "edition": "2021",
+            "features": {},
+            "homepage": null,
+            "id": "path+file:///E:/Work/RustOS/target/pi-compiler-1793538692625731100/source/drivers/console#rustos-console@0.1.0",
+            "keywords": [],
+            "license": null,
+            "license_file": null,
+            "links": null,
+            "manifest_path": "E:\\Work\\RustOS\\target\\pi-compiler-1793538692625731100\\source\\drivers\\console\\Cargo.toml",
+            "metadata": null,
+            "name": "rustos-console",
+            "publish": [],
+            "readme": null,
+            "repository": null,
+            "rust_version": null,
+            "source": null,
+            "targets": [
+              {
+                "crate_types": [
+                  "lib"
+                ],
+                "doc": true,
+                "doctest": true,
+                "edition": "2021",
+                "kind": [
+                  "lib"
+                ],
+                "name": "rustos_console",
+                "src_path": "E:\\Work\\RustOS\\target\\pi-compiler-1793538692625731100\\source\\drivers\\console\\src\\lib.rs",
+                "test": true
+              }
+            ],
+            "version": "0.1.0"
+          },
+          {
+            "authors": [],
+            "categories": [],
+            "default_run": null,
+            "dependencies": [],
+            "description": null,
+            "documentation": null,
+            "edition": "2021",
+            "features": {},
+            "homepage": null,
+            "id": "path+file:///E:/Work/RustOS/target/pi-compiler-1793538692625731100/source/hal#rustos-hal@0.1.0",
+            "keywords": [],
+            "license": null,
+            "license_file": null,
+            "links": null,
+            "manifest_path": "E:\\Work\\RustOS\\target\\pi-compiler-1793538692625731100\\source\\hal\\Cargo.toml",
+            "metadata": null,
+            "name": "rustos-hal",
+            "publish": [],
+            "readme": null,
+            "repository": null,
+            "rust_version": null,
+            "source": null,
+            "targets": [
+              {
+                "crate_types": [
+                  "lib"
+                ],
+                "doc": true,
+                "doctest": true,
+                "edition": "2021",
+                "kind": [
+                  "lib"
+                ],
+                "name": "rustos_hal",
+                "src_path": "E:\\Work\\RustOS\\target\\pi-compiler-1793538692625731100\\source\\hal\\src\\lib.rs",
+                "test": true
+              }
+            ],
+            "version": "0.1.0"
+          },
+          {
+            "authors": [],
+            "categories": [],
+            "default_run": null,
+            "dependencies": [
+              {
+                "features": [],
+                "kind": null,
+                "name": "rustos-bsp-rpi-zero2w",
+                "optional": false,
+                "path": "E:\\Work\\RustOS\\target\\pi-compiler-1793538692625731100\\source\\bsp\\rpi-zero2w",
+                "registry": null,
+                "rename": null,
+                "req": "*",
+                "source": null,
+                "target": null,
+                "uses_default_features": true
+              },
+              {
+                "features": [],
+                "kind": null,
+                "name": "rustos-console",
+                "optional": false,
+                "path": "E:\\Work\\RustOS\\target\\pi-compiler-1793538692625731100\\source\\drivers\\console",
+                "registry": null,
+                "rename": null,
+                "req": "*",
+                "source": null,
+                "target": null,
+                "uses_default_features": true
+              },
+              {
+                "features": [],
+                "kind": null,
+                "name": "rustos-hal",
+                "optional": false,
+                "path": "E:\\Work\\RustOS\\target\\pi-compiler-1793538692625731100\\source\\hal",
+                "registry": null,
+                "rename": null,
+                "req": "*",
+                "source": null,
+                "target": null,
+                "uses_default_features": true
+              }
+            ],
+            "description": null,
+            "documentation": null,
+            "edition": "2021",
+            "features": {
+              "entry-only": [],
+              "panic-test": []
+            },
+            "homepage": null,
+            "id": "path+file:///E:/Work/RustOS/target/pi-compiler-1793538692625731100/source/bsp/rpi-zero2w/kernel#rustos-pi-kernel@0.1.0",
+            "keywords": [],
+            "license": null,
+            "license_file": null,
+            "links": null,
+            "manifest_path": "E:\\Work\\RustOS\\target\\pi-compiler-1793538692625731100\\source\\bsp\\rpi-zero2w\\kernel\\Cargo.toml",
+            "metadata": null,
+            "name": "rustos-pi-kernel",
+            "publish": [],
+            "readme": null,
+            "repository": null,
+            "rust_version": null,
+            "source": null,
+            "targets": [
+              {
+                "crate_types": [
+                  "bin"
+                ],
+                "doc": true,
+                "doctest": false,
+                "edition": "2021",
+                "kind": [
+                  "bin"
+                ],
+                "name": "rustos-pi-kernel",
+                "src_path": "E:\\Work\\RustOS\\target\\pi-compiler-1793538692625731100\\source\\bsp\\rpi-zero2w\\kernel\\src\\main.rs",
+                "test": false
+              },
+              {
+                "crate_types": [
+                  "bin"
+                ],
+                "doc": false,
+                "doctest": false,
+                "edition": "2021",
+                "kind": [
+                  "custom-build"
+                ],
+                "name": "build-script-build",
+                "src_path": "E:\\Work\\RustOS\\target\\pi-compiler-1793538692625731100\\source\\bsp\\rpi-zero2w\\kernel\\build.rs",
+                "test": false
+              }
+            ],
+            "version": "0.1.0"
+          }
+        ],
+        "resolve": {
+          "nodes": [
+            {
+              "dependencies": [
+                "path+file:///E:/Work/RustOS/target/pi-compiler-1793538692625731100/source/drivers/console#rustos-console@0.1.0"
+              ],
+              "deps": [
+                {
+                  "dep_kinds": [
+                    {
+                      "kind": null,
+                      "target": null
+                    }
+                  ],
+                  "name": "rustos_console",
+                  "pkg": "path+file:///E:/Work/RustOS/target/pi-compiler-1793538692625731100/source/drivers/console#rustos-console@0.1.0"
+                }
+              ],
+              "features": [],
+              "id": "path+file:///E:/Work/RustOS/target/pi-compiler-1793538692625731100/source/bsp/rpi-zero2w#rustos-bsp-rpi-zero2w@0.1.0"
+            },
+            {
+              "dependencies": [
+                "path+file:///E:/Work/RustOS/target/pi-compiler-1793538692625731100/source/hal#rustos-hal@0.1.0"
+              ],
+              "deps": [
+                {
+                  "dep_kinds": [
+                    {
+                      "kind": null,
+                      "target": null
+                    }
+                  ],
+                  "name": "rustos_hal",
+                  "pkg": "path+file:///E:/Work/RustOS/target/pi-compiler-1793538692625731100/source/hal#rustos-hal@0.1.0"
+                }
+              ],
+              "features": [],
+              "id": "path+file:///E:/Work/RustOS/target/pi-compiler-1793538692625731100/source/drivers/console#rustos-console@0.1.0"
+            },
+            {
+              "dependencies": [],
+              "deps": [],
+              "features": [],
+              "id": "path+file:///E:/Work/RustOS/target/pi-compiler-1793538692625731100/source/hal#rustos-hal@0.1.0"
+            },
+            {
+              "dependencies": [
+                "path+file:///E:/Work/RustOS/target/pi-compiler-1793538692625731100/source/bsp/rpi-zero2w#rustos-bsp-rpi-zero2w@0.1.0",
+                "path+file:///E:/Work/RustOS/target/pi-compiler-1793538692625731100/source/drivers/console#rustos-console@0.1.0",
+                "path+file:///E:/Work/RustOS/target/pi-compiler-1793538692625731100/source/hal#rustos-hal@0.1.0"
+              ],
+              "deps": [
+                {
+                  "dep_kinds": [
+                    {
+                      "kind": null,
+                      "target": null
+                    }
+                  ],
+                  "name": "rustos_bsp_rpi_zero2w",
+                  "pkg": "path+file:///E:/Work/RustOS/target/pi-compiler-1793538692625731100/source/bsp/rpi-zero2w#rustos-bsp-rpi-zero2w@0.1.0"
+                },
+                {
+                  "dep_kinds": [
+                    {
+                      "kind": null,
+                      "target": null
+                    }
+                  ],
+                  "name": "rustos_console",
+                  "pkg": "path+file:///E:/Work/RustOS/target/pi-compiler-1793538692625731100/source/drivers/console#rustos-console@0.1.0"
+                },
+                {
+                  "dep_kinds": [
+                    {
+                      "kind": null,
+                      "target": null
+                    }
+                  ],
+                  "name": "rustos_hal",
+                  "pkg": "path+file:///E:/Work/RustOS/target/pi-compiler-1793538692625731100/source/hal#rustos-hal@0.1.0"
+                }
+              ],
+              "features": [],
+              "id": "path+file:///E:/Work/RustOS/target/pi-compiler-1793538692625731100/source/bsp/rpi-zero2w/kernel#rustos-pi-kernel@0.1.0"
+            }
+          ],
+          "root": "path+file:///E:/Work/RustOS/target/pi-compiler-1793538692625731100/source/bsp/rpi-zero2w/kernel#rustos-pi-kernel@0.1.0"
+        },
+        "target_directory": "E:\\Work\\RustOS\\target\\pi-compiler-1793538692625731100\\source\\bsp\\rpi-zero2w\\kernel\\target",
+        "version": 1,
+        "workspace_default_members": [
+          "path+file:///E:/Work/RustOS/target/pi-compiler-1793538692625731100/source/bsp/rpi-zero2w/kernel#rustos-pi-kernel@0.1.0"
+        ],
+        "workspace_members": [
+          "path+file:///E:/Work/RustOS/target/pi-compiler-1793538692625731100/source/bsp/rpi-zero2w/kernel#rustos-pi-kernel@0.1.0"
+        ],
+        "workspace_root": "E:\\Work\\RustOS\\target\\pi-compiler-1793538692625731100\\source\\bsp\\rpi-zero2w\\kernel"
+      },
+      "sha256": "e29d0258ae82723c37b01adf6bd7f1a9a3b07499eb7324057e87964fdb128d7c",
+      "variant": "normal"
+    },
+    {
+      "elf": "E:\\Work\\RustOS\\target\\pi-compiler-1793538692625731100\\panic-test\\target\\aarch64-unknown-none-softfloat\\release\\rustos-pi-kernel",
+      "features": [
+        "panic-test"
+      ],
+      "flat_bytes": 35128,
+      "flat_kernel": "E:\\Work\\RustOS\\target\\pi-compiler-1793538692625731100\\panic-test\\kernel8.img",
+      "flat_sha256": "5fa5bf41f24c43f66f247b5798e3103e5cbedd296b672e3e3477d16c8a1451f9",
+      "load_address": 2097152,
+      "metadata": {
+        "metadata": null,
+        "packages": [
+          {
+            "authors": [],
+            "categories": [],
+            "default_run": null,
+            "dependencies": [
+              {
+                "features": [],
+                "kind": null,
+                "name": "rustos-console",
+                "optional": false,
+                "path": "E:\\Work\\RustOS\\target\\pi-compiler-1793538692625731100\\source\\drivers\\console",
+                "registry": null,
+                "rename": null,
+                "req": "*",
+                "source": null,
+                "target": null,
+                "uses_default_features": true
+              }
+            ],
+            "description": null,
+            "documentation": null,
+            "edition": "2021",
+            "features": {},
+            "homepage": null,
+            "id": "path+file:///E:/Work/RustOS/target/pi-compiler-1793538692625731100/source/bsp/rpi-zero2w#rustos-bsp-rpi-zero2w@0.1.0",
+            "keywords": [],
+            "license": null,
+            "license_file": null,
+            "links": null,
+            "manifest_path": "E:\\Work\\RustOS\\target\\pi-compiler-1793538692625731100\\source\\bsp\\rpi-zero2w\\Cargo.toml",
+            "metadata": null,
+            "name": "rustos-bsp-rpi-zero2w",
+            "publish": [],
+            "readme": null,
+            "repository": null,
+            "rust_version": null,
+            "source": null,
+            "targets": [
+              {
+                "crate_types": [
+                  "lib"
+                ],
+                "doc": true,
+                "doctest": true,
+                "edition": "2021",
+                "kind": [
+                  "lib"
+                ],
+                "name": "rustos_bsp_rpi_zero2w",
+                "src_path": "E:\\Work\\RustOS\\target\\pi-compiler-1793538692625731100\\source\\bsp\\rpi-zero2w\\src\\lib.rs",
+                "test": true
+              },
+              {
+                "crate_types": [
+                  "bin"
+                ],
+                "doc": false,
+                "doctest": false,
+                "edition": "2021",
+                "kind": [
+                  "example"
+                ],
+                "name": "inspect_dtb",
+                "src_path": "E:\\Work\\RustOS\\target\\pi-compiler-1793538692625731100\\source\\bsp\\rpi-zero2w\\examples\\inspect_dtb.rs",
+                "test": false
+              },
+              {
+                "crate_types": [
+                  "bin"
+                ],
+                "doc": false,
+                "doctest": false,
+                "edition": "2021",
+                "kind": [
+                  "example"
+                ],
+                "name": "inspect_memory",
+                "src_path": "E:\\Work\\RustOS\\target\\pi-compiler-1793538692625731100\\source\\bsp\\rpi-zero2w\\examples\\inspect_memory.rs",
+                "test": false
+              }
+            ],
+            "version": "0.1.0"
+          },
+          {
+            "authors": [],
+            "categories": [],
+            "default_run": null,
+            "dependencies": [
+              {
+                "features": [],
+                "kind": null,
+                "name": "rustos-hal",
+                "optional": false,
+                "path": "E:\\Work\\RustOS\\target\\pi-compiler-1793538692625731100\\source\\hal",
+                "registry": null,
+                "rename": null,
+                "req": "*",
+                "source": null,
+                "target": null,
+                "uses_default_features": true
+              }
+            ],
+            "description": null,
+            "documentation": null,
+            "edition": "2021",
+            "features": {},
+            "homepage": null,
+            "id": "path+file:///E:/Work/RustOS/target/pi-compiler-1793538692625731100/source/drivers/console#rustos-console@0.1.0",
+            "keywords": [],
+            "license": null,
+            "license_file": null,
+            "links": null,
+            "manifest_path": "E:\\Work\\RustOS\\target\\pi-compiler-1793538692625731100\\source\\drivers\\console\\Cargo.toml",
+            "metadata": null,
+            "name": "rustos-console",
+            "publish": [],
+            "readme": null,
+            "repository": null,
+            "rust_version": null,
+            "source": null,
+            "targets": [
+              {
+                "crate_types": [
+                  "lib"
+                ],
+                "doc": true,
+                "doctest": true,
+                "edition": "2021",
+                "kind": [
+                  "lib"
+                ],
+                "name": "rustos_console",
+                "src_path": "E:\\Work\\RustOS\\target\\pi-compiler-1793538692625731100\\source\\drivers\\console\\src\\lib.rs",
+                "test": true
+              }
+            ],
+            "version": "0.1.0"
+          },
+          {
+            "authors": [],
+            "categories": [],
+            "default_run": null,
+            "dependencies": [],
+            "description": null,
+            "documentation": null,
+            "edition": "2021",
+            "features": {},
+            "homepage": null,
+            "id": "path+file:///E:/Work/RustOS/target/pi-compiler-1793538692625731100/source/hal#rustos-hal@0.1.0",
+            "keywords": [],
+            "license": null,
+            "license_file": null,
+            "links": null,
+            "manifest_path": "E:\\Work\\RustOS\\target\\pi-compiler-1793538692625731100\\source\\hal\\Cargo.toml",
+            "metadata": null,
+            "name": "rustos-hal",
+            "publish": [],
+            "readme": null,
+            "repository": null,
+            "rust_version": null,
+            "source": null,
+            "targets": [
+              {
+                "crate_types": [
+                  "lib"
+                ],
+                "doc": true,
+                "doctest": true,
+                "edition": "2021",
+                "kind": [
+                  "lib"
+                ],
+                "name": "rustos_hal",
+                "src_path": "E:\\Work\\RustOS\\target\\pi-compiler-1793538692625731100\\source\\hal\\src\\lib.rs",
+                "test": true
+              }
+            ],
+            "version": "0.1.0"
+          },
+          {
+            "authors": [],
+            "categories": [],
+            "default_run": null,
+            "dependencies": [
+              {
+                "features": [],
+                "kind": null,
+                "name": "rustos-bsp-rpi-zero2w",
+                "optional": false,
+                "path": "E:\\Work\\RustOS\\target\\pi-compiler-1793538692625731100\\source\\bsp\\rpi-zero2w",
+                "registry": null,
+                "rename": null,
+                "req": "*",
+                "source": null,
+                "target": null,
+                "uses_default_features": true
+              },
+              {
+                "features": [],
+                "kind": null,
+                "name": "rustos-console",
+                "optional": false,
+                "path": "E:\\Work\\RustOS\\target\\pi-compiler-1793538692625731100\\source\\drivers\\console",
+                "registry": null,
+                "rename": null,
+                "req": "*",
+                "source": null,
+                "target": null,
+                "uses_default_features": true
+              },
+              {
+                "features": [],
+                "kind": null,
+                "name": "rustos-hal",
+                "optional": false,
+                "path": "E:\\Work\\RustOS\\target\\pi-compiler-1793538692625731100\\source\\hal",
+                "registry": null,
+                "rename": null,
+                "req": "*",
+                "source": null,
+                "target": null,
+                "uses_default_features": true
+              }
+            ],
+            "description": null,
+            "documentation": null,
+            "edition": "2021",
+            "features": {
+              "entry-only": [],
+              "panic-test": []
+            },
+            "homepage": null,
+            "id": "path+file:///E:/Work/RustOS/target/pi-compiler-1793538692625731100/source/bsp/rpi-zero2w/kernel#rustos-pi-kernel@0.1.0",
+            "keywords": [],
+            "license": null,
+            "license_file": null,
+            "links": null,
+            "manifest_path": "E:\\Work\\RustOS\\target\\pi-compiler-1793538692625731100\\source\\bsp\\rpi-zero2w\\kernel\\Cargo.toml",
+            "metadata": null,
+            "name": "rustos-pi-kernel",
+            "publish": [],
+            "readme": null,
+            "repository": null,
+            "rust_version": null,
+            "source": null,
+            "targets": [
+              {
+                "crate_types": [
+                  "bin"
+                ],
+                "doc": true,
+                "doctest": false,
+                "edition": "2021",
+                "kind": [
+                  "bin"
+                ],
+                "name": "rustos-pi-kernel",
+                "src_path": "E:\\Work\\RustOS\\target\\pi-compiler-1793538692625731100\\source\\bsp\\rpi-zero2w\\kernel\\src\\main.rs",
+                "test": false
+              },
+              {
+                "crate_types": [
+                  "bin"
+                ],
+                "doc": false,
+                "doctest": false,
+                "edition": "2021",
+                "kind": [
+                  "custom-build"
+                ],
+                "name": "build-script-build",
+                "src_path": "E:\\Work\\RustOS\\target\\pi-compiler-1793538692625731100\\source\\bsp\\rpi-zero2w\\kernel\\build.rs",
+                "test": false
+              }
+            ],
+            "version": "0.1.0"
+          }
+        ],
+        "resolve": {
+          "nodes": [
+            {
+              "dependencies": [
+                "path+file:///E:/Work/RustOS/target/pi-compiler-1793538692625731100/source/drivers/console#rustos-console@0.1.0"
+              ],
+              "deps": [
+                {
+                  "dep_kinds": [
+                    {
+                      "kind": null,
+                      "target": null
+                    }
+                  ],
+                  "name": "rustos_console",
+                  "pkg": "path+file:///E:/Work/RustOS/target/pi-compiler-1793538692625731100/source/drivers/console#rustos-console@0.1.0"
+                }
+              ],
+              "features": [],
+              "id": "path+file:///E:/Work/RustOS/target/pi-compiler-1793538692625731100/source/bsp/rpi-zero2w#rustos-bsp-rpi-zero2w@0.1.0"
+            },
+            {
+              "dependencies": [
+                "path+file:///E:/Work/RustOS/target/pi-compiler-1793538692625731100/source/hal#rustos-hal@0.1.0"
+              ],
+              "deps": [
+                {
+                  "dep_kinds": [
+                    {
+                      "kind": null,
+                      "target": null
+                    }
+                  ],
+                  "name": "rustos_hal",
+                  "pkg": "path+file:///E:/Work/RustOS/target/pi-compiler-1793538692625731100/source/hal#rustos-hal@0.1.0"
+                }
+              ],
+              "features": [],
+              "id": "path+file:///E:/Work/RustOS/target/pi-compiler-1793538692625731100/source/drivers/console#rustos-console@0.1.0"
+            },
+            {
+              "dependencies": [],
+              "deps": [],
+              "features": [],
+              "id": "path+file:///E:/Work/RustOS/target/pi-compiler-1793538692625731100/source/hal#rustos-hal@0.1.0"
+            },
+            {
+              "dependencies": [
+                "path+file:///E:/Work/RustOS/target/pi-compiler-1793538692625731100/source/bsp/rpi-zero2w#rustos-bsp-rpi-zero2w@0.1.0",
+                "path+file:///E:/Work/RustOS/target/pi-compiler-1793538692625731100/source/drivers/console#rustos-console@0.1.0",
+                "path+file:///E:/Work/RustOS/target/pi-compiler-1793538692625731100/source/hal#rustos-hal@0.1.0"
+              ],
+              "deps": [
+                {
+                  "dep_kinds": [
+                    {
+                      "kind": null,
+                      "target": null
+                    }
+                  ],
+                  "name": "rustos_bsp_rpi_zero2w",
+                  "pkg": "path+file:///E:/Work/RustOS/target/pi-compiler-1793538692625731100/source/bsp/rpi-zero2w#rustos-bsp-rpi-zero2w@0.1.0"
+                },
+                {
+                  "dep_kinds": [
+                    {
+                      "kind": null,
+                      "target": null
+                    }
+                  ],
+                  "name": "rustos_console",
+                  "pkg": "path+file:///E:/Work/RustOS/target/pi-compiler-1793538692625731100/source/drivers/console#rustos-console@0.1.0"
+                },
+                {
+                  "dep_kinds": [
+                    {
+                      "kind": null,
+                      "target": null
+                    }
+                  ],
+                  "name": "rustos_hal",
+                  "pkg": "path+file:///E:/Work/RustOS/target/pi-compiler-1793538692625731100/source/hal#rustos-hal@0.1.0"
+                }
+              ],
+              "features": [
+                "panic-test"
+              ],
+              "id": "path+file:///E:/Work/RustOS/target/pi-compiler-1793538692625731100/source/bsp/rpi-zero2w/kernel#rustos-pi-kernel@0.1.0"
+            }
+          ],
+          "root": "path+file:///E:/Work/RustOS/target/pi-compiler-1793538692625731100/source/bsp/rpi-zero2w/kernel#rustos-pi-kernel@0.1.0"
+        },
+        "target_directory": "E:\\Work\\RustOS\\target\\pi-compiler-1793538692625731100\\source\\bsp\\rpi-zero2w\\kernel\\target",
+        "version": 1,
+        "workspace_default_members": [
+          "path+file:///E:/Work/RustOS/target/pi-compiler-1793538692625731100/source/bsp/rpi-zero2w/kernel#rustos-pi-kernel@0.1.0"
+        ],
+        "workspace_members": [
+          "path+file:///E:/Work/RustOS/target/pi-compiler-1793538692625731100/source/bsp/rpi-zero2w/kernel#rustos-pi-kernel@0.1.0"
+        ],
+        "workspace_root": "E:\\Work\\RustOS\\target\\pi-compiler-1793538692625731100\\source\\bsp\\rpi-zero2w\\kernel"
+      },
+      "sha256": "73546ff31dc0888ea02cd33a7d0a64721d7a6170d1bc522ef306f510d6eecb86",
+      "variant": "panic-test"
+    }
+  ]
+}

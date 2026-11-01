@@ -10,6 +10,105 @@ fn invalid(message: &str) -> Failure {
     Failure::new("PI_BUILD_CONTRACT", message, 3)
 }
 
+fn field<const N: usize>(data: &[u8], offset: usize) -> BuildResult<[u8; N]> {
+    data.get(
+        offset
+            ..offset
+                .checked_add(N)
+                .ok_or_else(|| invalid("ELF offset overflow"))?,
+    )
+    .and_then(|bytes| bytes.try_into().ok())
+    .ok_or_else(|| invalid("Truncated ELF field"))
+}
+
+// Firmware loads initialized bytes at 2 MiB. Memory-only segment tails remain
+// runtime BSS; holes between initialized ranges are deterministic zero bytes.
+fn flat_kernel(data: &[u8]) -> BuildResult<Vec<u8>> {
+    let u16_at = |offset| field(data, offset).map(u16::from_le_bytes);
+    let u32_at = |offset| field(data, offset).map(u32::from_le_bytes);
+    let u64_at = |offset| field(data, offset).map(u64::from_le_bytes);
+    if data.get(..7) != Some(b"\x7fELF\x02\x01\x01")
+        || u16_at(16)? != 2
+        || u16_at(18)? != 183
+        || u32_at(20)? != 1
+        || u64_at(24)? != 0x200000
+        || u16_at(52)? != 64
+        || u16_at(54)? != 56
+    {
+        return Err(invalid(
+            "Flat conversion requires the approved AArch64 ELF entry",
+        ));
+    }
+    let phoff = usize::try_from(u64_at(32)?).map_err(|_| invalid("ELF header offset too large"))?;
+    let count = usize::from(u16_at(56)?);
+    if count == 0
+        || count > 32
+        || phoff
+            .checked_add(count * 56)
+            .is_none_or(|end| end > data.len())
+    {
+        return Err(invalid("Invalid ELF program header table"));
+    }
+    let mut segments = Vec::new();
+    let mut entry_executable = false;
+    let mut extent = 0;
+    for i in 0..count {
+        let p = phoff + i * 56;
+        if u32_at(p)? != 1 {
+            continue;
+        }
+        let flags = u32_at(p + 4)?;
+        let offset = u64_at(p + 8)?;
+        let va = u64_at(p + 16)?;
+        let pa = u64_at(p + 24)?;
+        let filesz = u64_at(p + 32)?;
+        let memsz = u64_at(p + 40)?;
+        let align = u64_at(p + 48)?;
+        let end = va
+            .checked_add(memsz)
+            .ok_or_else(|| invalid("ELF memory range overflow"))?;
+        let file_end = offset
+            .checked_add(filesz)
+            .ok_or_else(|| invalid("ELF file range overflow"))?;
+        if memsz == 0
+            || filesz > memsz
+            || file_end > data.len() as u64
+            || va != pa
+            || va < 0x200000
+            || end > 0x3f0000
+            || flags & !7 != 0
+            || flags & 3 == 3
+            || (align > 1 && (!align.is_power_of_two() || va % align != offset % align))
+        {
+            return Err(invalid("ELF load segment violates the Pi memory contract"));
+        }
+        if segments
+            .iter()
+            .any(|&(start, stop, _, _)| va < stop && start < end)
+        {
+            return Err(invalid("ELF load segments overlap"));
+        }
+        entry_executable |= va == 0x200000 && filesz >= 4 && flags & 1 != 0;
+        if filesz > 0 {
+            extent = extent.max(va + filesz - 0x200000);
+        }
+        segments.push((va, end, offset, filesz));
+    }
+    if !entry_executable || extent == 0 {
+        return Err(invalid("Missing first executable instruction"));
+    }
+    let mut flat = vec![0; extent as usize];
+    for (va, _, offset, size) in segments {
+        if size == 0 {
+            continue;
+        }
+        let start = (va - 0x200000) as usize;
+        flat[start..start + size as usize]
+            .copy_from_slice(&data[offset as usize..(offset + size) as usize]);
+    }
+    Ok(flat)
+}
+
 fn validate_closure(metadata: &Value, snapshot: &Path) -> BuildResult<()> {
     let expected: BTreeSet<_> = [
         "rustos-pi-kernel",
@@ -167,10 +266,10 @@ impl PiKernelPlan {
                 .join("release")
                 .join(self.package);
             let bytes = build::checked_file(&elf)?;
-            if bytes.get(..4) != Some(b"\x7fELF") {
-                return Err(invalid("Pi compiler did not produce an ELF"));
-            }
-            records.push(json!({"variant":variant.id,"features":variant.cargo_features,"elf":elf,"sha256":build::hash(&bytes),"metadata":metadata}));
+            let flat = flat_kernel(&bytes)?;
+            let flat_path = logs.join("kernel8.img");
+            build::write_new(&flat_path, &flat)?;
+            records.push(json!({"variant":variant.id,"features":variant.cargo_features,"elf":elf,"sha256":build::hash(&bytes),"flat_kernel":flat_path,"flat_sha256":build::hash(&flat),"flat_bytes":flat.len(),"load_address":0x200000,"metadata":metadata}));
         }
         for source in &sources {
             if build::hash(&build::checked_file(&snapshot.join(&source.path))?) != source.sha256 {
@@ -256,6 +355,68 @@ impl PiKernelPlan {
 #[cfg(test)]
 mod tests {
     use super::*;
+    fn tiny_elf() -> Vec<u8> {
+        let mut data = vec![0; 256];
+        data[..7].copy_from_slice(b"\x7fELF\x02\x01\x01");
+        for (offset, value) in [(16, 2u16), (18, 183), (52, 64), (54, 56), (56, 2)] {
+            data[offset..offset + 2].copy_from_slice(&value.to_le_bytes());
+        }
+        data[20..24].copy_from_slice(&1u32.to_le_bytes());
+        for (offset, value) in [(24, 0x200000u64), (32, 64)] {
+            data[offset..offset + 8].copy_from_slice(&value.to_le_bytes());
+        }
+        for (p, flags, file, addr, size, memory) in [
+            (64, 5u32, 224u64, 0x200000u64, 4u64, 8u64),
+            (120, 6, 240, 0x200010, 4, 32),
+        ] {
+            data[p..p + 4].copy_from_slice(&1u32.to_le_bytes());
+            data[p + 4..p + 8].copy_from_slice(&flags.to_le_bytes());
+            for (delta, value) in [
+                (8, file),
+                (16, addr),
+                (24, addr),
+                (32, size),
+                (40, memory),
+                (48, 1),
+            ] {
+                data[p + delta..p + delta + 8].copy_from_slice(&value.to_le_bytes());
+            }
+        }
+        data[224..228].copy_from_slice(&[1, 2, 3, 4]);
+        data[240..244].copy_from_slice(&[5, 6, 7, 8]);
+        data
+    }
+    #[test]
+    fn flat_conversion_copies_initialized_ranges_and_zeroes_gaps() {
+        let flat = flat_kernel(&tiny_elf()).unwrap_or_else(|e| panic!("{:?}", e.diagnostic));
+        assert_eq!(flat.len(), 20);
+        assert_eq!(&flat[..4], &[1, 2, 3, 4]);
+        assert_eq!(&flat[4..16], &[0; 12]);
+        assert_eq!(&flat[16..], &[5, 6, 7, 8]);
+    }
+    #[test]
+    fn flat_conversion_rejects_invalid_ranges_and_entry() {
+        for (offset, value) in [
+            (24, 0x200004u64),
+            (32, u64::MAX),
+            (64 + 16, 0x1fffff),
+            (64 + 24, 0x210000),
+            (64 + 32, 1000),
+            (64 + 40, u64::MAX),
+            (120 + 16, 0x200004),
+        ] {
+            let mut data = tiny_elf();
+            data[offset..offset + 8].copy_from_slice(&value.to_le_bytes());
+            assert!(flat_kernel(&data).is_err(), "accepted mutation at {offset}");
+        }
+        let original = tiny_elf();
+        for length in 0..176 {
+            assert!(flat_kernel(&original[..length]).is_err());
+        }
+        let mut data = tiny_elf();
+        data[68..72].copy_from_slice(&7u32.to_le_bytes());
+        assert!(flat_kernel(&data).is_err());
+    }
     #[test]
     fn cargo_closure_rejects_malformed_duplicate_remote_and_escaping_packages() {
         let root = Path::new(env!("CARGO_MANIFEST_DIR"));

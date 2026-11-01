@@ -63,10 +63,28 @@ def check(report_path):
         if digest != variant['sha256']:
             raise ValueError('Compiled artifact hash changed')
         memory = layout(data)
+        flat_check = None
+        if 'flat_kernel' in variant:
+            # Reconstruct independently from ELF headers; do not trust converter
+            # hashes or reported length as the expected byte content.
+            header = struct.unpack_from('<16sHHIQQQIHHHHHH', data)
+            initialized = []
+            for i in range(header[10]):
+                p = struct.unpack_from('<IIQQQQQQ', data, header[5]+i*56)
+                if p[0] == 1 and p[5]:
+                    initialized.append((p[3]-0x200000, data[p[2]:p[2]+p[5]]))
+            expected = bytearray(max(start+len(chunk) for start,chunk in initialized))
+            for start,chunk in initialized:
+                expected[start:start+len(chunk)] = chunk
+            flat = Path(variant['flat_kernel']).read_bytes()
+            flat_hash = hashlib.sha256(flat).hexdigest()
+            if flat != expected or flat_hash != variant['flat_sha256'] or len(flat) != variant['flat_bytes'] or variant['load_address'] != 0x200000:
+                raise ValueError('Flat kernel differs from initialized ELF ranges')
+            flat_check = {'passed':True,'sha256':flat_hash,'bytes':len(flat),'load_address':0x200000}
         stack = audit(elf, include_console=True)
         if not stack['passed'] or stack['elf_sha256'] != digest:
             raise ValueError('Stack audit rejected artifact')
-        results.append({'variant':variant['variant'], 'sha256':digest, 'layout':memory, 'stack':stack})
+        results.append({'variant':variant['variant'], 'sha256':digest, 'layout':memory, 'flat_kernel':flat_check, 'stack':stack})
     return {'passed':True, 'compiler_report':str(report_path), 'compiler_report_sha256':hashlib.sha256(report_path.read_bytes()).hexdigest(), 'variants':results, 'limits':'Exact linked ELF layout and conservative stack analysis only; not physical firmware or full entry-behavior acceptance.'}
 
 
