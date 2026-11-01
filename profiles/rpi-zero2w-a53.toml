@@ -1,0 +1,21 @@
+# Approved M2 metadata baseline. Runtime backend is not implemented yet.
+schema_version = 2
+id = "rpi-zero2w-a53"
+version = "0.1.0"
+architecture = "aarch64"
+rust_target = "aarch64-unknown-none-softfloat"
+base_modules = ["kernel", "bsp-rpi-zero2w"]
+supported_features = ["serial-console", "boot-diagnostics"]
+
+[target]
+kind = "raspberry-pi-zero2w"
+boot_contract = "zero2w-el2-to-el1-v1"
+load_address = 2097152
+reserved_end = 4194304
+active_cores = 1
+packaging_recipe = "zero2w-mbr-fat32-v1"
+verification_methods = ["image", "hardware"]
+
+[target.firmware_lock]
+path = "assets/locks/rpi-zero2w-boot-assets.lock.json"
+sha256 = "537d7d3b991369db5ec4bb3475ddf37b41dd2217b56b53e44d69c163b356e850"

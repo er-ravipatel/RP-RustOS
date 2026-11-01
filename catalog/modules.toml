@@ -1,0 +1,62 @@
+# Planned modules; versions describe metadata, not delivered releases.
+schema_version = 1
+
+[[modules]]
+id = "hal"
+version = "0.1.0"
+kind = "hal"
+source_dir = "hal"
+architectures = ["aarch64"]
+targets = ["qemu-virt-a53", "rpi-zero2w-a53"]
+requires = []
+conflicts = []
+
+[[modules]]
+id = "bsp-qemu-virt"
+version = "0.1.0"
+kind = "bsp"
+source_dir = "bsp/qemu-virt"
+architectures = ["aarch64"]
+targets = ["qemu-virt-a53"]
+requires = ["hal"]
+conflicts = []
+
+[[modules]]
+id = "console-pl011"
+version = "0.1.0"
+kind = "driver"
+source_dir = "drivers/console"
+architectures = ["aarch64"]
+targets = ["qemu-virt-a53", "rpi-zero2w-a53"]
+requires = ["hal"]
+conflicts = []
+
+[[modules]]
+id = "kernel"
+version = "0.1.0"
+kind = "kernel"
+source_dir = "core/kernel"
+source_overrides = { rpi-zero2w-a53 = "bsp/rpi-zero2w/kernel" }
+architectures = ["aarch64"]
+targets = ["qemu-virt-a53", "rpi-zero2w-a53"]
+requires = ["hal", "console-pl011"]
+conflicts = []
+
+[[features]]
+id = "serial-console"
+requires = ["console-pl011"]
+
+[[features]]
+id = "boot-diagnostics"
+requires = ["kernel", "console-pl011"]
+
+# Pi source mapping exists; complete assembler backend readiness remains pending.
+[[modules]]
+id = "bsp-rpi-zero2w"
+version = "0.1.0"
+kind = "bsp"
+source_dir = "bsp/rpi-zero2w"
+architectures = ["aarch64"]
+targets = ["rpi-zero2w-a53"]
+requires = ["hal", "console-pl011"]
+conflicts = ["bsp-qemu-virt"]

@@ -1,0 +1,117 @@
+{
+  "schema_version": 2,
+  "id": "rpi-zero2w-boot-assets",
+  "repository": "https://github.com/raspberrypi/firmware",
+  "commit": "f2491b71ed49880cc8285e41e03f81b163c6cd59",
+  "cache_root": "out/research/m2-source-9b488bc7a1e9",
+  "assets": [
+    {
+      "id": "bootcode-bin",
+      "path": "bootcode.bin",
+      "sha256": "beb5da60b58f6ef334a92801cbf033c08314fae081761e2fdc904d1a7ef457cc",
+      "size_bytes": 52624,
+      "url": "https://raw.githubusercontent.com/raspberrypi/firmware/f2491b71ed49880cc8285e41e03f81b163c6cd59/boot/bootcode.bin",
+      "role": "firmware",
+      "license_ids": [
+        "firmware-notice"
+      ],
+      "source_package_id": null
+    },
+    {
+      "id": "start-elf",
+      "path": "start.elf",
+      "sha256": "dbab350306e64a59cbe529f48a97d950baebd54c5f6c7808c8367eb3a7aa1d0a",
+      "size_bytes": 3024544,
+      "url": "https://raw.githubusercontent.com/raspberrypi/firmware/f2491b71ed49880cc8285e41e03f81b163c6cd59/boot/start.elf",
+      "role": "firmware",
+      "license_ids": [
+        "firmware-notice"
+      ],
+      "source_package_id": null
+    },
+    {
+      "id": "fixup-dat",
+      "path": "fixup.dat",
+      "sha256": "4d9f13d0090dce21e12b8ba179218f5c214e1d7a324182e345cb10d491f50b8e",
+      "size_bytes": 7376,
+      "url": "https://raw.githubusercontent.com/raspberrypi/firmware/f2491b71ed49880cc8285e41e03f81b163c6cd59/boot/fixup.dat",
+      "role": "firmware",
+      "license_ids": [
+        "firmware-notice"
+      ],
+      "source_package_id": null
+    },
+    {
+      "id": "zero2w-dtb",
+      "path": "bcm2710-rpi-zero-2-w.dtb",
+      "sha256": "5b31bc70011e454f482ba323b1eca22bf54fa2fa4682576ee73816a2eccfa277",
+      "size_bytes": 33724,
+      "url": "https://raw.githubusercontent.com/raspberrypi/firmware/f2491b71ed49880cc8285e41e03f81b163c6cd59/boot/bcm2710-rpi-zero-2-w.dtb",
+      "role": "device-tree",
+      "license_ids": [
+        "linux-notice"
+      ],
+      "source_package_id": "linux-dtb"
+    },
+    {
+      "id": "firmware-notice",
+      "path": "LICENCE.broadcom",
+      "sha256": "c7283ff51f863d93a275c66e3b4cb08021a5dd4d8c1e7acc47d872fbe52d3d6b",
+      "size_bytes": 1594,
+      "url": "https://raw.githubusercontent.com/raspberrypi/firmware/f2491b71ed49880cc8285e41e03f81b163c6cd59/boot/LICENCE.broadcom",
+      "role": "license",
+      "license_ids": [],
+      "source_package_id": null
+    },
+    {
+      "id": "linux-notice",
+      "path": "COPYING.linux",
+      "sha256": "af8067302947c01fd9eee72befa54c7e3ef8a48fecde7fd71277f2290b2bf0f7",
+      "size_bytes": 18693,
+      "url": "https://raw.githubusercontent.com/raspberrypi/firmware/f2491b71ed49880cc8285e41e03f81b163c6cd59/boot/COPYING.linux",
+      "role": "license",
+      "license_ids": [],
+      "source_package_id": null
+    }
+  ],
+  "source_packages": [
+    {
+      "id": "linux-dtb",
+      "repository": "https://github.com/raspberrypi/linux",
+      "commit": "9b488bc7a1e9b61713082f3e6c4361988d62f77b",
+      "url": "https://codeload.github.com/raspberrypi/linux/tar.gz/9b488bc7a1e9b61713082f3e6c4361988d62f77b",
+      "archive": {
+        "path": "out/research/m2-source-9b488bc7a1e9/linux-9b488bc7a1e9b61713082f3e6c4361988d62f77b.tar.gz",
+        "sha256": "01eb0496c85b79c7a1c018241b09b63893259975672a2a12b9c44cf33ab26cb7",
+        "size_bytes": 257653039
+      },
+      "build_materials": [
+        {
+          "path": "tools/dtb-repro/Dockerfile",
+          "sha256": "82bbfde4ba135554f8c2e8be114a93977c369d3358741d86d544b051897141d6",
+          "size_bytes": 400
+        },
+        {
+          "path": "tools/dtb-repro/run.sh",
+          "sha256": "03594723bc6a1a00c4154726533bb596632963ea0124b3da32c42b0a9e7043c7",
+          "size_bytes": 980
+        },
+        {
+          "path": "tools/dtb-repro/run.py",
+          "sha256": "1163a360727d28082fc1df1e18cb05883679ead9cd1bc22244a94664bb55d1cf",
+          "size_bytes": 2570
+        },
+        {
+          "path": "out/research/m2-source-9b488bc7a1e9/README.md",
+          "sha256": "02f82c63c9564e8f52d54f126e5dcb7d51a08d0bc7cc85514c513a6cefa608bd",
+          "size_bytes": 3084
+        }
+      ],
+      "reproduction_evidence": {
+        "path": "docs/evidence/m2-dtb-reproduction.json",
+        "sha256": "42b91c5a978486cab94162c9891ea26e4e2f3353464f4f2020e9707481ce68f8",
+        "size_bytes": 4678
+      }
+    }
+  ]
+}

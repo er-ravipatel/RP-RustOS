@@ -1,0 +1,5 @@
+# Pi metadata inspection only until its resolver/build backend is implemented.
+schema_version = 1
+target = "rpi-zero2w-a53"
+features = ["serial-console", "boot-diagnostics"]
+output_dir = "out/m2-zero2w"

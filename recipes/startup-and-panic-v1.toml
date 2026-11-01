@@ -1,0 +1,11 @@
+# Approved policy metadata; P3 inspects it but cannot execute this recipe.
+schema_version = 1
+id = "startup-and-panic-v1"
+version = "0.1.0"
+startup_marker = "RUSTOS_BOOT_OK"
+panic_marker = "RUSTOS_EXPECTED_PANIC"
+deadline_ms = 10000
+stop_budget_ms = 5000
+kill_budget_ms = 5000
+max_line_bytes = 4096
+max_stream_bytes = 1048576

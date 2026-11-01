@@ -1,0 +1,5 @@
+# M1 emulator assembly. Output is relative to this file and is never overwritten.
+schema_version = 1
+target = "qemu-virt-a53"
+features = ["serial-console", "boot-diagnostics"]
+output_dir = "out/m1"
