@@ -1,0 +1,328 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "M2 profile and firmware-lock design contracts",
+  "$comment": "Definition container; use validate() for cross-record checks. Not runtime support.",
+  "$defs": {
+    "profile": {
+      "type": "object",
+      "properties": {
+        "schema_version": {
+          "const": 2,
+          "type": "integer"
+        },
+        "id": {
+          "const": "rpi-zero2w-a53",
+          "type": "string"
+        },
+        "version": {
+          "const": "0.1.0",
+          "type": "string"
+        },
+        "architecture": {
+          "const": "aarch64",
+          "type": "string"
+        },
+        "rust_target": {
+          "const": "aarch64-unknown-none-softfloat",
+          "type": "string"
+        },
+        "base_modules": {
+          "const": [
+            "kernel",
+            "bsp-rpi-zero2w"
+          ],
+          "type": "array"
+        },
+        "supported_features": {
+          "const": [
+            "serial-console",
+            "boot-diagnostics"
+          ],
+          "type": "array"
+        },
+        "target": {
+          "type": "object",
+          "properties": {
+            "kind": {
+              "const": "raspberry-pi-zero2w",
+              "type": "string"
+            },
+            "boot_contract": {
+              "const": "zero2w-el2-to-el1-v1",
+              "type": "string"
+            },
+            "load_address": {
+              "const": 2097152,
+              "type": "integer"
+            },
+            "reserved_end": {
+              "const": 4194304,
+              "type": "integer"
+            },
+            "active_cores": {
+              "const": 1,
+              "type": "integer"
+            },
+            "firmware_lock": {
+              "type": "object",
+              "properties": {
+                "path": {
+                  "type": "string",
+                  "pattern": "^[a-zA-Z0-9_-]+(?:[./][a-zA-Z0-9_-]+)*$"
+                },
+                "sha256": {
+                  "type": "string",
+                  "pattern": "^[0-9a-f]{64}$"
+                }
+              },
+              "required": [
+                "path",
+                "sha256"
+              ],
+              "additionalProperties": false
+            },
+            "packaging_recipe": {
+              "const": "zero2w-mbr-fat32-v1",
+              "type": "string"
+            },
+            "verification_methods": {
+              "const": [
+                "image",
+                "hardware"
+              ],
+              "type": "array"
+            }
+          },
+          "required": [
+            "kind",
+            "boot_contract",
+            "load_address",
+            "reserved_end",
+            "active_cores",
+            "firmware_lock",
+            "packaging_recipe",
+            "verification_methods"
+          ],
+          "additionalProperties": false
+        }
+      },
+      "required": [
+        "schema_version",
+        "id",
+        "version",
+        "architecture",
+        "rust_target",
+        "base_modules",
+        "supported_features",
+        "target"
+      ],
+      "additionalProperties": false
+    },
+    "firmware_lock": {
+      "type": "object",
+      "properties": {
+        "schema_version": {
+          "const": 2,
+          "type": "integer"
+        },
+        "id": {
+          "const": "rpi-zero2w-boot-assets",
+          "type": "string"
+        },
+        "repository": {
+          "const": "https://github.com/raspberrypi/firmware",
+          "type": "string"
+        },
+        "commit": {
+          "type": "string",
+          "pattern": "^[0-9a-f]{40}$"
+        },
+        "cache_root": {
+          "type": "string",
+          "pattern": "^[a-zA-Z0-9_-]+(?:[./][a-zA-Z0-9_-]+)*$"
+        },
+        "assets": {
+          "type": "array",
+          "minItems": 5,
+          "maxItems": 64,
+          "items": {
+            "type": "object",
+            "properties": {
+              "id": {
+                "type": "string",
+                "minLength": 1
+              },
+              "path": {
+                "type": "string",
+                "pattern": "^[a-zA-Z0-9_-]+(?:[./][a-zA-Z0-9_-]+)*$"
+              },
+              "size_bytes": {
+                "type": "integer",
+                "minimum": 1
+              },
+              "sha256": {
+                "type": "string",
+                "pattern": "^[0-9a-f]{64}$"
+              },
+              "role": {
+                "enum": [
+                  "firmware",
+                  "device-tree",
+                  "license"
+                ]
+              },
+              "url": {
+                "type": "string",
+                "pattern": "^https://raw\\.githubusercontent\\.com/raspberrypi/firmware/[0-9a-f]{40}/boot/[A-Za-z0-9_./-]+$"
+              },
+              "license_ids": {
+                "type": "array",
+                "items": {
+                  "type": "string",
+                  "minLength": 1
+                },
+                "uniqueItems": true
+              },
+              "source_package_id": {
+                "type": [
+                  "string",
+                  "null"
+                ]
+              }
+            },
+            "required": [
+              "id",
+              "path",
+              "size_bytes",
+              "sha256",
+              "role",
+              "url",
+              "license_ids",
+              "source_package_id"
+            ],
+            "additionalProperties": false
+          }
+        },
+        "source_packages": {
+          "type": "array",
+          "minItems": 1,
+          "maxItems": 8,
+          "items": {
+            "type": "object",
+            "properties": {
+              "id": {
+                "type": "string",
+                "minLength": 1
+              },
+              "repository": {
+                "const": "https://github.com/raspberrypi/linux",
+                "type": "string"
+              },
+              "commit": {
+                "type": "string",
+                "pattern": "^[0-9a-f]{40}$"
+              },
+              "url": {
+                "type": "string",
+                "pattern": "^https://codeload.github.com/raspberrypi/linux/tar.gz/[0-9a-f]{40}$"
+              },
+              "archive": {
+                "type": "object",
+                "properties": {
+                  "path": {
+                    "type": "string",
+                    "pattern": "^[a-zA-Z0-9_-]+(?:[./][a-zA-Z0-9_-]+)*$"
+                  },
+                  "sha256": {
+                    "type": "string",
+                    "pattern": "^[0-9a-f]{64}$"
+                  },
+                  "size_bytes": {
+                    "type": "integer",
+                    "minimum": 1
+                  }
+                },
+                "required": [
+                  "path",
+                  "sha256",
+                  "size_bytes"
+                ],
+                "additionalProperties": false
+              },
+              "build_materials": {
+                "type": "array",
+                "minItems": 1,
+                "items": {
+                  "type": "object",
+                  "properties": {
+                    "path": {
+                      "type": "string",
+                      "pattern": "^[a-zA-Z0-9_-]+(?:[./][a-zA-Z0-9_-]+)*$"
+                    },
+                    "sha256": {
+                      "type": "string",
+                      "pattern": "^[0-9a-f]{64}$"
+                    },
+                    "size_bytes": {
+                      "type": "integer",
+                      "minimum": 1
+                    }
+                  },
+                  "required": [
+                    "path",
+                    "sha256",
+                    "size_bytes"
+                  ],
+                  "additionalProperties": false
+                }
+              },
+              "reproduction_evidence": {
+                "type": "object",
+                "properties": {
+                  "path": {
+                    "type": "string",
+                    "pattern": "^[a-zA-Z0-9_-]+(?:[./][a-zA-Z0-9_-]+)*$"
+                  },
+                  "sha256": {
+                    "type": "string",
+                    "pattern": "^[0-9a-f]{64}$"
+                  },
+                  "size_bytes": {
+                    "type": "integer",
+                    "minimum": 1
+                  }
+                },
+                "required": [
+                  "path",
+                  "sha256",
+                  "size_bytes"
+                ],
+                "additionalProperties": false
+              }
+            },
+            "required": [
+              "id",
+              "repository",
+              "commit",
+              "url",
+              "archive",
+              "build_materials",
+              "reproduction_evidence"
+            ],
+            "additionalProperties": false
+          }
+        }
+      },
+      "required": [
+        "schema_version",
+        "id",
+        "repository",
+        "commit",
+        "cache_root",
+        "assets",
+        "source_packages"
+      ],
+      "additionalProperties": false
+    }
+  }
+}

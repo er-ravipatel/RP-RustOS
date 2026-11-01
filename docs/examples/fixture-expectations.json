@@ -1,0 +1,83 @@
+{
+  "status": "P3 host-inspector fixture cases executed; expected results verified in tools/test_assembler_cli.py",
+  "profile": "qemu-virt-a53.toml",
+  "catalog": "modules.toml",
+  "cases": [
+    {
+      "id": "valid-minimal",
+      "config": "m1.toml",
+      "expected_modules": [
+        "hal",
+        "bsp-qemu-virt",
+        "console-pl011",
+        "kernel"
+      ],
+      "expected_build_ready": false,
+      "compile_invoked": false
+    },
+    {
+      "id": "malformed",
+      "config": "invalid/malformed.toml",
+      "expected_error": "CONFIG_PARSE",
+      "compile_invoked": false
+    },
+    {
+      "id": "unknown-key",
+      "config": "invalid/unknown-key.toml",
+      "expected_error": "CONFIG_UNKNOWN_FIELD",
+      "compile_invoked": false
+    },
+    {
+      "id": "schema-version",
+      "config": "invalid/schema-version.toml",
+      "expected_error": "CONFIG_SCHEMA_VERSION",
+      "compile_invoked": false
+    },
+    {
+      "id": "unknown-target",
+      "config": "invalid/unknown-target.toml",
+      "expected_error": "TARGET_UNKNOWN",
+      "compile_invoked": false
+    },
+    {
+      "id": "unsupported-feature",
+      "config": "invalid/unsupported-feature.toml",
+      "expected_error": "FEATURE_UNSUPPORTED",
+      "compile_invoked": false
+    },
+    {
+      "id": "unsafe-output",
+      "config": "invalid/unsafe-output.toml",
+      "expected_error": "OUTPUT_UNSAFE",
+      "compile_invoked": false
+    },
+    {
+      "id": "missing-module",
+      "config": "m1.toml",
+      "catalog_mutation": "Remove hal module from disposable catalog",
+      "expected_error": "MODULE_UNKNOWN",
+      "compile_invoked": false
+    },
+    {
+      "id": "dependency-cycle",
+      "config": "m1.toml",
+      "catalog_mutation": "Add kernel to hal.requires in disposable catalog",
+      "expected_error": "DEPENDENCY_CYCLE",
+      "compile_invoked": false
+    },
+    {
+      "id": "selected-conflict",
+      "config": "m1.toml",
+      "catalog_mutation": "Add kernel to console-pl011.conflicts in disposable catalog",
+      "expected_error": "MODULE_CONFLICT",
+      "compile_invoked": false
+    },
+    {
+      "id": "architecture-mismatch",
+      "config": "m1.toml",
+      "catalog_mutation": "Set console-pl011.architectures to [x86_64] in disposable catalog",
+      "expected_error": "MODULE_INCOMPATIBLE",
+      "compile_invoked": false
+    }
+  ]
+}

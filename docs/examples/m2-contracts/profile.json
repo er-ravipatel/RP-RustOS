@@ -1,0 +1,31 @@
+{
+  "schema_version": 2,
+  "id": "rpi-zero2w-a53",
+  "version": "0.1.0",
+  "architecture": "aarch64",
+  "rust_target": "aarch64-unknown-none-softfloat",
+  "base_modules": [
+    "kernel",
+    "bsp-rpi-zero2w"
+  ],
+  "supported_features": [
+    "serial-console",
+    "boot-diagnostics"
+  ],
+  "target": {
+    "kind": "raspberry-pi-zero2w",
+    "boot_contract": "zero2w-el2-to-el1-v1",
+    "load_address": 2097152,
+    "reserved_end": 4194304,
+    "active_cores": 1,
+    "firmware_lock": {
+      "path": "docs/examples/m2-contracts/firmware-lock.json",
+      "sha256": "7d4e761e35acc5cdabe3727c2cc65c1895cab2132087ef65e04a02d8947d86f6"
+    },
+    "packaging_recipe": "zero2w-mbr-fat32-v1",
+    "verification_methods": [
+      "image",
+      "hardware"
+    ]
+  }
+}

@@ -1,0 +1,4 @@
+schema_version = 2
+target = "qemu-virt-a53"
+features = ["serial-console"]
+output_dir = "out/m1"

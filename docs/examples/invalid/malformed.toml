@@ -1,0 +1,4 @@
+# Deliberately invalid TOML: unclosed array.
+schema_version = 1
+target = "qemu-virt-a53"
+features = ["serial-console"

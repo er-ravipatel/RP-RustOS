@@ -1,0 +1,909 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "M2 output design contracts; not runtime support",
+  "$defs": {
+    "manifest": {
+      "type": "object",
+      "properties": {
+        "schema_version": {
+          "type": "integer",
+          "const": 2
+        },
+        "bundle_id": {
+          "type": "string",
+          "minLength": 1
+        },
+        "created_at": {
+          "type": "string",
+          "format": "date-time",
+          "pattern": "(Z|\\+00:00)$"
+        },
+        "complete": {
+          "type": "boolean",
+          "const": true
+        },
+        "target": {
+          "type": "object",
+          "properties": {
+            "id": {
+              "const": "rpi-zero2w-a53"
+            },
+            "kind": {
+              "const": "raspberry-pi-zero2w"
+            },
+            "version": {
+              "const": "0.1.0"
+            },
+            "architecture": {
+              "const": "aarch64"
+            },
+            "rust_target": {
+              "const": "aarch64-unknown-none-softfloat"
+            }
+          },
+          "required": [
+            "id",
+            "kind",
+            "version",
+            "architecture",
+            "rust_target"
+          ],
+          "additionalProperties": false
+        },
+        "requested_features": {
+          "const": [
+            "serial-console",
+            "boot-diagnostics"
+          ]
+        },
+        "resolved_modules": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "properties": {
+              "id": {
+                "type": "string",
+                "minLength": 1
+              },
+              "version": {
+                "type": "string",
+                "minLength": 1
+              }
+            },
+            "required": [
+              "id",
+              "version"
+            ],
+            "additionalProperties": false
+          },
+          "minItems": 1,
+          "maxItems": 4096
+        },
+        "inputs": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "properties": {
+              "path": {
+                "type": "string",
+                "pattern": "^[A-Za-z0-9_-]+(?:[./][A-Za-z0-9_-]+)*$"
+              },
+              "sha256": {
+                "type": "string",
+                "pattern": "^[a-f0-9]{64}$"
+              },
+              "size_bytes": {
+                "type": "integer",
+                "minimum": 1
+              }
+            },
+            "required": [
+              "path",
+              "sha256",
+              "size_bytes"
+            ],
+            "additionalProperties": false
+          },
+          "minItems": 1,
+          "maxItems": 4096
+        },
+        "tools": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "properties": {
+              "id": {
+                "type": "string",
+                "minLength": 1
+              },
+              "version": {
+                "type": "string",
+                "minLength": 1
+              }
+            },
+            "required": [
+              "id",
+              "version"
+            ],
+            "additionalProperties": false
+          },
+          "minItems": 1,
+          "maxItems": 4096
+        },
+        "firmware_lock_sha256": {
+          "type": "string",
+          "pattern": "^[a-f0-9]{64}$"
+        },
+        "packaging_recipe": {
+          "type": "object",
+          "properties": {
+            "id": {
+              "type": "string",
+              "minLength": 1
+            },
+            "version": {
+              "type": "string",
+              "minLength": 1
+            },
+            "sha256": {
+              "type": "string",
+              "pattern": "^[a-f0-9]{64}$"
+            }
+          },
+          "required": [
+            "id",
+            "version",
+            "sha256"
+          ],
+          "additionalProperties": false
+        },
+        "verification_recipes": {
+          "type": "object",
+          "properties": {
+            "image": {
+              "type": "object",
+              "properties": {
+                "id": {
+                  "type": "string",
+                  "minLength": 1
+                },
+                "version": {
+                  "type": "string",
+                  "minLength": 1
+                },
+                "sha256": {
+                  "type": "string",
+                  "pattern": "^[a-f0-9]{64}$"
+                }
+              },
+              "required": [
+                "id",
+                "version",
+                "sha256"
+              ],
+              "additionalProperties": false
+            },
+            "hardware": {
+              "type": "object",
+              "properties": {
+                "id": {
+                  "type": "string",
+                  "minLength": 1
+                },
+                "version": {
+                  "type": "string",
+                  "minLength": 1
+                },
+                "sha256": {
+                  "type": "string",
+                  "pattern": "^[a-f0-9]{64}$"
+                }
+              },
+              "required": [
+                "id",
+                "version",
+                "sha256"
+              ],
+              "additionalProperties": false
+            }
+          },
+          "required": [
+            "image",
+            "hardware"
+          ],
+          "additionalProperties": false
+        },
+        "artifacts": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "properties": {
+              "path": {
+                "type": "string",
+                "pattern": "^[A-Za-z0-9_-]+(?:[./][A-Za-z0-9_-]+)*$"
+              },
+              "sha256": {
+                "type": "string",
+                "pattern": "^[a-f0-9]{64}$"
+              },
+              "size_bytes": {
+                "type": "integer",
+                "minimum": 1
+              },
+              "id": {
+                "type": "string",
+                "minLength": 1
+              },
+              "variant": {
+                "enum": [
+                  "normal",
+                  "panic-test"
+                ]
+              },
+              "role": {
+                "enum": [
+                  "elf",
+                  "flat-kernel",
+                  "sd-image"
+                ]
+              },
+              "derived_from": {
+                "type": "array",
+                "items": {
+                  "type": "string",
+                  "minLength": 1
+                },
+                "minItems": 0,
+                "maxItems": 1
+              },
+              "contents": {
+                "type": "array",
+                "items": {
+                  "type": "object",
+                  "properties": {
+                    "path": {
+                      "type": "string",
+                      "pattern": "^[A-Za-z0-9_-]+(?:[./][A-Za-z0-9_-]+)*$"
+                    },
+                    "sha256": {
+                      "type": "string",
+                      "pattern": "^[a-f0-9]{64}$"
+                    },
+                    "size_bytes": {
+                      "type": "integer",
+                      "minimum": 1
+                    },
+                    "origin": {
+                      "enum": [
+                        "generated",
+                        "kernel",
+                        "locked-asset"
+                      ]
+                    },
+                    "origin_id": {
+                      "type": "string",
+                      "minLength": 1
+                    }
+                  },
+                  "required": [
+                    "path",
+                    "sha256",
+                    "size_bytes",
+                    "origin",
+                    "origin_id"
+                  ],
+                  "additionalProperties": false
+                },
+                "minItems": 0,
+                "maxItems": 64
+              }
+            },
+            "required": [
+              "path",
+              "sha256",
+              "size_bytes",
+              "id",
+              "variant",
+              "role",
+              "derived_from",
+              "contents"
+            ],
+            "additionalProperties": false
+          },
+          "minItems": 6,
+          "maxItems": 6
+        }
+      },
+      "required": [
+        "schema_version",
+        "bundle_id",
+        "created_at",
+        "complete",
+        "target",
+        "requested_features",
+        "resolved_modules",
+        "inputs",
+        "tools",
+        "firmware_lock_sha256",
+        "packaging_recipe",
+        "verification_recipes",
+        "artifacts"
+      ],
+      "additionalProperties": false
+    },
+    "image_report": {
+      "type": "object",
+      "properties": {
+        "schema_version": {
+          "type": "integer",
+          "const": 2
+        },
+        "operation": {
+          "const": "verify"
+        },
+        "run_id": {
+          "type": "string",
+          "minLength": 1
+        },
+        "complete": {
+          "type": "boolean",
+          "const": true
+        },
+        "target": {
+          "const": "rpi-zero2w-a53"
+        },
+        "manifest_sha256": {
+          "type": "string",
+          "pattern": "^[a-f0-9]{64}$"
+        },
+        "recipe": {
+          "type": "object",
+          "properties": {
+            "id": {
+              "type": "string",
+              "minLength": 1
+            },
+            "version": {
+              "type": "string",
+              "minLength": 1
+            },
+            "sha256": {
+              "type": "string",
+              "pattern": "^[a-f0-9]{64}$"
+            }
+          },
+          "required": [
+            "id",
+            "version",
+            "sha256"
+          ],
+          "additionalProperties": false
+        },
+        "started_at": {
+          "type": "string",
+          "format": "date-time",
+          "pattern": "(Z|\\+00:00)$"
+        },
+        "finished_at": {
+          "type": "string",
+          "format": "date-time",
+          "pattern": "(Z|\\+00:00)$"
+        },
+        "status": {
+          "enum": [
+            "passed",
+            "failed",
+            "timed_out",
+            "cancelled"
+          ]
+        },
+        "diagnostics": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "properties": {
+              "severity": {
+                "enum": [
+                  "info",
+                  "warning",
+                  "error"
+                ]
+              },
+              "code": {
+                "type": "string",
+                "minLength": 1
+              },
+              "message": {
+                "type": "string",
+                "minLength": 1
+              }
+            },
+            "required": [
+              "severity",
+              "code",
+              "message"
+            ],
+            "additionalProperties": false
+          },
+          "minItems": 0,
+          "maxItems": 4096
+        },
+        "cleanup": {
+          "type": "object",
+          "properties": {
+            "serial_closed": {
+              "type": "boolean"
+            },
+            "helpers_settled": {
+              "type": "boolean"
+            }
+          },
+          "required": [
+            "serial_closed",
+            "helpers_settled"
+          ],
+          "additionalProperties": false
+        },
+        "evidence": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "properties": {
+              "path": {
+                "type": "string",
+                "pattern": "^[A-Za-z0-9_-]+(?:[./][A-Za-z0-9_-]+)*$"
+              },
+              "sha256": {
+                "type": "string",
+                "pattern": "^[a-f0-9]{64}$"
+              },
+              "size_bytes": {
+                "type": "integer",
+                "minimum": 0
+              }
+            },
+            "required": [
+              "path",
+              "sha256",
+              "size_bytes"
+            ],
+            "additionalProperties": false
+          },
+          "minItems": 1,
+          "maxItems": 4096
+        },
+        "method": {
+          "const": "image"
+        },
+        "verification_scope": {
+          "const": "image"
+        },
+        "payload": {
+          "type": "object",
+          "properties": {
+            "inspector": {
+              "type": "object",
+              "properties": {
+                "id": {
+                  "type": "string",
+                  "minLength": 1
+                },
+                "version": {
+                  "type": "string",
+                  "minLength": 1
+                }
+              },
+              "required": [
+                "id",
+                "version"
+              ],
+              "additionalProperties": false
+            },
+            "images": {
+              "type": "array",
+              "items": {
+                "type": "object",
+                "properties": {
+                  "artifact_id": {
+                    "type": "string",
+                    "minLength": 1
+                  },
+                  "artifact_sha256": {
+                    "type": "string",
+                    "pattern": "^[a-f0-9]{64}$"
+                  },
+                  "status": {
+                    "enum": [
+                      "passed",
+                      "failed",
+                      "skipped"
+                    ]
+                  },
+                  "checks": {
+                    "type": "array",
+                    "items": {
+                      "type": "object",
+                      "properties": {
+                        "id": {
+                          "enum": [
+                            "geometry",
+                            "allocation",
+                            "directory",
+                            "content-hashes"
+                          ]
+                        },
+                        "status": {
+                          "enum": [
+                            "passed",
+                            "failed",
+                            "skipped"
+                          ]
+                        }
+                      },
+                      "required": [
+                        "id",
+                        "status"
+                      ],
+                      "additionalProperties": false
+                    },
+                    "minItems": 4,
+                    "maxItems": 4
+                  }
+                },
+                "required": [
+                  "artifact_id",
+                  "artifact_sha256",
+                  "status",
+                  "checks"
+                ],
+                "additionalProperties": false
+              },
+              "minItems": 2,
+              "maxItems": 2
+            }
+          },
+          "required": [
+            "inspector",
+            "images"
+          ],
+          "additionalProperties": false
+        }
+      },
+      "required": [
+        "schema_version",
+        "operation",
+        "run_id",
+        "complete",
+        "target",
+        "manifest_sha256",
+        "recipe",
+        "started_at",
+        "finished_at",
+        "status",
+        "diagnostics",
+        "cleanup",
+        "evidence",
+        "method",
+        "verification_scope",
+        "payload"
+      ],
+      "additionalProperties": false
+    },
+    "hardware_report": {
+      "type": "object",
+      "properties": {
+        "schema_version": {
+          "type": "integer",
+          "const": 2
+        },
+        "operation": {
+          "const": "verify"
+        },
+        "run_id": {
+          "type": "string",
+          "minLength": 1
+        },
+        "complete": {
+          "type": "boolean",
+          "const": true
+        },
+        "target": {
+          "const": "rpi-zero2w-a53"
+        },
+        "manifest_sha256": {
+          "type": "string",
+          "pattern": "^[a-f0-9]{64}$"
+        },
+        "recipe": {
+          "type": "object",
+          "properties": {
+            "id": {
+              "type": "string",
+              "minLength": 1
+            },
+            "version": {
+              "type": "string",
+              "minLength": 1
+            },
+            "sha256": {
+              "type": "string",
+              "pattern": "^[a-f0-9]{64}$"
+            }
+          },
+          "required": [
+            "id",
+            "version",
+            "sha256"
+          ],
+          "additionalProperties": false
+        },
+        "started_at": {
+          "type": "string",
+          "format": "date-time",
+          "pattern": "(Z|\\+00:00)$"
+        },
+        "finished_at": {
+          "type": "string",
+          "format": "date-time",
+          "pattern": "(Z|\\+00:00)$"
+        },
+        "status": {
+          "enum": [
+            "passed",
+            "failed",
+            "timed_out",
+            "cancelled"
+          ]
+        },
+        "diagnostics": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "properties": {
+              "severity": {
+                "enum": [
+                  "info",
+                  "warning",
+                  "error"
+                ]
+              },
+              "code": {
+                "type": "string",
+                "minLength": 1
+              },
+              "message": {
+                "type": "string",
+                "minLength": 1
+              }
+            },
+            "required": [
+              "severity",
+              "code",
+              "message"
+            ],
+            "additionalProperties": false
+          },
+          "minItems": 0,
+          "maxItems": 4096
+        },
+        "cleanup": {
+          "type": "object",
+          "properties": {
+            "serial_closed": {
+              "type": "boolean"
+            },
+            "helpers_settled": {
+              "type": "boolean"
+            }
+          },
+          "required": [
+            "serial_closed",
+            "helpers_settled"
+          ],
+          "additionalProperties": false
+        },
+        "evidence": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "properties": {
+              "path": {
+                "type": "string",
+                "pattern": "^[A-Za-z0-9_-]+(?:[./][A-Za-z0-9_-]+)*$"
+              },
+              "sha256": {
+                "type": "string",
+                "pattern": "^[a-f0-9]{64}$"
+              },
+              "size_bytes": {
+                "type": "integer",
+                "minimum": 0
+              }
+            },
+            "required": [
+              "path",
+              "sha256",
+              "size_bytes"
+            ],
+            "additionalProperties": false
+          },
+          "minItems": 1,
+          "maxItems": 4096
+        },
+        "method": {
+          "const": "hardware"
+        },
+        "verification_scope": {
+          "const": "hardware"
+        },
+        "payload": {
+          "type": "object",
+          "properties": {
+            "session_id": {
+              "type": "string",
+              "minLength": 1
+            },
+            "board_id": {
+              "type": "string",
+              "minLength": 1
+            },
+            "adapter_id": {
+              "type": "string",
+              "minLength": 1
+            },
+            "port": {
+              "type": "string",
+              "minLength": 1
+            },
+            "serial_settings": {
+              "const": "115200-8N1-no-flow-control"
+            },
+            "identity_basis": {
+              "const": "operator-declaration-not-cryptographic-attestation"
+            },
+            "scenarios": {
+              "type": "array",
+              "items": {
+                "type": "object",
+                "properties": {
+                  "artifact_id": {
+                    "type": "string",
+                    "minLength": 1
+                  },
+                  "artifact_sha256": {
+                    "type": "string",
+                    "pattern": "^[a-f0-9]{64}$"
+                  },
+                  "variant": {
+                    "enum": [
+                      "normal",
+                      "panic-test"
+                    ]
+                  },
+                  "status": {
+                    "enum": [
+                      "passed",
+                      "failed",
+                      "timed_out",
+                      "cancelled",
+                      "skipped"
+                    ]
+                  },
+                  "capture_id": {
+                    "type": "string",
+                    "minLength": 1
+                  },
+                  "started_at": {
+                    "type": "string",
+                    "format": "date-time",
+                    "pattern": "(Z|\\+00:00)$"
+                  },
+                  "finished_at": {
+                    "type": "string",
+                    "format": "date-time",
+                    "pattern": "(Z|\\+00:00)$"
+                  },
+                  "deadline_ms": {
+                    "type": "integer",
+                    "minimum": 1,
+                    "maximum": 120000
+                  },
+                  "operator_declared_image_written": {
+                    "type": "boolean"
+                  },
+                  "operator_declared_power_cycle": {
+                    "type": "boolean"
+                  },
+                  "buffer_discarded_before_arm": {
+                    "type": "boolean"
+                  },
+                  "observed_marker": {
+                    "type": [
+                      "string",
+                      "null"
+                    ]
+                  },
+                  "logs": {
+                    "type": "array",
+                    "items": {
+                      "type": "object",
+                      "properties": {
+                        "path": {
+                          "type": "string",
+                          "pattern": "^[A-Za-z0-9_-]+(?:[./][A-Za-z0-9_-]+)*$"
+                        },
+                        "sha256": {
+                          "type": "string",
+                          "pattern": "^[a-f0-9]{64}$"
+                        },
+                        "size_bytes": {
+                          "type": "integer",
+                          "minimum": 0
+                        }
+                      },
+                      "required": [
+                        "path",
+                        "sha256",
+                        "size_bytes"
+                      ],
+                      "additionalProperties": false
+                    },
+                    "minItems": 1,
+                    "maxItems": 2
+                  }
+                },
+                "required": [
+                  "artifact_id",
+                  "artifact_sha256",
+                  "variant",
+                  "status",
+                  "capture_id",
+                  "started_at",
+                  "finished_at",
+                  "deadline_ms",
+                  "operator_declared_image_written",
+                  "operator_declared_power_cycle",
+                  "buffer_discarded_before_arm",
+                  "observed_marker",
+                  "logs"
+                ],
+                "additionalProperties": false
+              },
+              "minItems": 2,
+              "maxItems": 2
+            }
+          },
+          "required": [
+            "session_id",
+            "board_id",
+            "adapter_id",
+            "port",
+            "serial_settings",
+            "identity_basis",
+            "scenarios"
+          ],
+          "additionalProperties": false
+        }
+      },
+      "required": [
+        "schema_version",
+        "operation",
+        "run_id",
+        "complete",
+        "target",
+        "manifest_sha256",
+        "recipe",
+        "started_at",
+        "finished_at",
+        "status",
+        "diagnostics",
+        "cleanup",
+        "evidence",
+        "method",
+        "verification_scope",
+        "payload"
+      ],
+      "additionalProperties": false
+    }
+  }
+}

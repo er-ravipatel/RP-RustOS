@@ -1,0 +1,8 @@
+**/target/
+**/__pycache__/
+*.pyc
+.venv*/
+**/.rustos/
+**/.rustos-reports/
+**/.rustos-staging-*/
+/out/

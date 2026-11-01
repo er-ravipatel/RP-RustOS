@@ -1,0 +1,1162 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "RustOS schema 1 design contracts",
+  "$comment": "Validate a specific $defs entry; cross-record invariants require semantic checks. This is not an assembler.",
+  "$defs": {
+    "diagnostic": {
+      "type": "object",
+      "properties": {
+        "code": {
+          "type": "string",
+          "minLength": 1
+        },
+        "severity": {
+          "enum": [
+            "error",
+            "warning",
+            "info"
+          ]
+        },
+        "stage": {
+          "type": "string",
+          "minLength": 1
+        },
+        "message": {
+          "type": "string",
+          "minLength": 1
+        },
+        "input": {
+          "type": [
+            "string",
+            "null"
+          ]
+        },
+        "field": {
+          "type": [
+            "string",
+            "null"
+          ]
+        },
+        "dependency_chain": {
+          "type": "array",
+          "items": {
+            "type": "string",
+            "pattern": "^[a-z][a-z0-9-]*$"
+          },
+          "minItems": 0,
+          "uniqueItems": false
+        }
+      },
+      "required": [
+        "code",
+        "severity",
+        "stage",
+        "message",
+        "input",
+        "field",
+        "dependency_chain"
+      ],
+      "additionalProperties": false
+    },
+    "config": {
+      "type": "object",
+      "properties": {
+        "schema_version": {
+          "const": 1,
+          "type": "integer"
+        },
+        "target": {
+          "type": "string",
+          "pattern": "^[a-z][a-z0-9-]*$"
+        },
+        "features": {
+          "type": "array",
+          "items": {
+            "type": "string",
+            "pattern": "^[a-z][a-z0-9-]*$"
+          },
+          "minItems": 1,
+          "uniqueItems": true
+        },
+        "output_dir": {
+          "type": "string",
+          "minLength": 1,
+          "pattern": "^(?![A-Za-z]:)(?!/)(?!.*\\\\)(?!.*:)(?!.*(?:^|/)\\.{1,2}(?:/|$))[^\\x00]+$"
+        }
+      },
+      "required": [
+        "schema_version",
+        "target",
+        "features",
+        "output_dir"
+      ],
+      "additionalProperties": false
+    },
+    "profile": {
+      "type": "object",
+      "properties": {
+        "schema_version": {
+          "const": 1,
+          "type": "integer"
+        },
+        "id": {
+          "type": "string",
+          "pattern": "^[a-z][a-z0-9-]*$"
+        },
+        "version": {
+          "type": "string",
+          "pattern": "^[0-9]+\\.[0-9]+\\.[0-9]+$"
+        },
+        "architecture": {
+          "const": "aarch64"
+        },
+        "rust_target": {
+          "const": "aarch64-unknown-none-softfloat"
+        },
+        "base_modules": {
+          "type": "array",
+          "items": {
+            "type": "string",
+            "pattern": "^[a-z][a-z0-9-]*$"
+          },
+          "minItems": 1,
+          "uniqueItems": true
+        },
+        "supported_features": {
+          "type": "array",
+          "items": {
+            "type": "string",
+            "pattern": "^[a-z][a-z0-9-]*$"
+          },
+          "minItems": 1,
+          "uniqueItems": true
+        },
+        "artifact_format": {
+          "const": "elf"
+        },
+        "emulator": {
+          "type": "object",
+          "properties": {
+            "qemu_version": {
+              "const": "11.1.0"
+            },
+            "machine": {
+              "const": "virt-11.1"
+            },
+            "cpu": {
+              "const": "cortex-a53"
+            },
+            "memory_mib": {
+              "const": 128,
+              "type": "integer"
+            },
+            "cores": {
+              "const": 1,
+              "type": "integer"
+            },
+            "accelerator": {
+              "const": "tcg"
+            },
+            "instruction_counting": {
+              "const": "auto"
+            },
+            "secure": {
+              "const": false,
+              "type": "boolean"
+            },
+            "virtualization": {
+              "const": false,
+              "type": "boolean"
+            },
+            "gic_version": {
+              "const": 2,
+              "type": "integer"
+            }
+          },
+          "required": [
+            "qemu_version",
+            "machine",
+            "cpu",
+            "memory_mib",
+            "cores",
+            "accelerator",
+            "instruction_counting",
+            "secure",
+            "virtualization",
+            "gic_version"
+          ],
+          "additionalProperties": false
+        },
+        "verification": {
+          "type": "object",
+          "properties": {
+            "scope": {
+              "const": "emulator"
+            },
+            "recipe": {
+              "const": "startup-and-panic-v1"
+            }
+          },
+          "required": [
+            "scope",
+            "recipe"
+          ],
+          "additionalProperties": false
+        }
+      },
+      "required": [
+        "schema_version",
+        "id",
+        "version",
+        "architecture",
+        "rust_target",
+        "base_modules",
+        "supported_features",
+        "artifact_format",
+        "emulator",
+        "verification"
+      ],
+      "additionalProperties": false
+    },
+    "module": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "string",
+          "pattern": "^[a-z][a-z0-9-]*$"
+        },
+        "version": {
+          "type": "string",
+          "pattern": "^[0-9]+\\.[0-9]+\\.[0-9]+$"
+        },
+        "kind": {
+          "enum": [
+            "kernel",
+            "hal",
+            "bsp",
+            "driver"
+          ]
+        },
+        "source_dir": {
+          "type": "string",
+          "minLength": 1,
+          "pattern": "^(?![A-Za-z]:)(?!/)(?!.*\\\\)(?!.*:)(?!.*(?:^|/)\\.{1,2}(?:/|$))[^\\x00]+$"
+        },
+        "architectures": {
+          "type": "array",
+          "items": {
+            "type": "string",
+            "minLength": 1
+          },
+          "minItems": 1,
+          "uniqueItems": true
+        },
+        "targets": {
+          "type": "array",
+          "items": {
+            "type": "string",
+            "pattern": "^[a-z][a-z0-9-]*$"
+          },
+          "minItems": 1,
+          "uniqueItems": true
+        },
+        "requires": {
+          "type": "array",
+          "items": {
+            "type": "string",
+            "pattern": "^[a-z][a-z0-9-]*$"
+          },
+          "minItems": 0,
+          "uniqueItems": true
+        },
+        "conflicts": {
+          "type": "array",
+          "items": {
+            "type": "string",
+            "pattern": "^[a-z][a-z0-9-]*$"
+          },
+          "minItems": 0,
+          "uniqueItems": true
+        }
+      },
+      "required": [
+        "id",
+        "version",
+        "kind",
+        "source_dir",
+        "architectures",
+        "targets",
+        "requires",
+        "conflicts"
+      ],
+      "additionalProperties": false
+    },
+    "catalog": {
+      "type": "object",
+      "properties": {
+        "schema_version": {
+          "const": 1,
+          "type": "integer"
+        },
+        "modules": {
+          "type": "array",
+          "items": {
+            "$ref": "#/$defs/module"
+          },
+          "minItems": 1,
+          "uniqueItems": false
+        },
+        "features": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "properties": {
+              "id": {
+                "type": "string",
+                "pattern": "^[a-z][a-z0-9-]*$"
+              },
+              "requires": {
+                "type": "array",
+                "items": {
+                  "type": "string",
+                  "pattern": "^[a-z][a-z0-9-]*$"
+                },
+                "minItems": 1,
+                "uniqueItems": true
+              }
+            },
+            "required": [
+              "id",
+              "requires"
+            ],
+            "additionalProperties": false
+          },
+          "minItems": 1,
+          "uniqueItems": false
+        }
+      },
+      "required": [
+        "schema_version",
+        "modules",
+        "features"
+      ],
+      "additionalProperties": false
+    },
+    "resolved_module": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "string",
+          "pattern": "^[a-z][a-z0-9-]*$"
+        },
+        "version": {
+          "type": "string",
+          "pattern": "^[0-9]+\\.[0-9]+\\.[0-9]+$"
+        },
+        "reasons": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "properties": {
+              "kind": {
+                "enum": [
+                  "base",
+                  "feature",
+                  "dependency"
+                ]
+              },
+              "from": {
+                "type": "string",
+                "pattern": "^[a-z][a-z0-9-]*$"
+              }
+            },
+            "required": [
+              "kind",
+              "from"
+            ],
+            "additionalProperties": false
+          },
+          "minItems": 1,
+          "uniqueItems": true
+        }
+      },
+      "required": [
+        "id",
+        "version",
+        "reasons"
+      ],
+      "additionalProperties": false
+    },
+    "input": {
+      "type": "object",
+      "properties": {
+        "path": {
+          "type": "string",
+          "minLength": 1
+        },
+        "sha256": {
+          "type": "string",
+          "pattern": "^[a-f0-9]{64}$"
+        }
+      },
+      "required": [
+        "path",
+        "sha256"
+      ],
+      "additionalProperties": false
+    },
+    "recipe": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "string",
+          "pattern": "^[a-z][a-z0-9-]*$"
+        },
+        "version": {
+          "type": "string",
+          "pattern": "^[0-9]+\\.[0-9]+\\.[0-9]+$"
+        },
+        "sha256": {
+          "type": "string",
+          "pattern": "^[a-f0-9]{64}$"
+        }
+      },
+      "required": [
+        "id",
+        "version",
+        "sha256"
+      ],
+      "additionalProperties": false
+    },
+    "plan": {
+      "type": "object",
+      "properties": {
+        "requested_features": {
+          "type": "array",
+          "items": {
+            "type": "string",
+            "pattern": "^[a-z][a-z0-9-]*$"
+          },
+          "minItems": 1,
+          "uniqueItems": true
+        },
+        "resolved_modules": {
+          "type": "array",
+          "items": {
+            "$ref": "#/$defs/resolved_module"
+          },
+          "minItems": 1,
+          "uniqueItems": false
+        },
+        "build_order": {
+          "type": "array",
+          "items": {
+            "type": "string",
+            "pattern": "^[a-z][a-z0-9-]*$"
+          },
+          "minItems": 1,
+          "uniqueItems": true
+        },
+        "inputs": {
+          "type": "array",
+          "items": {
+            "$ref": "#/$defs/input"
+          },
+          "minItems": 1,
+          "uniqueItems": false
+        },
+        "artifact_format": {
+          "const": "elf"
+        },
+        "verification_recipe": {
+          "$ref": "#/$defs/recipe"
+        },
+        "missing_prerequisites": {
+          "type": "array",
+          "items": {
+            "$ref": "#/$defs/diagnostic"
+          },
+          "minItems": 0,
+          "uniqueItems": false
+        }
+      },
+      "required": [
+        "requested_features",
+        "resolved_modules",
+        "build_order",
+        "inputs",
+        "artifact_format",
+        "verification_recipe",
+        "missing_prerequisites"
+      ],
+      "additionalProperties": false
+    },
+    "artifact": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "string",
+          "pattern": "^[a-z][a-z0-9-]*$"
+        },
+        "variant": {
+          "enum": [
+            "normal",
+            "panic-test"
+          ]
+        },
+        "path": {
+          "type": "string",
+          "minLength": 1,
+          "pattern": "^(?![A-Za-z]:)(?!/)(?!.*\\\\)(?!.*:)(?!.*(?:^|/)\\.{1,2}(?:/|$))[^\\x00]+$"
+        },
+        "sha256": {
+          "type": "string",
+          "pattern": "^[a-f0-9]{64}$"
+        },
+        "size_bytes": {
+          "type": "integer",
+          "minimum": 0
+        }
+      },
+      "required": [
+        "id",
+        "variant",
+        "path",
+        "sha256",
+        "size_bytes"
+      ],
+      "additionalProperties": false
+    },
+    "manifest": {
+      "type": "object",
+      "properties": {
+        "schema_version": {
+          "const": 1,
+          "type": "integer"
+        },
+        "bundle_id": {
+          "type": "string",
+          "minLength": 1
+        },
+        "created_at": {
+          "type": "string",
+          "format": "date-time",
+          "pattern": "(Z|\\+00:00)$"
+        },
+        "complete": {
+          "const": true,
+          "type": "boolean"
+        },
+        "target": {
+          "type": "object",
+          "properties": {
+            "id": {
+              "type": "string",
+              "pattern": "^[a-z][a-z0-9-]*$"
+            },
+            "version": {
+              "type": "string",
+              "pattern": "^[0-9]+\\.[0-9]+\\.[0-9]+$"
+            },
+            "architecture": {
+              "const": "aarch64"
+            },
+            "rust_target": {
+              "const": "aarch64-unknown-none-softfloat"
+            }
+          },
+          "required": [
+            "id",
+            "version",
+            "architecture",
+            "rust_target"
+          ],
+          "additionalProperties": false
+        },
+        "requested_features": {
+          "type": "array",
+          "items": {
+            "type": "string",
+            "pattern": "^[a-z][a-z0-9-]*$"
+          },
+          "minItems": 1,
+          "uniqueItems": true
+        },
+        "resolved_modules": {
+          "type": "array",
+          "items": {
+            "$ref": "#/$defs/resolved_module"
+          },
+          "minItems": 1,
+          "uniqueItems": false
+        },
+        "inputs": {
+          "type": "array",
+          "items": {
+            "$ref": "#/$defs/input"
+          },
+          "minItems": 1,
+          "uniqueItems": false
+        },
+        "tools": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "properties": {
+              "name": {
+                "type": "string",
+                "minLength": 1
+              },
+              "version": {
+                "type": "string",
+                "minLength": 1
+              }
+            },
+            "required": [
+              "name",
+              "version"
+            ],
+            "additionalProperties": false
+          },
+          "minItems": 1,
+          "uniqueItems": false
+        },
+        "artifacts": {
+          "type": "array",
+          "items": {
+            "$ref": "#/$defs/artifact"
+          },
+          "minItems": 2,
+          "uniqueItems": false,
+          "maxItems": 2
+        },
+        "verification_recipe": {
+          "$ref": "#/$defs/recipe"
+        }
+      },
+      "required": [
+        "schema_version",
+        "bundle_id",
+        "created_at",
+        "complete",
+        "target",
+        "requested_features",
+        "resolved_modules",
+        "inputs",
+        "tools",
+        "artifacts",
+        "verification_recipe"
+      ],
+      "additionalProperties": false
+    },
+    "log": {
+      "type": "object",
+      "properties": {
+        "stream": {
+          "enum": [
+            "stdout",
+            "stderr"
+          ]
+        },
+        "path": {
+          "type": "string",
+          "minLength": 1,
+          "pattern": "^(?![A-Za-z]:)(?!/)(?!.*\\\\)(?!.*:)(?!.*(?:^|/)\\.{1,2}(?:/|$))[^\\x00]+$"
+        },
+        "sha256": {
+          "type": "string",
+          "pattern": "^[a-f0-9]{64}$"
+        }
+      },
+      "required": [
+        "stream",
+        "path",
+        "sha256"
+      ],
+      "additionalProperties": false
+    },
+    "step": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "enum": [
+            "startup",
+            "panic"
+          ]
+        },
+        "artifact_id": {
+          "type": "string",
+          "pattern": "^[a-z][a-z0-9-]*$"
+        },
+        "artifact_sha256": {
+          "type": "string",
+          "pattern": "^[a-f0-9]{64}$"
+        },
+        "status": {
+          "enum": [
+            "not_run",
+            "running",
+            "passed",
+            "failed",
+            "cancelled",
+            "timed_out",
+            "skipped"
+          ]
+        },
+        "deadline_ms": {
+          "const": 10000,
+          "type": "integer"
+        },
+        "observed_marker": {
+          "type": [
+            "string",
+            "null"
+          ]
+        },
+        "stop_requested": {
+          "type": "boolean"
+        },
+        "logs": {
+          "type": "array",
+          "items": {
+            "$ref": "#/$defs/log"
+          },
+          "minItems": 0,
+          "uniqueItems": false
+        },
+        "diagnostics": {
+          "type": "array",
+          "items": {
+            "$ref": "#/$defs/diagnostic"
+          },
+          "minItems": 0,
+          "uniqueItems": false
+        }
+      },
+      "required": [
+        "id",
+        "artifact_id",
+        "artifact_sha256",
+        "status",
+        "deadline_ms",
+        "observed_marker",
+        "stop_requested",
+        "logs",
+        "diagnostics"
+      ],
+      "additionalProperties": false
+    },
+    "cleanup": {
+      "type": "object",
+      "properties": {
+        "status": {
+          "enum": [
+            "not_run",
+            "running",
+            "passed",
+            "failed"
+          ]
+        },
+        "stop_budget_ms": {
+          "const": 5000,
+          "type": "integer"
+        },
+        "kill_budget_ms": {
+          "const": 5000,
+          "type": "integer"
+        },
+        "processes_settled": {
+          "type": "boolean"
+        },
+        "diagnostics": {
+          "type": "array",
+          "items": {
+            "$ref": "#/$defs/diagnostic"
+          },
+          "minItems": 0,
+          "uniqueItems": false
+        }
+      },
+      "required": [
+        "status",
+        "stop_budget_ms",
+        "kill_budget_ms",
+        "processes_settled",
+        "diagnostics"
+      ],
+      "additionalProperties": false
+    },
+    "verification": {
+      "type": "object",
+      "properties": {
+        "schema_version": {
+          "const": 1,
+          "type": "integer"
+        },
+        "run_id": {
+          "type": "string",
+          "minLength": 1
+        },
+        "complete": {
+          "type": "boolean"
+        },
+        "operation": {
+          "const": "verify"
+        },
+        "target": {
+          "type": "string",
+          "pattern": "^[a-z][a-z0-9-]*$"
+        },
+        "manifest_sha256": {
+          "type": "string",
+          "pattern": "^[a-f0-9]{64}$"
+        },
+        "verification_scope": {
+          "const": "emulator"
+        },
+        "started_at": {
+          "type": "string",
+          "format": "date-time",
+          "pattern": "(Z|\\+00:00)$"
+        },
+        "finished_at": {
+          "anyOf": [
+            {
+              "type": "string",
+              "format": "date-time",
+              "pattern": "(Z|\\+00:00)$"
+            },
+            {
+              "type": "null"
+            }
+          ]
+        },
+        "status": {
+          "enum": [
+            "not_run",
+            "running",
+            "passed",
+            "failed",
+            "cancelled",
+            "timed_out",
+            "skipped"
+          ]
+        },
+        "steps": {
+          "type": "array",
+          "items": {
+            "$ref": "#/$defs/step"
+          },
+          "minItems": 0,
+          "uniqueItems": false,
+          "maxItems": 2
+        },
+        "cleanup": {
+          "$ref": "#/$defs/cleanup"
+        },
+        "diagnostics": {
+          "type": "array",
+          "items": {
+            "$ref": "#/$defs/diagnostic"
+          },
+          "minItems": 0,
+          "uniqueItems": false
+        },
+        "evidence": {
+          "type": "array",
+          "items": {
+            "type": "string",
+            "minLength": 1,
+            "pattern": "^(?![A-Za-z]:)(?!/)(?!.*\\\\)(?!.*:)(?!.*(?:^|/)\\.{1,2}(?:/|$))[^\\x00]+$"
+          },
+          "minItems": 0,
+          "uniqueItems": false
+        }
+      },
+      "required": [
+        "schema_version",
+        "run_id",
+        "complete",
+        "operation",
+        "target",
+        "manifest_sha256",
+        "verification_scope",
+        "started_at",
+        "finished_at",
+        "status",
+        "steps",
+        "cleanup",
+        "diagnostics",
+        "evidence"
+      ],
+      "additionalProperties": false,
+      "allOf": [
+        {
+          "if": {
+            "properties": {
+              "complete": {
+                "const": true
+              }
+            }
+          },
+          "then": {
+            "properties": {
+              "finished_at": {
+                "type": "string",
+                "format": "date-time",
+                "pattern": "(Z|\\+00:00)$"
+              },
+              "status": {
+                "enum": [
+                  "passed",
+                  "failed",
+                  "cancelled",
+                  "timed_out"
+                ]
+              }
+            }
+          },
+          "else": {
+            "properties": {
+              "finished_at": {
+                "type": "null"
+              },
+              "status": {
+                "const": "running"
+              }
+            }
+          }
+        }
+      ]
+    },
+    "cli": {
+      "type": "object",
+      "properties": {
+        "schema_version": {
+          "const": 1,
+          "type": "integer"
+        },
+        "operation": {
+          "enum": [
+            "validate",
+            "plan",
+            "build",
+            "verify"
+          ]
+        },
+        "status": {
+          "enum": [
+            "passed",
+            "failed",
+            "cancelled",
+            "timed_out"
+          ]
+        },
+        "target": {
+          "anyOf": [
+            {
+              "type": "string",
+              "pattern": "^[a-z][a-z0-9-]*$"
+            },
+            {
+              "type": "null"
+            }
+          ]
+        },
+        "build_ready": {
+          "type": [
+            "boolean",
+            "null"
+          ]
+        },
+        "diagnostics": {
+          "type": "array",
+          "items": {
+            "$ref": "#/$defs/diagnostic"
+          },
+          "minItems": 0,
+          "uniqueItems": false
+        },
+        "result": {},
+        "evidence": {
+          "type": "array",
+          "items": {
+            "type": "string",
+            "minLength": 1,
+            "pattern": "^(?![A-Za-z]:)(?!/)(?!.*\\\\)(?!.*:)(?!.*(?:^|/)\\.{1,2}(?:/|$))[^\\x00]+$"
+          },
+          "minItems": 0,
+          "uniqueItems": false
+        }
+      },
+      "required": [
+        "schema_version",
+        "operation",
+        "status",
+        "target",
+        "build_ready",
+        "diagnostics",
+        "result",
+        "evidence"
+      ],
+      "additionalProperties": false,
+      "allOf": [
+        {
+          "if": {
+            "properties": {
+              "operation": {
+                "const": "validate"
+              }
+            }
+          },
+          "then": {
+            "properties": {
+              "result": {
+                "anyOf": [
+                  {
+                    "type": "object",
+                    "properties": {
+                      "missing_prerequisites": {
+                        "type": "array",
+                        "items": {
+                          "$ref": "#/$defs/diagnostic"
+                        },
+                        "minItems": 0,
+                        "uniqueItems": false
+                      }
+                    },
+                    "required": [
+                      "missing_prerequisites"
+                    ],
+                    "additionalProperties": false
+                  },
+                  {
+                    "type": "null"
+                  }
+                ]
+              }
+            }
+          }
+        },
+        {
+          "if": {
+            "properties": {
+              "operation": {
+                "const": "plan"
+              }
+            }
+          },
+          "then": {
+            "properties": {
+              "result": {
+                "anyOf": [
+                  {
+                    "$ref": "#/$defs/plan"
+                  },
+                  {
+                    "type": "null"
+                  }
+                ]
+              }
+            }
+          }
+        },
+        {
+          "if": {
+            "properties": {
+              "operation": {
+                "const": "build"
+              }
+            }
+          },
+          "then": {
+            "properties": {
+              "result": {
+                "anyOf": [
+                  {
+                    "type": "object",
+                    "properties": {
+                      "manifest_path": {
+                        "type": "string",
+                        "minLength": 1
+                      },
+                      "manifest_sha256": {
+                        "type": "string",
+                        "pattern": "^[a-f0-9]{64}$"
+                      }
+                    },
+                    "required": [
+                      "manifest_path",
+                      "manifest_sha256"
+                    ],
+                    "additionalProperties": false
+                  },
+                  {
+                    "type": "null"
+                  }
+                ]
+              }
+            }
+          }
+        },
+        {
+          "if": {
+            "properties": {
+              "operation": {
+                "const": "verify"
+              }
+            }
+          },
+          "then": {
+            "properties": {
+              "result": {
+                "anyOf": [
+                  {
+                    "$ref": "#/$defs/verification"
+                  },
+                  {
+                    "type": "null"
+                  }
+                ]
+              }
+            }
+          }
+        },
+        {
+          "if": {
+            "properties": {
+              "status": {
+                "const": "passed"
+              }
+            }
+          },
+          "then": {
+            "properties": {
+              "result": {
+                "not": {
+                  "type": "null"
+                }
+              }
+            }
+          }
+        },
+        {
+          "if": {
+            "properties": {
+              "operation": {
+                "const": "verify"
+              }
+            }
+          },
+          "then": {
+            "properties": {
+              "build_ready": {
+                "type": "null"
+              }
+            }
+          }
+        }
+      ]
+    }
+  }
+}

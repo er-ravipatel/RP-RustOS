@@ -1,0 +1,102 @@
+{
+  "schema_version": 2,
+  "id": "rpi-zero2w-boot-assets",
+  "repository": "https://github.com/raspberrypi/firmware",
+  "commit": "1111111111111111111111111111111111111111",
+  "assets": [
+    {
+      "id": "bootcode",
+      "path": "bootcode.bin",
+      "role": "firmware",
+      "size_bytes": 1,
+      "sha256": "0000000000000000000000000000000000000000000000000000000000000000",
+      "url": "https://raw.githubusercontent.com/raspberrypi/firmware/1111111111111111111111111111111111111111/boot/bootcode.bin",
+      "license_ids": [
+        "notice"
+      ],
+      "source_package_id": null
+    },
+    {
+      "id": "start",
+      "path": "start.elf",
+      "role": "firmware",
+      "size_bytes": 1,
+      "sha256": "0000000000000000000000000000000000000000000000000000000000000000",
+      "url": "https://raw.githubusercontent.com/raspberrypi/firmware/1111111111111111111111111111111111111111/boot/start.elf",
+      "license_ids": [
+        "notice"
+      ],
+      "source_package_id": null
+    },
+    {
+      "id": "fixup",
+      "path": "fixup.dat",
+      "role": "firmware",
+      "size_bytes": 1,
+      "sha256": "0000000000000000000000000000000000000000000000000000000000000000",
+      "url": "https://raw.githubusercontent.com/raspberrypi/firmware/1111111111111111111111111111111111111111/boot/fixup.dat",
+      "license_ids": [
+        "notice"
+      ],
+      "source_package_id": null
+    },
+    {
+      "id": "dtb",
+      "path": "bcm2710-rpi-zero-2-w.dtb",
+      "role": "device-tree",
+      "size_bytes": 1,
+      "sha256": "0000000000000000000000000000000000000000000000000000000000000000",
+      "url": "https://raw.githubusercontent.com/raspberrypi/firmware/1111111111111111111111111111111111111111/boot/bcm2710-rpi-zero-2-w.dtb",
+      "license_ids": [
+        "linux-notice"
+      ],
+      "source_package_id": "linux-dtb"
+    },
+    {
+      "id": "notice",
+      "path": "LICENCE.broadcom",
+      "role": "license",
+      "size_bytes": 1,
+      "sha256": "0000000000000000000000000000000000000000000000000000000000000000",
+      "url": "https://raw.githubusercontent.com/raspberrypi/firmware/1111111111111111111111111111111111111111/boot/LICENCE.broadcom",
+      "license_ids": [],
+      "source_package_id": null
+    },
+    {
+      "id": "linux-notice",
+      "path": "COPYING.linux",
+      "role": "license",
+      "size_bytes": 1,
+      "sha256": "0000000000000000000000000000000000000000000000000000000000000000",
+      "url": "https://raw.githubusercontent.com/raspberrypi/firmware/1111111111111111111111111111111111111111/boot/COPYING.linux",
+      "license_ids": [],
+      "source_package_id": null
+    }
+  ],
+  "cache_root": "out/synthetic-only",
+  "source_packages": [
+    {
+      "id": "linux-dtb",
+      "repository": "https://github.com/raspberrypi/linux",
+      "commit": "2222222222222222222222222222222222222222",
+      "url": "https://codeload.github.com/raspberrypi/linux/tar.gz/2222222222222222222222222222222222222222",
+      "archive": {
+        "path": "out/synthetic-only/linux.tar.gz",
+        "sha256": "0000000000000000000000000000000000000000000000000000000000000000",
+        "size_bytes": 1
+      },
+      "build_materials": [
+        {
+          "path": "out/synthetic-only/README.md",
+          "sha256": "0000000000000000000000000000000000000000000000000000000000000000",
+          "size_bytes": 1
+        }
+      ],
+      "reproduction_evidence": {
+        "path": "out/synthetic-only/proof.json",
+        "sha256": "0000000000000000000000000000000000000000000000000000000000000000",
+        "size_bytes": 1
+      }
+    }
+  ]
+}

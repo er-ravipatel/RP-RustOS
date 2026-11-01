@@ -1,0 +1,366 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "M2 session and completed-report index design contracts",
+  "$defs": {
+    "session": {
+      "type": "object",
+      "properties": {
+        "schema_version": {
+          "const": 2,
+          "type": "integer"
+        },
+        "id": {
+          "type": "string",
+          "minLength": 1
+        },
+        "manifest_sha256": {
+          "type": "string",
+          "pattern": "^[0-9a-f]{64}$"
+        },
+        "board_id": {
+          "type": "string",
+          "minLength": 1
+        },
+        "adapter_id": {
+          "type": "string",
+          "minLength": 1
+        },
+        "port": {
+          "type": "string",
+          "pattern": "^COM[1-9][0-9]{0,3}$"
+        },
+        "serial_settings": {
+          "const": "115200-8N1-no-flow-control"
+        },
+        "image_ids": {
+          "type": "array",
+          "items": {
+            "type": "string",
+            "minLength": 1
+          },
+          "minItems": 2,
+          "maxItems": 2,
+          "uniqueItems": true
+        }
+      },
+      "required": [
+        "schema_version",
+        "id",
+        "manifest_sha256",
+        "board_id",
+        "adapter_id",
+        "port",
+        "serial_settings",
+        "image_ids"
+      ],
+      "additionalProperties": false
+    },
+    "completed_index": {
+      "type": "object",
+      "properties": {
+        "schema_version": {
+          "const": 2,
+          "type": "integer"
+        },
+        "id": {
+          "type": "string",
+          "pattern": "^e-[0-9a-f]+-[0-9a-f]+$"
+        },
+        "method": {
+          "enum": [
+            "image",
+            "hardware"
+          ]
+        },
+        "input_path": {
+          "type": "string",
+          "minLength": 1
+        },
+        "manifest_sha256": {
+          "type": "string",
+          "pattern": "^[0-9a-f]{64}$"
+        },
+        "report_path": {
+          "type": "string",
+          "minLength": 1
+        },
+        "report_sha256": {
+          "type": "string",
+          "pattern": "^[0-9a-f]{64}$"
+        },
+        "cli": {
+          "type": "object",
+          "properties": {
+            "schema_version": {
+              "const": 1,
+              "type": "integer"
+            },
+            "operation": {
+              "const": "verify"
+            },
+            "status": {
+              "enum": [
+                "passed",
+                "failed",
+                "timed_out",
+                "cancelled"
+              ]
+            },
+            "target": {
+              "const": "rpi-zero2w-a53"
+            },
+            "build_ready": {
+              "type": "null"
+            },
+            "diagnostics": {
+              "type": "array",
+              "items": {
+                "type": "object",
+                "properties": {
+                  "severity": {
+                    "enum": [
+                      "info",
+                      "warning",
+                      "error"
+                    ]
+                  },
+                  "code": {
+                    "type": "string",
+                    "minLength": 1
+                  },
+                  "message": {
+                    "type": "string",
+                    "minLength": 1
+                  },
+                  "stage": {
+                    "type": "string",
+                    "minLength": 1
+                  },
+                  "input": {
+                    "type": [
+                      "string",
+                      "null"
+                    ]
+                  },
+                  "field": {
+                    "type": [
+                      "string",
+                      "null"
+                    ]
+                  },
+                  "dependency_chain": {
+                    "type": "array",
+                    "items": {
+                      "type": "string",
+                      "minLength": 1
+                    }
+                  }
+                },
+                "required": [
+                  "severity",
+                  "code",
+                  "message",
+                  "stage",
+                  "input",
+                  "field",
+                  "dependency_chain"
+                ],
+                "additionalProperties": false
+              }
+            },
+            "result": {
+              "type": "object"
+            },
+            "evidence": {
+              "type": "array",
+              "items": {
+                "type": "string",
+                "minLength": 1
+              },
+              "minItems": 1
+            }
+          },
+          "required": [
+            "schema_version",
+            "operation",
+            "status",
+            "target",
+            "build_ready",
+            "diagnostics",
+            "result",
+            "evidence"
+          ],
+          "additionalProperties": false
+        }
+      },
+      "required": [
+        "schema_version",
+        "id",
+        "method",
+        "input_path",
+        "manifest_sha256",
+        "report_path",
+        "report_sha256",
+        "cli"
+      ],
+      "additionalProperties": false
+    },
+    "completed_build_index": {
+      "type": "object",
+      "properties": {
+        "schema_version": {
+          "const": 2,
+          "type": "integer"
+        },
+        "record_kind": {
+          "const": "completed-build"
+        },
+        "id": {
+          "type": "string",
+          "pattern": "^e-[0-9a-f]+-[0-9a-f]+$"
+        },
+        "input_path": {
+          "type": "string",
+          "minLength": 1
+        },
+        "manifest_path": {
+          "type": "string",
+          "minLength": 1
+        },
+        "manifest_sha256": {
+          "type": "string",
+          "pattern": "^[0-9a-f]{64}$"
+        },
+        "verification_status": {
+          "const": "not_run"
+        },
+        "cli": {
+          "type": "object",
+          "properties": {
+            "schema_version": {
+              "const": 1,
+              "type": "integer"
+            },
+            "operation": {
+              "const": "build"
+            },
+            "status": {
+              "const": "passed"
+            },
+            "target": {
+              "const": "rpi-zero2w-a53"
+            },
+            "build_ready": {
+              "type": "boolean",
+              "const": true
+            },
+            "diagnostics": {
+              "type": "array",
+              "items": {
+                "type": "object",
+                "properties": {
+                  "severity": {
+                    "enum": [
+                      "info",
+                      "warning",
+                      "error"
+                    ]
+                  },
+                  "code": {
+                    "type": "string",
+                    "minLength": 1
+                  },
+                  "message": {
+                    "type": "string",
+                    "minLength": 1
+                  },
+                  "stage": {
+                    "type": "string",
+                    "minLength": 1
+                  },
+                  "input": {
+                    "type": [
+                      "string",
+                      "null"
+                    ]
+                  },
+                  "field": {
+                    "type": [
+                      "string",
+                      "null"
+                    ]
+                  },
+                  "dependency_chain": {
+                    "type": "array",
+                    "items": {
+                      "type": "string",
+                      "minLength": 1
+                    }
+                  }
+                },
+                "required": [
+                  "severity",
+                  "code",
+                  "message",
+                  "stage",
+                  "input",
+                  "field",
+                  "dependency_chain"
+                ],
+                "additionalProperties": false
+              }
+            },
+            "result": {
+              "type": "object",
+              "properties": {
+                "manifest_path": {
+                  "type": "string",
+                  "minLength": 1
+                },
+                "manifest_sha256": {
+                  "type": "string",
+                  "pattern": "^[0-9a-f]{64}$"
+                }
+              },
+              "required": [
+                "manifest_path",
+                "manifest_sha256"
+              ],
+              "additionalProperties": false
+            },
+            "evidence": {
+              "type": "array",
+              "items": {
+                "type": "string",
+                "minLength": 1
+              },
+              "minItems": 0
+            }
+          },
+          "required": [
+            "schema_version",
+            "operation",
+            "status",
+            "target",
+            "build_ready",
+            "diagnostics",
+            "result",
+            "evidence"
+          ],
+          "additionalProperties": false
+        }
+      },
+      "required": [
+        "schema_version",
+        "record_kind",
+        "id",
+        "input_path",
+        "manifest_path",
+        "manifest_sha256",
+        "verification_status",
+        "cli"
+      ],
+      "additionalProperties": false
+    }
+  }
+}
